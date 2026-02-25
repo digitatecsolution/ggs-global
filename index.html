@@ -3,1831 +3,2462 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayPal Setup Service for Nigerian Professionals — GGS Global</title>
-
-<!-- Facebook / Open Graph Meta Tags -->
-<meta property="og:title" content="Get a Fully Working PayPal Account in 72 Hours — Nigerian Professionals">
-<meta property="og:description" content="Professional PayPal account setup and configuration service for Nigerian freelancers, sellers & remote workers. 500+ clients served. Direct WhatsApp support.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="en_NG">
-
-<!-- Standard SEO Meta -->
-<meta name="description" content="Professional PayPal account setup and configuration service for Nigerian freelancers and remote workers. Fully configured, verified, and ready in 72 hours. 500+ clients served.">
-<meta name="robots" content="index, follow">
-
-<!-- Facebook Pixel -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '631335109208440');
-fbq('track', 'PageView');
+<title>GGS Global Consult — Nigeria's #1 Authentic Import Store | Factory Cost Prices</title>
+<meta name="description" content="Shop 100% authentic tech & fashion from China at factory cost prices. iPhones, MacBooks, Samsung, designer bags. Secure Flutterwave checkout. 200+ Nigerians trust GGS.">
+<meta property="og:title" content="GGS Global Consult — Authentic Imports at Cost Price">
+<meta property="og:description" content="Order authentic gadgets & fashion direct from China. You pay ONLY the factory cost price. 200+ happy customers. Flutterwave secure checkout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://checkout.flutterwave.com/v3.js"></script><script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"
+  }
+}
 </script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=631335109208440&ev=PageView&noscript=1"/>
-</noscript>
+<script type="module" src="firebase-store.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #070E1C;
-    --navy2: #0B1628;
-    --navy3: #0D1F3C;
-    --gold: #F5C842;
-    --gold2: #E8A020;
-    --gold-dim: rgba(245,200,66,0.1);
-    --gold-glow: rgba(245,200,66,0.25);
-    --green: #00C853;
-    --green-dark: #007A30;
-    --green-dim: rgba(0,200,83,0.1);
-    --green-glow: rgba(0,200,83,0.3);
-    --orange: #FF6B35;
-    --red: #E74C3C;
-    --white: #FFFFFF;
-    --text: #E2E8F0;
-    --muted: #94A3B8;
-    --border: rgba(255,255,255,0.08);
-    --border-gold: rgba(245,200,66,0.2);
-    --card: rgba(255,255,255,0.04);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--navy);
-    color: var(--text);
-    font-family: 'Manrope', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ====== STICKY TOP BAR ====== */
-  .topbar {
-    background: linear-gradient(90deg, #006400, var(--green), #006400);
-    background-size: 200% 100%;
-    animation: shimmerBar 3s linear infinite;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--navy);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  @keyframes shimmerBar {
-    0%{background-position:0% 50%}
-    100%{background-position:200% 50%}
-  }
-
-  .topbar span {
-    background: var(--navy);
-    color: var(--gold);
-    padding: 2px 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    margin-left: 8px;
-    letter-spacing: 2px;
-  }
-
-  /* ====== COUNTDOWN SECTION ====== */
-  .countdown-bar {
-    background: linear-gradient(135deg, #1a0a00, #2a1000);
-    border-bottom: 2px solid var(--orange);
-    padding: 18px 24px;
-    text-align: center;
-  }
-
-  .countdown-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--orange);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .countdown-timer {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .cd-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cd-number {
-    background: var(--navy);
-    border: 2px solid var(--orange);
-    color: var(--orange);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    line-height: 1;
-    width: 72px;
-    text-align: center;
-    padding: 6px 0;
-    box-shadow: 0 0 20px rgba(255,107,53,0.3);
-  }
-
-  .cd-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    margin-top: 4px;
-    text-transform: uppercase;
-  }
-
-  .cd-sep {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--orange);
-    margin-bottom: 16px;
-    opacity: 0.6;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink { 0%,100%{opacity:0.6} 50%{opacity:0.1} }
-
-  .countdown-caption {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 10px;
-  }
-
-  .countdown-caption strong { color: var(--orange); }
-
-  /* ====== HERO ====== */
-  .hero {
-    padding: 70px 24px 60px;
-    text-align: center;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(245,200,66,0.1) 0%, transparent 55%),
-      radial-gradient(ellipse at 100% 100%, rgba(0,200,83,0.06) 0%, transparent 50%),
-      var(--navy);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 28px 28px;
-    pointer-events: none;
-  }
-
-  /* Animated corner accents */
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), var(--green), transparent);
-    animation: scanline 3s linear infinite;
-  }
-
-  @keyframes scanline { 0%{opacity:0.4} 50%{opacity:1} 100%{opacity:0.4} }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--gold-dim);
-    border: 1px solid rgba(245,200,66,0.3);
-    padding: 8px 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    animation: fadeDown 0.8s ease both;
-  }
-
-  @keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(46px, 9vw, 82px);
-    line-height: 0.95;
-    letter-spacing: 1px;
-    color: var(--white);
-    margin-bottom: 8px;
-    animation: fadeUp 0.9s 0.2s ease both;
-  }
-
-  .hero h1 .gold { color: var(--gold); }
-  .hero h1 .green { color: var(--green); }
-
-  .hero-sub {
-    font-size: clamp(15px, 2.8vw, 19px);
-    color: var(--muted);
-    max-width: 580px;
-    margin: 20px auto 36px;
-    font-weight: 500;
-    line-height: 1.7;
-    animation: fadeUp 0.9s 0.4s ease both;
-  }
-
-  .hero-sub strong { color: var(--white); }
-
-  /* No.1 Badge */
-  .no1-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: linear-gradient(135deg, rgba(245,200,66,0.15), rgba(245,200,66,0.05));
-    border: 1px solid var(--gold);
-    padding: 10px 22px;
-    margin-bottom: 20px;
-    animation: fadeUp 0.9s 0.3s ease both;
-  }
-
-  .no1-badge .trophy { font-size: 22px; }
-
-  .no1-badge-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--green);
-    color: var(--navy);
-    font-family: 'Manrope', sans-serif;
-    font-weight: 900;
-    font-size: 17px;
-    padding: 20px 40px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: all 0.2s;
-    border-radius: 3px;
-    box-shadow: 0 8px 40px rgba(0,200,83,0.35);
-    position: relative;
-    overflow: hidden;
-    animation: fadeUp 0.9s 0.5s ease both;
-  }
-
-  .cta-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
-
-  .cta-btn:hover::before { transform: translateX(100%); }
-  .cta-btn:hover { background: #00E060; transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,200,83,0.5); }
-  .cta-btn .arrow { font-size: 20px; transition: transform 0.2s; }
-  .cta-btn:hover .arrow { transform: translateX(5px); }
-
-  .urgency-text {
-    margin-top: 14px;
-    font-size: 13px;
-    color: var(--orange);
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    animation: fadeUp 0.9s 0.6s ease both;
-  }
-
-  .price-reveal {
-    margin-top: 24px;
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    background: var(--card);
-    border: 1px solid var(--border-gold);
-    padding: 14px 28px;
-    animation: fadeUp 0.9s 0.7s ease both;
-  }
-
-  .price-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
-  .price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--gold); line-height: 1; }
-  .price-strike { font-size: 18px; color: #666; text-decoration: line-through; font-family: 'DM Mono', monospace; }
-  .price-save { background: var(--red); color: white; font-size: 11px; font-weight: 800; padding: 3px 8px; letter-spacing: 1px; }
-  .price-note { font-size: 12px; color: var(--muted); text-align: left; line-height: 1.5; }
-
-  /* PROOF BAR */
-  .proof-bar {
-    background: var(--navy2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .proof-item { display: flex; align-items: center; gap: 10px; }
-  .proof-icon { font-size: 22px; }
-  .proof-text strong { display: block; font-size: 20px; color: var(--gold); font-weight: 800; line-height: 1; }
-  .proof-text span { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
-  .proof-divider { width: 1px; height: 36px; background: var(--border); }
-
-  /* ====== SECTIONS ====== */
-  .section { padding: 72px 24px; max-width: 740px; margin: 0 auto; }
-
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
-
-  .section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 6vw, 56px); color: var(--white); line-height: 1.05; letter-spacing: 1px; margin-bottom: 20px; }
-  .section h2 span { color: var(--gold); }
-  .section p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
-  .section p strong { color: var(--white); }
-
-  /* ====== PREMIUM VALUE BOX ====== */
-  .premium-value-section {
-    background: linear-gradient(135deg, #0a1628, #060d1a);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 72px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .premium-value-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 50%, rgba(245,200,66,0.04) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 50%, rgba(0,200,83,0.04) 0%, transparent 60%);
-  }
-
-  .premium-inner { max-width: 740px; margin: 0 auto; position: relative; z-index: 1; }
-
-  .premium-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: linear-gradient(135deg, rgba(245,200,66,0.2), rgba(245,200,66,0.05));
-    border: 2px solid var(--gold);
-    padding: 10px 24px;
-    margin-bottom: 32px;
-  }
-
-  .premium-badge-text { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); letter-spacing: 3px; }
-
-  .premium-headline {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 7vw, 64px);
-    color: var(--white);
-    line-height: 0.95;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .premium-headline .gold { color: var(--gold); }
-  .premium-headline .green { color: var(--green); }
-
-  .premium-subhead {
-    font-size: 18px;
-    color: var(--muted);
-    margin-bottom: 40px;
-    font-weight: 600;
-    line-height: 1.6;
-    max-width: 600px;
-  }
-
-  .premium-subhead strong { color: var(--white); }
-
-  /* What Makes Us #1 Grid */
-  .why-us-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 32px 0;
-  }
-
-  @media(max-width:600px) { .why-us-grid { grid-template-columns: 1fr; } }
-
-  .why-us-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--gold);
-    padding: 24px 20px;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .why-us-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at top left, rgba(245,200,66,0.05), transparent 60%);
-  }
-
-  .why-us-card:hover { border-color: var(--gold); background: rgba(245,200,66,0.04); transform: translateY(-2px); }
-
-  .why-us-icon { font-size: 28px; margin-bottom: 12px; }
-
-  .why-us-title {
-    font-size: 13px;
-    font-weight: 900;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 8px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .why-us-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
-  .why-us-desc strong { color: var(--text); }
-
-  /* Package Box */
-  .package-box {
-    background: linear-gradient(135deg, rgba(0,200,83,0.08), rgba(0,200,83,0.02));
-    border: 2px solid rgba(0,200,83,0.3);
-    padding: 36px 32px;
-    margin: 40px 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .package-box::before {
-    content: 'PREMIUM';
-    position: absolute;
-    top: 12px; right: 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--green);
-    letter-spacing: 4px;
-    opacity: 0.5;
-  }
-
-  .package-box-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--green);
-    letter-spacing: 2px;
-    margin-bottom: 24px;
-  }
-
-  .package-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  @media(max-width:520px) { .package-grid { grid-template-columns: 1fr; } }
-
-  .package-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.5;
-  }
-
-  .pkg-check {
-    color: var(--green);
-    font-weight: 900;
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* Reality Section */
-  .reality-box {
-    background: linear-gradient(135deg, rgba(231,76,60,0.08), rgba(231,76,60,0.02));
-    border: 1px solid rgba(231,76,60,0.3);
-    border-left: 4px solid var(--red);
-    padding: 28px 28px;
-    margin: 32px 0;
-  }
-
-  .reality-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    color: var(--red);
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-  }
-
-  .reality-text { font-size: 15px; color: var(--text); line-height: 1.8; margin: 0; }
-  .reality-text strong { color: var(--white); }
-
-  /* Sleep Peaceful box */
-  .sleep-box {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin: 32px 0;
-  }
-
-  @media(max-width:500px) { .sleep-box { grid-template-columns: 1fr; } }
-
-  .sleep-item {
-    background: var(--card);
-    border: 1px solid var(--border-gold);
-    padding: 18px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .sleep-icon { font-size: 24px; flex-shrink: 0; }
-  .sleep-text { font-size: 14px; color: var(--text); font-weight: 600; line-height: 1.4; }
-
-  /* Naira pricing note */
-  .naira-note {
-    background: linear-gradient(135deg, rgba(245,200,66,0.1), rgba(245,200,66,0.03));
-    border: 1px solid rgba(245,200,66,0.25);
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-  }
-
-  .naira-flag { font-size: 28px; }
-  .naira-text { font-size: 15px; color: var(--text); line-height: 1.5; }
-  .naira-text strong { color: var(--gold); font-size: 18px; }
-
-  /* PAIN SECTION */
-  .pain-list { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
-
-  .pain-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    background: rgba(231,76,60,0.06);
-    border: 1px solid rgba(231,76,60,0.15);
-    padding: 16px 20px;
-  }
-
-  .pain-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-  .pain-item p { font-size: 15px; color: var(--text); margin: 0; line-height: 1.6; }
-
-  /* DELIVERABLES */
-  .deliverable-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); overflow: hidden; margin: 32px 0; }
-
-  .deliverable-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    background: var(--card);
-    transition: background 0.2s;
-  }
-
-  .deliverable-item:last-child { border-bottom: none; }
-  .deliverable-item:hover { background: rgba(255,255,255,0.06); }
-
-  .deliverable-check {
-    width: 28px;
-    height: 28px;
-    background: var(--green-dim);
-    border: 1px solid rgba(0,200,83,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: var(--green);
-    font-size: 14px;
-    font-weight: 700;
-    margin-top: 2px;
-  }
-
-  .deliverable-content h4 { font-size: 15px; font-weight: 800; color: var(--white); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .deliverable-content p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6; }
-
-  /* PROCESS */
-  .process-list { display: flex; flex-direction: column; gap: 0; position: relative; margin: 32px 0; }
-
-  .process-item {
-    display: flex;
-    gap: 20px;
-    padding-bottom: 32px;
-    position: relative;
-  }
-
-  .process-item:last-child { padding-bottom: 0; }
-
-  .process-item::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 44px;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-  }
-
-  .process-item:last-child::before { display: none; }
-
-  .process-num {
-    width: 42px;
-    height: 42px;
-    background: var(--gold);
-    color: var(--navy);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(245,200,66,0.3);
-  }
-
-  .process-content { padding-top: 8px; }
-  .process-content h4 { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
-  .process-content p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.7; }
-
-  /* ====== TESTIMONIAL SLIDESHOW ====== */
-  .testimonials-section {
-    background: var(--navy2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 72px 0;
-    overflow: hidden;
-  }
-
-  .testimonials-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
-
-  .slideshow-container {
-    position: relative;
-    margin-top: 40px;
-  }
-
-  .slide {
-    display: none;
-    animation: slideIn 0.5s ease;
-  }
-
-  .slide.active { display: block; }
-
-  @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-
-  .whatsapp-screenshot {
-    background: #ECE5DD;
-    border-radius: 12px;
-    overflow: hidden;
-    max-width: 420px;
-    margin: 0 auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    border: 3px solid rgba(37,211,102,0.3);
-  }
-
-  .wa-header {
-    background: #075E54;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .wa-avatar {
-    width: 40px;
-    height: 40px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
-  .wa-name { font-weight: 700; font-size: 15px; color: white; }
-  .wa-status { font-size: 12px; color: rgba(255,255,255,0.7); }
-
-  .wa-body {
-    padding: 16px;
-    background: #ECE5DD;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%23ECE5DD'/%3E%3C/svg%3E");
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .wa-msg-received {
-    background: white;
-    border-radius: 0 8px 8px 8px;
-    padding: 10px 14px;
-    max-width: 85%;
-    align-self: flex-start;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    font-size: 14px;
-    color: #111;
-    line-height: 1.5;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  .wa-msg-sent {
-    background: #DCF8C6;
-    border-radius: 8px 0 8px 8px;
-    padding: 10px 14px;
-    max-width: 85%;
-    align-self: flex-end;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    font-size: 14px;
-    color: #111;
-    line-height: 1.5;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  .wa-time { font-size: 11px; color: #999; margin-top: 4px; text-align: right; }
-  .wa-stars { color: #F5C842; font-size: 16px; margin-top: 6px; }
-
-  .slide-meta {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .slide-author { font-weight: 800; font-size: 16px; color: var(--white); }
-  .slide-location { font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
-
-  /* Slideshow controls */
-  .slideshow-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    margin-top: 28px;
-  }
-
-  .slide-btn {
-    width: 44px;
-    height: 44px;
-    background: var(--card);
-    border: 1px solid var(--border-gold);
-    color: var(--gold);
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    border-radius: 50%;
-  }
-
-  .slide-btn:hover { background: var(--gold-dim); }
-
-  .slide-dots {
-    display: flex;
-    gap: 8px;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .dot.active { background: var(--gold); transform: scale(1.3); }
-
-  /* Scroll strip */
-  .proof-strip {
-    background: var(--green);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .proof-strip-inner {
-    display: inline-flex;
-    gap: 60px;
-    animation: scrollStrip 18s linear infinite;
-  }
-
-  @keyframes scrollStrip { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-  .proof-strip-item {
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--navy);
-    letter-spacing: 1px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* ====== PRICING ====== */
-  .price-section {
-    padding: 72px 24px;
-    background: var(--navy2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-  }
-
-  .price-card {
-    max-width: 500px;
-    margin: 0 auto;
-    background: var(--navy);
-    border: 1px solid rgba(245,200,66,0.25);
-    padding: 48px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .price-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--green), var(--gold));
-    animation: shimmerGold 2s linear infinite;
-    background-size: 200% 100%;
-  }
-
-  @keyframes shimmerGold { 0%{background-position:0%} 100%{background-position:200%} }
-
-  .price-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
-
-  .price-big { font-family: 'Bebas Neue', sans-serif; font-size: 88px; color: var(--gold); line-height: 1; margin-bottom: 2px; }
-  .price-currency { font-size: 36px; vertical-align: top; margin-top: 14px; display: inline-block; }
-
-  .price-was-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 8px;
-  }
-
-  .price-was { font-family: 'DM Mono', monospace; font-size: 16px; color: #666; text-decoration: line-through; }
-  .price-save-badge { background: var(--red); color: white; font-size: 12px; font-weight: 900; padding: 4px 10px; letter-spacing: 1px; }
-
-  .price-period { font-size: 14px; color: var(--muted); margin-bottom: 6px; font-family: 'DM Mono', monospace; letter-spacing: 1px; }
-  .price-naira { font-size: 14px; color: var(--gold); font-weight: 700; margin-bottom: 32px; }
-
-  .price-includes { display: flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 32px; padding: 24px; background: var(--card); border: 1px solid var(--border); }
-  .price-includes-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
-  .price-line { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text); }
-  .price-line::before { content: '✓'; color: var(--green); font-weight: 800; font-size: 12px; flex-shrink: 0; }
-
-  /* SUPPORT GUARANTEE */
-  .guarantee-box {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    background: var(--green-dim);
-    border: 1px solid rgba(0,200,83,0.2);
-    padding: 20px 24px;
-    margin: 24px 0 32px;
-    text-align: left;
-  }
-
-  .guarantee-icon { font-size: 28px; flex-shrink: 0; }
-  .guarantee-box h4 { font-size: 14px; font-weight: 800; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .guarantee-box p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.6; }
-
-  /* FAQ */
-  .faq-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); overflow: hidden; margin: 32px 0; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-item:last-child { border-bottom: none; }
-
-  .faq-question {
-    width: 100%;
-    background: var(--card);
-    border: none;
-    padding: 20px 24px;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    transition: background 0.2s;
-  }
-
-  .faq-question:hover { background: rgba(255,255,255,0.06); }
-  .faq-question span { font-size: 15px; font-weight: 700; color: var(--white); font-family: 'Manrope', sans-serif; line-height: 1.4; }
-  .faq-icon { color: var(--gold); font-size: 20px; flex-shrink: 0; transition: transform 0.3s; font-weight: 300; }
-  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: var(--navy2); }
-  .faq-answer.open { max-height: 220px; padding: 16px 24px 20px; }
-  .faq-answer p { font-size: 14px; color: var(--muted); line-height: 1.8; margin: 0; }
-
-  /* FINAL CTA */
-  .final-cta {
-    padding: 90px 24px;
-    text-align: center;
-    background: radial-gradient(ellipse at center, rgba(0,200,83,0.07) 0%, transparent 60%);
-  }
-
-  .final-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 7vw, 64px); color: var(--white); line-height: 1; letter-spacing: 1px; margin-bottom: 16px; }
-  .final-cta h2 span { color: var(--gold); }
-  .final-cta p { font-size: 16px; color: var(--muted); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
-  .final-cta p strong { color: var(--white); }
-
-  /* FOOTER */
-  .footer { background: var(--navy2); border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
-  .footer-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px; }
-  .footer p { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
-
-  /* WA FLOAT */
-  .wa-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 200;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 24px rgba(37,211,102,0.4);
-    text-decoration: none;
-    font-size: 28px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: pulse 2s infinite;
-  }
-
-  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 40px rgba(37,211,102,0.6); }
-
-  @keyframes pulse {
-    0%,100% { box-shadow: 0 4px 24px rgba(37,211,102,0.4); }
-    50% { box-shadow: 0 4px 50px rgba(37,211,102,0.8); }
-  }
-
-  /* Fade animations */
-  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  /* Responsive */
-  @media(max-width:480px) {
-    .proof-bar { gap: 20px; }
-    .proof-divider { display: none; }
-    .price-card { padding: 32px 20px; }
-    .price-big { font-size: 68px; }
-    .cd-number { width: 58px; font-size: 34px; }
-  }
+/* ══════════════════════════════════════════════
+   ROOT DESIGN SYSTEM
+══════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+
+:root{
+  /* Core Palette */
+  --ink:       #08090C;
+  --ink2:      #0C0D11;
+  --surface:   #111318;
+  --card:      #161820;
+  --card2:     #1C1E28;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.04);
+
+  /* Gold System */
+  --gold-deep:   #9A6B0A;
+  --gold:        #C8891A;
+  --gold-mid:    #E09E28;
+  --gold-bright: #F5B945;
+  --gold-pale:   #FDDEA0;
+
+  /* Cream System */
+  --cream:     #F8F4ED;
+  --cream2:    #EDE7DA;
+  --cream-ink: #1A1510;
+  --cream-sub: #6B6050;
+
+  /* Brand Teal (replaces emerald — more premium, unique) */
+  --teal:       #0B6E5C;
+  --teal-mid:   #0D8A72;
+  --teal-bright:#12B896;
+  --teal-glow:  rgba(18,184,150,0.3);
+
+  /* Status */
+  --green:  #15803D;
+  --red:    #DC2626;
+  --blue:   #2563EB;
+
+  /* Text */
+  --white:  #F0EDE7;
+  --muted:  #5C5968;
+  --muted2: #8C8898;
+
+  /* Shape */
+  --r:  10px;
+  --r2: 16px;
+  --r3: 24px;
+  --r4: 32px;
+
+  /* Shadows */
+  --sh-gold: 0 0 0 1px rgba(200,137,26,.15), 0 8px 32px rgba(0,0,0,.4);
+  --sh-teal: 0 8px 32px rgba(18,184,150,.25);
+}
+
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* Grain texture */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:.5;
+}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
+
+/* ══════════════════════════════════════════════
+   ANNOUNCEMENT BAR
+══════════════════════════════════════════════ */
+.ann-bar{
+  background:linear-gradient(90deg,var(--teal),var(--teal-mid),var(--teal-bright),var(--teal-mid),var(--teal));
+  background-size:400%;animation:annShift 8s linear infinite;
+  text-align:center;padding:10px 20px;
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#fff;position:relative;overflow:hidden;
+}
+@keyframes annShift{0%{background-position:0%}100%{background-position:400%}}
+.ann-bar span{position:relative;z-index:1}
+
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
+header{
+  position:sticky;top:0;z-index:400;
+  background:rgba(8,9,12,.95);
+  backdrop-filter:blur(40px) saturate(200%);
+  border-bottom:1px solid rgba(200,137,26,.12);
+  transition:.3s;
+}
+.hdr{
+  max-width:1360px;margin:0 auto;
+  padding:0 32px;height:76px;
+  display:flex;align-items:center;gap:20px;
+  justify-content:space-between;
+}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;flex-shrink:0}
+.logo-icon{
+  width:48px;height:48px;
+  background:linear-gradient(135deg,var(--gold-deep),var(--gold-mid),var(--gold-bright));
+  border-radius:14px;display:grid;place-items:center;
+  font-family:'Bebas Neue';font-size:1.1rem;color:var(--ink);
+  letter-spacing:.04em;flex-shrink:0;
+  box-shadow:0 4px 20px rgba(200,137,26,.4);
+  position:relative;overflow:hidden;
+}
+.logo-icon::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);
+}
+.logo-text .name{
+  font-family:'Playfair Display';font-size:1.18rem;font-weight:900;
+  color:var(--white);line-height:1;
+}
+.logo-text .name em{color:var(--gold-bright);font-style:italic}
+.logo-text .tag{
+  font-size:.52rem;color:var(--muted2);
+  letter-spacing:.18em;text-transform:uppercase;margin-top:3px;display:block;
+}
+
+/* Search Bar */
+.hdr-search{
+  flex:1;max-width:480px;
+  position:relative;
+}
+.hdr-search input{
+  width:100%;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:11px 46px 11px 18px;
+  color:var(--white);font-family:'Plus Jakarta Sans';
+  font-size:.86rem;outline:none;transition:.3s;
+}
+.hdr-search input::placeholder{color:var(--muted)}
+.hdr-search input:focus{
+  border-color:rgba(200,137,26,.4);
+  background:rgba(255,255,255,.07);
+  box-shadow:0 0 0 3px rgba(200,137,26,.08);
+}
+.hdr-search .s-icon{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:1rem;pointer-events:none;transition:.3s;
+}
+.hdr-search input:focus+.s-icon{color:var(--gold)}
+
+/* Search Dropdown */
+.search-dropdown{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;
+  background:var(--card);border:1px solid rgba(200,137,26,.2);
+  border-radius:var(--r2);box-shadow:0 20px 60px rgba(0,0,0,.6);
+  z-index:500;max-height:420px;overflow-y:auto;display:none;
+}
+.search-dropdown.show{display:block}
+.sd-section{
+  padding:10px 16px 6px;
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;
+}
+.sd-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 16px;cursor:pointer;transition:.2s;
+}
+.sd-item:hover{background:rgba(200,137,26,.06)}
+.sd-thumb{
+  width:42px;height:42px;border-radius:8px;
+  background:var(--card2);display:flex;
+  align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;overflow:hidden;
+}
+.sd-thumb img{width:100%;height:100%;object-fit:cover}
+.sd-name{font-size:.84rem;font-weight:700;margin-bottom:2px}
+.sd-price{font-size:.78rem;color:var(--gold-bright);font-weight:700}
+.sd-cat{font-size:.65rem;color:var(--muted2)}
+.sd-empty{padding:24px;text-align:center;color:var(--muted);font-size:.84rem}
+
+/* Nav */
+nav{display:flex;align-items:center;gap:2px}
+nav a{
+  color:rgba(240,237,231,.45);text-decoration:none;
+  font-size:.8rem;font-weight:500;padding:8px 14px;
+  border-radius:9px;transition:.2s;white-space:nowrap;
+}
+nav a:hover{color:var(--white);background:rgba(255,255,255,.06)}
+
+.hdr-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+.cart-btn{
+  position:relative;display:flex;align-items:center;gap:8px;
+  background:rgba(200,137,26,.1);border:1px solid rgba(200,137,26,.25);
+  border-radius:11px;padding:10px 20px;
+  color:var(--gold-bright);font-weight:700;font-size:.82rem;
+  cursor:pointer;transition:.25s;font-family:'Plus Jakarta Sans';
+}
+.cart-btn:hover{background:rgba(200,137,26,.18);transform:translateY(-1px)}
+.cart-dot{
+  position:absolute;top:-8px;right:-8px;
+  background:var(--red);color:#fff;
+  font-size:.58rem;font-weight:800;
+  width:20px;height:20px;border-radius:50%;
+  display:none;align-items:center;justify-content:center;
+  border:2px solid var(--ink);
+}
+.cart-dot.show{display:flex}
+
+.wa-btn{
+  display:flex;align-items:center;gap:7px;
+  background:#25D366;color:#fff;
+  font-weight:700;font-size:.8rem;
+  padding:11px 20px;border-radius:11px;
+  text-decoration:none;transition:.25s;white-space:nowrap;
+}
+.wa-btn:hover{background:#1ea855;transform:translateY(-1px);box-shadow:var(--sh-teal)}
+
+@media(max-width:1100px){nav{display:none}}
+@media(max-width:820px){
+  .hdr-search{max-width:240px}
+  .logo-text .tag{display:none}
+  .hdr{padding:0 16px;height:66px}
+}
+@media(max-width:560px){
+  .hdr-search{display:none}
+  .wa-btn{display:none}
+}
+
+/* ══════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════ */
+#hero{
+  min-height:100vh;
+  display:grid;place-items:center;
+  position:relative;overflow:hidden;
+  padding:120px 24px 100px;
+  background:var(--ink2);
+}
+
+/* Decorative grid */
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(200,137,26,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,137,26,.03) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 90% 85% at 50% 40%,black,transparent);
+}
+
+/* Orbs */
+.hero-orb1{
+  position:absolute;top:-20%;left:-15%;width:800px;height:800px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(200,137,26,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-orb2{
+  position:absolute;bottom:-20%;right:-10%;width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(18,184,150,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+/* Cream wave at bottom */
+.hero-wave{
+  position:absolute;bottom:-1px;left:0;right:0;
+  height:140px;overflow:hidden;
+}
+.hero-wave svg{width:100%;height:100%;display:block}
+
+.hero-content{position:relative;z-index:2;text-align:center;max-width:960px}
+
+.hero-trust-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(18,184,150,.08);
+  border:1px solid rgba(18,184,150,.2);
+  border-radius:100px;padding:8px 22px;
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal-bright);margin-bottom:32px;
+  animation:fadeUp .8s both;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--teal-bright);flex-shrink:0;
+  animation:livePulse 2s infinite;
+}
+@keyframes livePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(18,184,150,.5)}
+  50%{box-shadow:0 0 0 8px rgba(18,184,150,0)}
+}
+
+.hero-h1{
+  font-family:'Playfair Display';
+  font-size:clamp(2.8rem,7vw,6rem);
+  font-weight:900;line-height:1.04;
+  margin-bottom:8px;letter-spacing:-.02em;
+  animation:fadeUp .8s .1s both;
+}
+.hero-h1 .gold{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold-pale) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-italic{
+  font-family:'Playfair Display';font-style:italic;
+  font-size:clamp(1.2rem,3vw,2rem);font-weight:400;
+  color:rgba(240,237,231,.35);margin-bottom:28px;
+  animation:fadeUp .8s .16s both;
+}
+
+.hero-p{
+  font-size:clamp(.88rem,1.6vw,1.05rem);
+  color:rgba(240,237,231,.5);line-height:1.9;
+  max-width:640px;margin:0 auto 48px;
+  animation:fadeUp .8s .22s both;
+}
+.hero-p strong{color:var(--gold-bright)}
+
+.hero-ctas{
+  display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;animation:fadeUp .8s .3s both;
+}
+
+/* Buttons */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-mid),var(--teal-bright));
+  color:#fff;font-weight:800;font-size:1rem;
+  padding:18px 38px;border-radius:13px;
+  text-decoration:none;border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans';letter-spacing:.01em;
+  transition:.3s;position:relative;overflow:hidden;
+  box-shadow:var(--sh-teal);
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,.2),transparent);
+  transform:translateX(-100%);transition:.6s;
+}
+.btn-primary:hover::after{transform:translateX(100%)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(18,184,150,.4)}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1.5px solid rgba(200,137,26,.35);
+  color:var(--gold-bright);font-weight:600;font-size:.95rem;
+  padding:17px 32px;border-radius:13px;
+  text-decoration:none;transition:.3s;
+  background:rgba(200,137,26,.06);cursor:pointer;font-family:'Plus Jakarta Sans';
+}
+.btn-secondary:hover{background:rgba(200,137,26,.12);border-color:var(--gold);transform:translateY(-2px)}
+
+.hero-badges{
+  display:flex;flex-wrap:wrap;gap:10px;
+  justify-content:center;margin-top:52px;
+  animation:fadeUp .8s .44s both;
+}
+.hbadge{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:100px;
+  padding:8px 16px;font-size:.7rem;
+  color:rgba(240,237,231,.5);font-weight:500;
+}
+.hbadge .dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--teal-bright);flex-shrink:0;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════════════
+   STATS (CREAM)
+══════════════════════════════════════════════ */
+.stats-section{background:var(--cream);padding:0}
+.stats-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  border-bottom:1px solid var(--cream2);
+}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-item{
+  padding:32px 20px;text-align:center;
+  border-right:1px solid var(--cream2);
+}
+.stat-item:last-child{border-right:none}
+.stat-n{
+  font-family:'Bebas Neue';font-size:2.8rem;
+  color:var(--gold);line-height:1;display:block;letter-spacing:.04em;
+}
+.stat-l{
+  font-size:.6rem;color:var(--cream-sub);
+  letter-spacing:.14em;text-transform:uppercase;
+  margin-top:5px;display:block;font-weight:600;
+}
+
+/* ══════════════════════════════════════════════
+   URGENCY BAR
+══════════════════════════════════════════════ */
+.urgency-bar{
+  background:var(--surface);
+  border-top:1px solid rgba(200,137,26,.08);
+  border-bottom:1px solid rgba(200,137,26,.08);
+  padding:28px 24px;
+}
+.urgency-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:28px;flex-wrap:wrap;
+}
+.urgency-left h3{
+  font-family:'Playfair Display';font-size:1.35rem;font-weight:700;
+  margin-bottom:4px;
+}
+.urgency-left p{font-size:.77rem;color:var(--muted2)}
+.cd-row{display:flex;gap:6px;align-items:center}
+.cd-unit{
+  background:var(--card);border:1px solid rgba(200,137,26,.18);
+  border-radius:10px;min-width:62px;padding:10px 8px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cd-unit::before{
+  content:'';position:absolute;top:0;inset-inline:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-mid),transparent);
+}
+.cd-num{
+  font-family:'Bebas Neue';font-size:2.2rem;
+  color:var(--gold-bright);line-height:1;display:block;letter-spacing:.04em;
+}
+.cd-lbl{font-size:.52rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:2px;display:block}
+.cd-colon{font-family:'Playfair Display';font-size:1.8rem;color:var(--gold);line-height:1}
+.urgency-right{text-align:right}
+@media(max-width:680px){.urgency-right{text-align:center;width:100%}}
+.slots-bar{
+  width:200px;height:8px;
+  background:rgba(255,255,255,.07);
+  border-radius:100px;overflow:hidden;
+  margin:8px 0 4px auto;
+}
+@media(max-width:680px){.slots-bar{margin:8px auto 4px}}
+.slots-fill{
+  height:100%;border-radius:100px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright));
+  animation:slotGrow 1.6s .5s both;
+}
+@keyframes slotGrow{from{width:0}}
+.urgency-right p{font-size:.75rem;color:var(--muted2)}
+.urgency-right strong{color:var(--gold-bright);font-size:.84rem}
+
+/* ══════════════════════════════════════════════
+   SECTION SYSTEM
+══════════════════════════════════════════════ */
+.dark-section{background:var(--ink2);padding:100px 24px}
+.surface-section{background:var(--surface);padding:100px 24px}
+.cream-section{background:var(--cream);padding:100px 24px;color:var(--cream-ink)}
+
+.container{max-width:1280px;margin:0 auto}
+
+.sec-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,137,26,.07);border:1px solid rgba(200,137,26,.18);
+  border-radius:100px;padding:6px 16px;
+  font-size:.62rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:18px;
+}
+.cream-section .sec-tag{background:rgba(154,107,10,.08);border-color:rgba(154,107,10,.22);color:var(--gold-deep)}
+
+.sec-h{
+  font-family:'Playfair Display';
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:900;line-height:1.1;margin-bottom:16px;letter-spacing:-.01em;
+}
+.sec-h em{font-style:italic;color:var(--gold-bright)}
+.cream-section .sec-h em{color:var(--gold)}
+
+.sec-p{font-size:.9rem;color:rgba(240,237,231,.46);line-height:1.88;max-width:560px}
+.cream-section .sec-p{color:var(--cream-sub)}
+
+.sec-head{max-width:700px;margin:0 auto 64px;text-align:center}
+.sec-head .sec-p{margin:0 auto}
+
+/* ══════════════════════════════════════════════
+   MOBILE SEARCH BAR (below hero)
+══════════════════════════════════════════════ */
+.mobile-search-section{
+  background:var(--cream);
+  padding:24px;
+  display:none;
+}
+@media(max-width:560px){.mobile-search-section{display:block}}
+.mobile-search-wrap{
+  max-width:600px;margin:0 auto;
+  position:relative;
+}
+.mobile-search-wrap input{
+  width:100%;background:#fff;
+  border:1.5px solid var(--cream2);
+  border-radius:14px;padding:15px 50px 15px 20px;
+  color:var(--cream-ink);font-family:'Plus Jakarta Sans';
+  font-size:.9rem;outline:none;transition:.3s;
+  box-shadow:0 2px 16px rgba(0,0,0,.06);
+}
+.mobile-search-wrap input::placeholder{color:var(--cream-sub)}
+.mobile-search-wrap input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(200,137,26,.1);
+}
+.mobile-search-wrap .ms-icon{
+  position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  color:var(--cream-sub);font-size:1.1rem;
+}
+
+/* ══════════════════════════════════════════════
+   CATALOG
+══════════════════════════════════════════════ */
+.cat-bar{
+  display:flex;gap:6px;flex-wrap:wrap;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:6px;
+  width:fit-content;margin:0 auto 20px;
+}
+.cat-tab{
+  border:none;background:transparent;
+  color:var(--muted2);font-family:'Plus Jakarta Sans';
+  font-size:.83rem;font-weight:600;
+  padding:10px 26px;border-radius:10px;cursor:pointer;transition:.28s;
+}
+.cat-tab.active{
+  background:linear-gradient(135deg,var(--gold-deep),var(--gold-mid),var(--gold-bright));
+  color:var(--ink);
+}
+
+/* Search Results Banner */
+.search-results-banner{
+  display:none;
+  background:rgba(200,137,26,.06);
+  border:1px solid rgba(200,137,26,.15);
+  border-radius:var(--r);padding:14px 20px;
+  margin-bottom:28px;font-size:.84rem;
+  display:none;align-items:center;justify-content:space-between;gap:10px;
+  flex-wrap:wrap;
+}
+.search-results-banner.show{display:flex}
+.srb-text{color:var(--gold-bright);font-weight:600}
+.srb-clear{
+  background:none;border:1px solid rgba(200,137,26,.3);
+  color:var(--gold);font-size:.72rem;font-weight:700;
+  padding:5px 12px;border-radius:7px;cursor:pointer;
+  font-family:'Plus Jakarta Sans';transition:.2s;
+}
+.srb-clear:hover{background:rgba(200,137,26,.1)}
+
+.panel{display:none}.panel.active{display:block}
+
+.prod-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:22px;
+}
+
+/* Product Card */
+.prod-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r3);overflow:hidden;
+  display:flex;flex-direction:column;transition:.4s;
+  position:relative;
+}
+.prod-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(200,137,26,.3);
+  box-shadow:0 28px 70px rgba(0,0,0,.5);
+}
+
+.pc-badge{
+  position:absolute;top:14px;left:14px;z-index:3;
+  padding:5px 12px;border-radius:8px;
+  font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+}
+.b-hot{background:linear-gradient(135deg,var(--gold-deep),var(--gold-bright));color:var(--ink)}
+.b-new{background:rgba(18,184,150,.15);border:1px solid rgba(18,184,150,.3);color:#34d399}
+.b-pick{background:rgba(8,9,12,.85);border:1px solid rgba(200,137,26,.3);color:var(--gold-bright)}
+
+/* Wishlist btn */
+.pc-wish{
+  position:absolute;top:14px;right:14px;z-index:3;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(8,9,12,.7);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:.2s;font-size:.9rem;
+  backdrop-filter:blur(8px);
+}
+.pc-wish:hover{background:rgba(200,137,26,.2);border-color:rgba(200,137,26,.4)}
+
+.pc-img{
+  height:220px;background:var(--card2);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+.pc-img img{width:100%;height:100%;object-fit:cover;transition:.55s}
+.prod-card:hover .pc-img img{transform:scale(1.08)}
+.pc-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(8,9,12,.65));
+}
+.pc-emoji{font-size:5rem;opacity:.5}
+
+.pc-body{padding:22px;flex:1;display:flex;flex-direction:column}
+
+.pc-category{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted2);margin-bottom:8px;
+}
+
+.pc-name{font-size:1.04rem;font-weight:800;margin-bottom:8px;line-height:1.3}
+.pc-spec{font-size:.76rem;color:var(--muted2);margin-bottom:16px;flex:1;line-height:1.7}
+
+/* Rating */
+.pc-rating{
+  display:flex;align-items:center;gap:6px;margin-bottom:14px;
+}
+.pc-stars{color:var(--gold-bright);font-size:.72rem;letter-spacing:1px}
+.pc-rating-n{font-size:.7rem;color:var(--muted2)}
+
+.price-block{margin-bottom:14px}
+.pc-cost-label{
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal-bright);margin-bottom:3px;display:block;
+}
+.pc-price{
+  font-family:'Playfair Display';font-size:2.1rem;font-weight:900;
+  color:var(--gold-bright);line-height:1;
+}
+.pc-shipping-note{
+  font-size:.65rem;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px;
+}
+
+.var-select{
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:9px;
+  padding:10px 13px;color:var(--white);font-family:'Plus Jakarta Sans';
+  font-size:.82rem;outline:none;transition:.2s;-webkit-appearance:none;
+  margin-bottom:12px;cursor:pointer;
+}
+.var-select:focus{border-color:rgba(200,137,26,.4)}
+.var-select option{background:var(--card);color:var(--white)}
+
+/* Add to Cart */
+.add-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:13px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-mid));
+  border:none;border-radius:10px;
+  color:#fff;font-weight:800;font-size:.84rem;
+  cursor:pointer;font-family:'Plus Jakarta Sans';transition:.3s;
+  box-shadow:0 4px 16px rgba(13,138,114,.2);
+}
+.add-btn:hover{
+  background:linear-gradient(135deg,var(--teal-mid),var(--teal-bright));
+  box-shadow:0 8px 28px rgba(18,184,150,.35);
+}
+.add-btn.added{
+  background:linear-gradient(135deg,var(--gold-deep),var(--gold-mid));
+  color:var(--ink);box-shadow:0 4px 16px rgba(200,137,26,.3);
+}
+
+.no-results{
+  grid-column:1/-1;text-align:center;
+  padding:64px 24px;color:var(--muted);
+}
+.no-results .nr-icon{font-size:3.5rem;display:block;margin-bottom:16px;opacity:.4}
+.no-results p{font-size:.9rem}
+
+/* ══════════════════════════════════════════════
+   SHIPPING (CREAM)
+══════════════════════════════════════════════ */
+.ship-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}
+.ship-card{
+  background:#fff;border:1.5px solid var(--cream2);
+  border-radius:var(--r3);padding:34px 28px;
+  position:relative;overflow:hidden;transition:.35s;
+  box-shadow:0 2px 24px rgba(0,0,0,.05);
+}
+.ship-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1);border-color:rgba(154,107,10,.3)}
+.ship-card.featured{border-color:rgba(154,107,10,.35)}
+.ship-card.featured::before{
+  content:'';position:absolute;top:0;inset-inline:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold-deep),var(--gold-bright),var(--gold-deep),transparent);
+}
+.ship-icon-big{font-size:2.6rem;display:block;margin-bottom:20px}
+.ship-days{
+  font-family:'Bebas Neue';font-size:2.4rem;
+  color:var(--gold-deep);line-height:1;letter-spacing:.04em;margin-bottom:4px;
+}
+.ship-type{
+  font-size:.65rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cream-sub);margin-bottom:18px;
+}
+.ship-desc{font-size:.85rem;color:#3D3527;line-height:1.72;margin-bottom:16px}
+.ship-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(154,107,10,.07);border:1px solid rgba(154,107,10,.18);
+  border-radius:7px;padding:5px 12px;
+  font-size:.67rem;font-weight:600;color:var(--gold-deep);margin-bottom:16px;
+}
+.ship-note{
+  font-size:.73rem;color:var(--cream-sub);line-height:1.65;
+  padding-top:16px;border-top:1px solid var(--cream2);
+}
+.ship-note strong{color:var(--cream-ink)}
+
+.ship-alert{
+  max-width:820px;margin:44px auto 0;
+  background:#fff;border:1.5px solid rgba(154,107,10,.25);
+  border-left:4px solid var(--gold-deep);
+  border-radius:var(--r);padding:24px 28px;
+  display:flex;align-items:flex-start;gap:18px;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.sa-icon{font-size:1.7rem;flex-shrink:0;margin-top:3px}
+.sa-title{font-size:.9rem;font-weight:800;margin-bottom:6px;color:var(--gold-deep)}
+.sa-p{font-size:.82rem;color:#5A4E3A;line-height:1.72}
+.sa-p strong{color:var(--cream-ink)}
+
+/* ══════════════════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════════════════ */
+.steps-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+  gap:2px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;
+}
+.step{
+  background:var(--card);padding:38px 28px;
+  position:relative;overflow:hidden;transition:.3s;
+}
+.step::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,137,26,.04),transparent 60%);
+  opacity:0;transition:.4s;
+}
+.step:hover::before{opacity:1}
+.step:hover{transform:translateY(-3px)}
+.step-num{
+  font-family:'Bebas Neue';font-size:4rem;
+  color:rgba(200,137,26,.08);line-height:1;
+  margin-bottom:10px;letter-spacing:.04em;
+}
+.step-icon{font-size:1.9rem;display:block;margin-bottom:14px}
+.step-title{font-size:.97rem;font-weight:800;margin-bottom:8px}
+.step-desc{font-size:.79rem;color:var(--muted2);line-height:1.72}
+.step-note{
+  display:inline-block;margin-top:14px;
+  font-size:.65rem;color:var(--gold);font-weight:700;letter-spacing:.04em;
+}
+
+.payment-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:52px}
+@media(max-width:580px){.payment-cards{grid-template-columns:1fr}}
+.pay-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r3);padding:30px;transition:.3s;
+}
+.pay-card.gold-border{border-color:rgba(200,137,26,.25)}
+.pay-card.gold-border::before{
+  content:'';display:block;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:-30px -30px 28px;
+}
+.pay-card:hover{border-color:rgba(200,137,26,.2);transform:translateY(-3px)}
+.pay-icon{font-size:2rem;display:block;margin-bottom:16px}
+.pay-title{
+  font-family:'Playfair Display';font-size:1.35rem;
+  font-weight:700;margin-bottom:12px;
+}
+.pay-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.pay-list li{
+  display:flex;gap:9px;font-size:.82rem;
+  color:rgba(240,237,231,.5);line-height:1.55;
+}
+.pay-list li::before{content:'✦';color:var(--gold);font-size:.5rem;margin-top:6px;flex-shrink:0}
+.delivery-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.dchip{
+  background:rgba(200,137,26,.07);border:1px solid rgba(200,137,26,.16);
+  border-radius:9px;padding:9px 14px;text-align:center;
+}
+.dchip strong{display:block;font-family:'Bebas Neue';font-size:1.1rem;color:var(--gold-bright);letter-spacing:.04em}
+.dchip span{font-size:.62rem;color:var(--muted);letter-spacing:.06em}
+
+/* ══════════════════════════════════════════════
+   CUSTOM REQUEST
+══════════════════════════════════════════════ */
+.req-card{
+  background:#fff;border:1.5px solid var(--cream2);
+  border-radius:var(--r4);padding:48px;
+  max-width:760px;margin:0 auto;
+  box-shadow:0 10px 48px rgba(0,0,0,.08);
+  position:relative;overflow:hidden;
+}
+.req-card::before{
+  content:'';position:absolute;top:0;inset-inline:0;height:4px;
+  background:linear-gradient(90deg,transparent,var(--gold-deep),var(--gold-bright),var(--gold-deep),transparent);
+}
+@media(max-width:580px){.req-card{padding:28px 20px}}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:540px){.form-row{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cream-sub);
+}
+.field input,.field select,.field textarea{
+  background:var(--cream);border:1.5px solid var(--cream2);
+  border-radius:10px;padding:13px 16px;color:var(--cream-ink);
+  font-family:'Plus Jakarta Sans';font-size:.87rem;transition:.25s;outline:none;width:100%;
+  -webkit-appearance:none;
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--cream-sub)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--gold-deep);background:#fffdf7;
+}
+.field select option{background:#fff;color:var(--cream-ink)}
+.field textarea{min-height:90px;resize:vertical}
+.req-btn{
+  width:100%;padding:17px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-mid),var(--teal-bright));
+  color:#fff;font-weight:800;font-size:.98rem;
+  border-radius:12px;border:none;cursor:pointer;font-family:'Plus Jakarta Sans';
+  letter-spacing:.02em;transition:.3s;
+  box-shadow:0 6px 28px rgba(13,138,114,.3);
+}
+.req-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(18,184,150,.35)}
+.form-note{font-size:.7rem;color:var(--cream-sub);text-align:center;margin-top:14px;line-height:1.6}
+.form-note a{color:var(--gold-deep);font-weight:600}
+
+/* ══════════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════════ */
+.slider-wrap{position:relative;overflow:hidden}
+.slider-track{display:flex;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.t-slide{
+  min-width:100%;display:flex;gap:16px;
+  flex-wrap:wrap;justify-content:center;padding:4px;
+}
+.t-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r3);padding:30px;
+  flex:1;min-width:265px;max-width:380px;
+  position:relative;overflow:hidden;transition:.3s;
+}
+.t-card:hover{transform:translateY(-5px);border-color:rgba(200,137,26,.22)}
+.t-qq{
+  position:absolute;top:-10px;right:18px;
+  font-family:'Playfair Display';font-size:7.5rem;
+  color:rgba(200,137,26,.05);line-height:1;font-weight:900;pointer-events:none;
+}
+.t-stars{color:var(--gold-bright);font-size:.76rem;letter-spacing:2px;margin-bottom:14px}
+.t-text{
+  font-size:.85rem;line-height:1.82;
+  color:rgba(240,237,231,.6);margin-bottom:20px;position:relative;z-index:1;
+}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-av{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-deep),var(--gold-bright));
+  display:grid;place-items:center;
+  font-weight:800;font-size:.8rem;color:var(--ink);flex-shrink:0;
+}
+.t-name{font-weight:700;font-size:.86rem}
+.t-meta{font-size:.68rem;color:var(--muted2)}
+.t-prod{
+  display:inline-block;margin-top:12px;font-size:.64rem;
+  background:rgba(200,137,26,.07);border:1px solid rgba(200,137,26,.18);
+  color:var(--gold);padding:3px 10px;border-radius:100px;font-weight:600;
+}
+.slide-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.dot{
+  width:7px;height:7px;border-radius:100px;
+  background:rgba(255,255,255,.14);cursor:pointer;
+  border:none;transition:.3s;
+}
+.dot.on{width:28px;background:var(--gold-bright)}
+.slide-arrows{display:flex;justify-content:center;gap:10px;margin-top:14px}
+.sarr{
+  width:44px;height:44px;background:var(--card);
+  border:1px solid rgba(200,137,26,.22);border-radius:50%;
+  color:var(--gold);font-size:1rem;cursor:pointer;
+  display:grid;place-items:center;transition:.3s;font-family:'Plus Jakarta Sans';
+}
+.sarr:hover{background:rgba(200,137,26,.1)}
+
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:36px}
+.proof-card{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:var(--r2);aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;transition:.3s;cursor:pointer;
+}
+.proof-card:hover{transform:scale(1.04);border-color:rgba(200,137,26,.22)}
+.proof-inner{text-align:center;padding:16px}
+.proof-inner .pi{font-size:2.4rem;display:block;margin-bottom:8px}
+.proof-inner p{font-size:.68rem;color:var(--muted2);line-height:1.5}
+.proof-lbl{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(8,9,12,.92));
+  padding:18px 10px 8px;font-size:.64rem;
+  font-weight:700;color:var(--teal-bright);
+}
+
+/* ══════════════════════════════════════════════
+   TRUST (CREAM)
+══════════════════════════════════════════════ */
+.trust-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+  gap:1px;background:var(--cream2);
+  border:1px solid var(--cream2);border-radius:var(--r3);overflow:hidden;
+  margin-bottom:52px;
+}
+.ts-cell{background:var(--cream);padding:30px 20px;text-align:center}
+.ts-n{
+  font-family:'Bebas Neue';font-size:2.9rem;
+  color:var(--gold-deep);line-height:1;display:block;letter-spacing:.04em;
+}
+.ts-l{font-size:.6rem;color:var(--cream-sub);letter-spacing:.14em;text-transform:uppercase;margin-top:5px;display:block;font-weight:600}
+
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.trust-card{
+  background:#fff;border:1.5px solid var(--cream2);
+  border-radius:var(--r3);padding:32px;
+  box-shadow:0 2px 18px rgba(0,0,0,.05);transition:.3s;
+}
+.trust-card:hover{transform:translateY(-4px);border-color:rgba(154,107,10,.25);box-shadow:0 16px 44px rgba(0,0,0,.1)}
+.tc-icon{font-size:2rem;display:block;margin-bottom:16px}
+.tc-title{font-size:.97rem;font-weight:800;margin-bottom:8px;color:var(--cream-ink)}
+.tc-desc{font-size:.81rem;color:#6B5F4A;line-height:1.75}
+
+/* ══════════════════════════════════════════════
+   REFERRAL
+══════════════════════════════════════════════ */
+.ref-tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.ref-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r3);padding:30px;text-align:center;
+  position:relative;overflow:hidden;transition:.35s;
+}
+.ref-card:hover{transform:translateY(-5px)}
+.ref-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px}
+.tier-bronze::before{background:linear-gradient(90deg,#7C4A1E,#D4894A,#7C4A1E)}
+.tier-silver::before{background:linear-gradient(90deg,#5A5A5A,#C8C8C8,#5A5A5A)}
+.tier-gold::before{background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--gold-deep))}
+.tier-plat::before{background:linear-gradient(90deg,#4C1D95,#A78BFA,#EC4899,#A78BFA,#4C1D95)}
+.ref-medal{font-size:2.4rem;display:block;margin-bottom:12px}
+.ref-tier-name{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.tier-bronze .ref-tier-name{color:#D4894A}
+.tier-silver .ref-tier-name{color:#C8C8C8}
+.tier-gold .ref-tier-name{color:var(--gold-bright)}
+.tier-plat .ref-tier-name{color:#A78BFA}
+.ref-count{
+  font-family:'Playfair Display';font-size:2.1rem;font-weight:700;line-height:1;margin-bottom:8px;
+}
+.ref-count small{font-size:1rem;color:var(--muted2)}
+.ref-reward{font-size:.84rem;font-weight:800;color:var(--gold-bright);min-height:38px;line-height:1.4}
+.ref-alt{font-size:.72rem;color:var(--muted);margin-top:4px}
+
+.ref-info{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r3);padding:32px;margin-top:18px;
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+}
+@media(max-width:580px){.ref-info{grid-template-columns:1fr}}
+.ri-label{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.ri-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ri-list li{font-size:.81rem;color:rgba(240,237,231,.45);display:flex;gap:8px;line-height:1.55}
+.ri-list li::before{content:'→';color:var(--gold-bright);flex-shrink:0}
+.ref-link-box{
+  background:rgba(200,137,26,.05);border:1px solid rgba(200,137,26,.16);
+  border-radius:10px;padding:14px 17px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;margin-top:12px;
+}
+.ref-link-box code{font-family:'Plus Jakarta Sans';font-size:.72rem;color:var(--gold-bright);word-break:break-all}
+.copy-btn{
+  background:rgba(200,137,26,.12);border:1px solid rgba(200,137,26,.28);
+  color:var(--gold);font-size:.7rem;font-weight:700;
+  padding:7px 14px;border-radius:8px;cursor:pointer;
+  font-family:'Plus Jakarta Sans';transition:.2s;white-space:nowrap;
+}
+.copy-btn:hover{background:rgba(200,137,26,.22)}
+
+/* ══════════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════════ */
+.faq-stack{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
+.faq-item{
+  background:#fff;border:1.5px solid var(--cream2);
+  border-radius:11px;overflow:hidden;
+  box-shadow:0 1px 8px rgba(0,0,0,.04);
+}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 28px;cursor:pointer;
+  font-weight:700;font-size:.9rem;transition:.2s;
+  user-select:none;gap:12px;color:var(--cream-ink);
+}
+.faq-q:hover{color:var(--gold-deep)}
+.faq-ico{color:var(--gold-deep);font-size:1.1rem;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-ico{transform:rotate(45deg)}
+.faq-answer{
+  max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;
+  font-size:.84rem;color:var(--cream-sub);line-height:1.82;
+}
+.faq-item.open .faq-answer{max-height:320px;padding:0 28px 24px}
+
+/* ══════════════════════════════════════════════
+   FINAL CTA
+══════════════════════════════════════════════ */
+#final{
+  position:relative;overflow:hidden;
+  padding:130px 24px;background:var(--ink2);
+}
+.final-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 65% at 50% 50%,rgba(200,137,26,.06),transparent 70%);
+  pointer-events:none;
+}
+.final-teal-line{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--teal-mid),var(--teal-bright),var(--teal-mid),transparent);
+}
+.final-inner{text-align:center;position:relative;z-index:1;max-width:720px;margin:0 auto}
+.final-inner h2{
+  font-family:'Playfair Display';
+  font-size:clamp(2.4rem,5vw,4.5rem);
+  font-weight:900;line-height:1.08;margin-bottom:20px;
+  letter-spacing:-.02em;
+}
+.final-inner h2 em{color:var(--gold-bright);font-style:italic}
+.final-inner p{
+  font-size:.99rem;color:rgba(240,237,231,.46);
+  max-width:540px;margin:0 auto 40px;line-height:1.9;
+}
+.contact-row{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px;
+}
+.contact-chip{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:100px;padding:9px 18px;
+  font-size:.76rem;color:rgba(240,237,231,.46);
+  text-decoration:none;transition:.25s;
+}
+.contact-chip:hover{border-color:var(--gold);color:var(--gold)}
+.guarantee-box{
+  display:flex;align-items:center;gap:18px;
+  background:rgba(200,137,26,.05);border:1px solid rgba(200,137,26,.14);
+  border-radius:var(--r);padding:20px 26px;
+  max-width:520px;margin:34px auto 0;text-align:left;
+}
+.g-icon{font-size:2.1rem;flex-shrink:0}
+.g-text h4{font-size:.88rem;font-weight:800;margin-bottom:4px}
+.g-text p{font-size:.75rem;color:var(--muted2);line-height:1.62}
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+footer{
+  background:var(--ink);border-top:1px solid var(--border);
+  padding:60px 24px 30px;
+}
+.footer-grid{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;
+}
+@media(max-width:880px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.f-brand .name{font-family:'Playfair Display';font-size:1.6rem;font-weight:900;margin-bottom:5px}
+.f-brand .name em{color:var(--gold-bright);font-style:italic}
+.f-brand .tag{font-size:.58rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:14px}
+.f-brand p{font-size:.8rem;color:var(--muted2);line-height:1.8;max-width:270px}
+.f-col h4{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:18px}
+.f-col a,.f-col span{
+  display:block;font-size:.8rem;color:rgba(240,237,231,.36);
+  text-decoration:none;margin-bottom:9px;transition:.2s;
+}
+.f-col a:hover{color:var(--gold)}
+.footer-bot{
+  max-width:1280px;margin:48px auto 0;
+  padding-top:24px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.7rem;color:var(--muted);flex-wrap:wrap;gap:8px;
+}
+
+/* ══════════════════════════════════════════════
+   WHATSAPP FAB
+══════════════════════════════════════════════ */
+.wa-fab{
+  position:fixed;bottom:26px;right:26px;z-index:350;
+  width:60px;height:60px;background:#25D366;
+  border-radius:50%;display:grid;place-items:center;
+  text-decoration:none;font-size:1.55rem;
+  box-shadow:0 8px 36px rgba(37,211,102,.5);
+  animation:waPulse 3s infinite;transition:transform .2s;
+}
+.wa-fab:hover{transform:scale(1.12)}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 8px 36px rgba(37,211,102,.4)}
+  50%{box-shadow:0 8px 60px rgba(37,211,102,.7)}
+}
+
+/* ══════════════════════════════════════════════
+   CART DRAWER
+══════════════════════════════════════════════ */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:500}
+.cart-overlay.open{display:block}
+.cart-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:460px;max-width:100vw;
+  background:var(--surface);border-left:1px solid rgba(200,137,26,.12);
+  z-index:501;display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .42s cubic-bezier(.25,.46,.45,.94);
+}
+.cart-drawer.open{transform:translateX(0)}
+.cart-hdr{
+  padding:28px 26px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cart-hdr h2{font-family:'Playfair Display';font-size:1.7rem;font-weight:900}
+.cart-hdr h2 em{color:var(--gold-bright);font-style:normal}
+.cart-close{
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:50%;width:38px;height:38px;display:grid;place-items:center;
+  cursor:pointer;color:var(--muted2);transition:.2s;font-size:.9rem;
+}
+.cart-close:hover{color:var(--white);background:rgba(255,255,255,.1)}
+.cart-body{flex:1;overflow-y:auto;padding:20px 26px}
+.cart-body::-webkit-scrollbar{width:3px}
+.cart-body::-webkit-scrollbar-thumb{background:rgba(200,137,26,.2);border-radius:4px}
+.cart-empty{text-align:center;padding:80px 20px;color:var(--muted)}
+.cart-empty .ei{font-size:3.5rem;display:block;margin-bottom:20px;opacity:.3}
+.cart-empty p{font-size:.88rem}
+.c-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border)}
+.c-icon{
+  width:56px;height:56px;background:var(--card2);
+  border-radius:11px;display:grid;place-items:center;
+  font-size:1.7rem;flex-shrink:0;
+}
+.c-info{flex:1;min-width:0}
+.c-name{font-size:.9rem;font-weight:800;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-variant{font-size:.7rem;color:var(--muted2);margin-bottom:9px}
+.c-row{display:flex;align-items:center;justify-content:space-between}
+.c-price{font-family:'Playfair Display';font-size:1.2rem;font-weight:900;color:var(--gold-bright)}
+.qty-wrap{display:flex;align-items:center;gap:9px}
+.qty-b{
+  width:30px;height:30px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:8px;
+  display:grid;place-items:center;cursor:pointer;color:var(--white);
+  font-size:.9rem;transition:.2s;font-family:'Plus Jakarta Sans';
+}
+.qty-b:hover{background:rgba(200,137,26,.15);border-color:rgba(200,137,26,.3);color:var(--gold)}
+.c-del{background:none;border:none;color:var(--muted);font-size:.72rem;cursor:pointer;transition:.2s}
+.c-del:hover{color:var(--red)}
+
+.cart-foot{padding:24px 26px;border-top:1px solid var(--border);background:var(--surface)}
+.cart-totals{margin-bottom:20px}
+.ct-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.85rem}
+.ct-row span:first-child{color:var(--muted2)}
+.ct-highlight{
+  background:rgba(13,138,114,.08);border:1px solid rgba(18,184,150,.18);
+  border-radius:10px;padding:14px 16px;margin-top:6px;
+}
+.ct-highlight .label{color:var(--teal-bright);font-weight:700;font-size:.82rem}
+.ct-highlight .amount{
+  font-family:'Playfair Display';font-size:1.5rem;
+  font-weight:900;color:var(--teal-bright);
+}
+.ct-note{font-size:.67rem;color:var(--muted);margin-top:6px;text-align:right}
+
+.checkout-cta{
+  width:100%;padding:18px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-mid),var(--teal-bright));
+  color:#fff;font-weight:800;font-size:1rem;border-radius:12px;border:none;
+  cursor:pointer;font-family:'Plus Jakarta Sans';letter-spacing:.03em;transition:.3s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 8px 32px rgba(13,138,114,.3);
+}
+.checkout-cta:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(18,184,150,.4)}
+.checkout-cta:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.cart-fn{font-size:.7rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.55}
+
+/* ══════════════════════════════════════════════
+   CHECKOUT MODAL
+══════════════════════════════════════════════ */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(14px);z-index:600;place-items:center;padding:20px}
+.modal-bg.open{display:grid}
+.modal-box{
+  background:var(--card);border:1px solid rgba(200,137,26,.2);
+  border-radius:var(--r4);padding:40px;max-width:520px;width:100%;
+  max-height:92vh;overflow-y:auto;position:relative;
+}
+.modal-box::before{
+  content:'';position:absolute;top:0;inset-inline:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold-deep),var(--gold-bright),var(--gold-deep),transparent);
+  border-radius:var(--r4) var(--r4) 0 0;
+}
+.modal-box::-webkit-scrollbar{width:3px}
+.modal-x{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:50%;width:34px;height:34px;display:grid;place-items:center;
+  cursor:pointer;color:var(--muted2);font-size:.88rem;transition:.2s;
+}
+.modal-x:hover{color:var(--white)}
+.modal-title{font-family:'Playfair Display';font-size:1.9rem;font-weight:900;margin-bottom:6px}
+.modal-sub{font-size:.79rem;color:var(--muted2);margin-bottom:24px;line-height:1.7}
+.order-summary{
+  background:rgba(200,137,26,.05);border:1px solid rgba(200,137,26,.13);
+  border-radius:12px;padding:18px;margin-bottom:22px;
+}
+.os-title{font-size:.62px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;font-size:.62rem}
+.os-line{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px}
+.os-line span:last-child{color:var(--gold);font-weight:600}
+.os-total{
+  display:flex;justify-content:space-between;margin-top:12px;
+  padding-top:12px;border-top:1px solid rgba(200,137,26,.13);font-weight:800;
+}
+.os-total span:last-child{color:var(--teal-bright);font-size:1.05rem}
+
+.ck-field{display:flex;flex-direction:column;gap:6px;margin-bottom:15px}
+.ck-field label{font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,237,231,.4)}
+.ck-field input,.ck-field select{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:9px;padding:12px 14px;color:var(--white);
+  font-family:'Plus Jakarta Sans';font-size:.87rem;transition:.2s;outline:none;width:100%;
+  -webkit-appearance:none;
+}
+.ck-field input::placeholder{color:var(--muted)}
+.ck-field input:focus,.ck-field select:focus{border-color:rgba(200,137,26,.4)}
+.ck-field select option{background:var(--card);color:var(--white)}
+.ck-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+@media(max-width:440px){.ck-row{grid-template-columns:1fr}}
+
+.ship-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+@media(max-width:420px){.ship-opts{grid-template-columns:1fr}}
+.sopt{
+  background:rgba(255,255,255,.04);border:2px solid var(--border);
+  border-radius:10px;padding:13px;cursor:pointer;transition:.25s;text-align:left;
+}
+.sopt:hover{border-color:rgba(200,137,26,.3)}
+.sopt.on{border-color:var(--gold);background:rgba(200,137,26,.07)}
+.sopt-name{font-size:.74rem;font-weight:700;margin-bottom:2px}
+.sopt-time{font-size:.64rem;color:var(--muted2)}
+.sopt-note{font-size:.6rem;color:var(--muted);margin-top:3px}
+
+.ship-caveat{
+  background:rgba(13,138,114,.06);border:1px solid rgba(18,184,150,.14);
+  border-radius:10px;padding:14px 17px;margin-bottom:16px;
+}
+.ship-caveat p{font-size:.74rem;color:rgba(240,237,231,.48);line-height:1.68}
+.ship-caveat strong{color:var(--teal-bright)}
+
+.pay-btn{
+  width:100%;padding:18px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-mid),var(--teal-bright));
+  color:#fff;font-weight:800;font-size:1rem;border-radius:12px;border:none;
+  cursor:pointer;font-family:'Plus Jakarta Sans';letter-spacing:.03em;transition:.3s;
+  display:flex;align-items:center;justify-content:center;gap:9px;margin-top:10px;
+  box-shadow:0 8px 32px rgba(13,138,114,.3);
+}
+.pay-btn:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(18,184,150,.4)}
+.pay-note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.55}
+.fw-badge{font-size:.63rem;color:var(--muted);text-align:center;margin-top:7px;display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* ══════════════════════════════════════════════
+   SUCCESS MODAL
+══════════════════════════════════════════════ */
+.success-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);z-index:700;place-items:center;padding:20px}
+.success-modal.open{display:grid}
+.success-box{
+  background:var(--card);border:1px solid rgba(18,184,150,.25);
+  border-radius:var(--r4);padding:50px 38px;max-width:470px;width:100%;text-align:center;
+}
+.success-icon{font-size:4.8rem;display:block;margin-bottom:24px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-box h2{
+  font-family:'Playfair Display';font-size:2.4rem;font-weight:900;
+  color:var(--teal-bright);margin-bottom:14px;
+}
+.success-box p{font-size:.88rem;color:rgba(240,237,231,.5);line-height:1.8;margin-bottom:26px}
+.txn-ref{
+  background:rgba(18,184,150,.07);border:1px solid rgba(18,184,150,.2);
+  border-radius:10px;padding:14px 18px;margin-bottom:26px;font-size:.83rem;
+}
+.txn-ref strong{color:var(--teal-bright);font-size:1rem;display:block;margin-bottom:3px}
+.wa-follow{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#25D366;color:#fff;font-weight:800;font-size:.92rem;
+  padding:15px 30px;border-radius:12px;text-decoration:none;
+  transition:.3s;width:100%;justify-content:center;margin-bottom:12px;
+}
+.wa-follow:hover{background:#1ea855;transform:translateY(-2px)}
+.close-suc{
+  width:100%;background:none;border:1px solid var(--border);
+  color:var(--muted2);font-size:.83rem;padding:12px 20px;
+  border-radius:10px;cursor:pointer;font-family:'Plus Jakarta Sans';transition:.2s;
+}
+.close-suc:hover{color:var(--white);border-color:rgba(255,255,255,.2)}
+
+/* ══════════════════════════════════════════════
+   REVEAL ANIMATION
+══════════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- STICKY TOP BAR -->
-<div class="topbar">
-  ✅ Professional PayPal Setup Service — Trusted by 500+ Nigerian Professionals Since 2019
-  <span>NIGERIA</span>
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  <span>⚡ Pre-Order Round 2 LIVE — Only 7 Slots Left · Lock In Cost Prices Before Sunday 11:59 PM · 100% Authentic · Flutterwave Secured ⚡</span>
 </div>
 
-<!-- COUNTDOWN TIMER -->
-<div class="countdown-bar">
-  <div class="countdown-label">⏰ Limited Availability This Week — Current Promotional Rate Active For</div>
-  <div class="countdown-timer">
-    <div class="cd-unit">
-      <div class="cd-number" id="cd-hours">23</div>
-      <div class="cd-label">Hours</div>
-    </div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit">
-      <div class="cd-number" id="cd-minutes">59</div>
-      <div class="cd-label">Mins</div>
-    </div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit">
-      <div class="cd-number" id="cd-seconds">47</div>
-      <div class="cd-label">Secs</div>
-    </div>
-  </div>
-  <div class="countdown-caption">We take on a limited number of new clients each week. <strong>Secure your slot before it fills up.</strong></div>
-</div>
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <a href="#" class="logo">
+      <div class="logo-icon">GGS</div>
+      <div class="logo-text">
+        <div class="name">GGS <em>Global</em></div>
+        <span class="tag">Authentic Imports · Cost Price</span>
+      </div>
+    </a>
 
-<!-- PROOF SCROLL STRIP -->
-<div class="proof-strip">
-  <div class="proof-strip-inner">
-    <span class="proof-strip-item">✅ 500+ Accounts Delivered</span>
-    <span class="proof-strip-item">⚡ 72-Hour Turnaround</span>
-    <span class="proof-strip-item">🔒 Zero Limitation Guarantee</span>
-    <span class="proof-strip-item">🌍 Works From Nigeria</span>
-    <span class="proof-strip-item">💰 Global Withdrawals</span>
-    <span class="proof-strip-item">🛡️ Restriction-PROOF Setup</span>
-    <span class="proof-strip-item">⭐ 5-Star Rated Service</span>
-    <span class="proof-strip-item">✅ 500+ Accounts Delivered</span>
-    <span class="proof-strip-item">⚡ 72-Hour Turnaround</span>
-    <span class="proof-strip-item">🔒 Zero Limitation Guarantee</span>
-    <span class="proof-strip-item">🌍 Works From Nigeria</span>
-    <span class="proof-strip-item">💰 Global Withdrawals</span>
-    <span class="proof-strip-item">🛡️ Restriction-PROOF Setup</span>
-    <span class="proof-strip-item">⭐ 5-Star Rated Service</span>
+    <!-- Search Bar -->
+    <div class="hdr-search">
+      <input type="text" id="headerSearch" placeholder="Search products... iPhone, MacBook, bags..." autocomplete="off" oninput="handleSearch(this.value)" onfocus="showSearchDrop()" onblur="setTimeout(hideSearchDrop,200)">
+      <span class="s-icon">🔍</span>
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
+
+    <nav>
+      <a href="#shipping">Shipping</a>
+      <a href="#how">How It Works</a>
+      <a href="#catalog">Shop Now</a>
+      <a href="#referral">Earn Rewards</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="hdr-right">
+      <div class="cart-btn" onclick="toggleCart()">
+        🛒 Cart
+        <span class="cart-dot" id="cartDot">0</span>
+      </div>
+      <a href="https://wa.me/2348142717585" class="wa-btn" target="_blank">💬 WhatsApp</a>
+    </div>
   </div>
-</div>
+</header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="no1-badge">
-    <span class="trophy">🏆</span>
-    <span class="no1-badge-text">Nigeria's Leading PayPal Setup & Configuration Service</span>
-  </div>
-
-  <div class="hero-badge">✦ Trusted by 500+ Nigerian Professionals</div>
-
-  <h1>
-    GET YOUR<br>
-    <span class="gold">VERIFIED PAYPAL</span><br>
-    <span class="green">FULLY CONFIGURED</span><br>
-    IN 72 HOURS
-  </h1>
-
-  <p class="hero-sub">
-    Stop losing international clients and dollar payments.<br>
-    <strong>We professionally configure your complete PayPal setup — fully verified and ready to receive international payments immediately.</strong>
-  </p>
-
-  <a href="order.html" class="cta-btn" target="_blank">
-    Start Your Setup — Fill Order Form
-    <span class="arrow">→</span>
-  </a>
-
-  <div class="urgency-text">⏰ Limited client slots available this week — Respond within 15 minutes</div>
-
-  <div class="price-reveal">
-    <span class="price-label">Service Fee</span>
-    <span class="price-amount"><span style="font-size:20px;vertical-align:top;margin-top:10px;display:inline-block">$</span>120</span>
-    <div>
-      <div class="price-strike">Standard: $250</div>
-      <div class="price-save" style="display:inline-block;margin-top:4px">PROMO RATE</div>
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-trust-pill">
+      <span class="live-dot"></span>
+      Accepting Pre-Orders — Round 2 Now Live
     </div>
-    <div class="price-note">Complete setup<br>No hidden charges</div>
-  </div>
-</section>
-
-<!-- PROOF BAR -->
-<div class="proof-bar">
-  <div class="proof-item">
-    <span class="proof-icon">👥</span>
-    <div class="proof-text">
-      <strong>500+</strong>
-      <span>Clients Served</span>
-    </div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <span class="proof-icon">⏱️</span>
-    <div class="proof-text">
-      <strong>72hrs</strong>
-      <span>Turnaround</span>
-    </div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <span class="proof-icon">⭐</span>
-    <div class="proof-text">
-      <strong>5+ Yrs</strong>
-      <span>Experience</span>
-    </div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <span class="proof-icon">🔒</span>
-    <div class="proof-text">
-      <strong>ZERO</strong>
-      <span>Limitation Guarantee</span>
-    </div>
-  </div>
-</div>
-
-<!-- ====== PREMIUM VALUE / WHAT MAKES US #1 ====== -->
-<div class="premium-value-section fade-up">
-  <div class="premium-inner">
-    <div class="premium-badge">
-      <span style="font-size:22px">🔥</span>
-      <span class="premium-badge-text">Premium PayPal Account Service</span>
-    </div>
-
-    <h2 class="premium-headline">
-      NOT JUST ANY PAYPAL.<br>
-      <span class="gold">PROPERLY CONFIGURED.</span><br>
-      <span class="green">BUILT TO LAST.</span>
-    </h2>
-
-    <p class="premium-subhead">
-      While others offer quick fixes that fail within weeks, our clients invest in <strong>professionally configured accounts</strong> engineered to work reliably — for international payments, every time.
+    <h1 class="hero-h1">
+      Nigeria's Most Trusted<br>Way to Own <span class="gold">Premium</span><br>Authentic Imports
+    </h1>
+    <div class="hero-italic">Direct from factory. You pay cost price only.</div>
+    <p class="hero-p">
+      We import exactly what you need from China — <strong>100% authentic</strong>, factory-direct. You pay the <strong>exact cost price</strong> with zero markup. Shipping is settled separately on arrival, weight-based and fully transparent.
     </p>
-
-    <div class="reality-box">
-      <div class="reality-title">⚠️ THE REALITY</div>
-      <p class="reality-text">
-        Every month without a properly working PayPal is <strong>income going to your competitors.</strong>
-        Poorly configured accounts get limited. Using third-party withdrawers puts your money at risk.
-        <strong>Our clients stopped settling for cheap shortcuts and started building real, reliable international income.</strong> You can too — starting this week.
-      </p>
+    <div class="hero-ctas">
+      <a href="#catalog" class="btn-primary">🛍️ Shop at Cost Price Now</a>
+      <a href="#how" class="btn-secondary">📦 See How It Works</a>
     </div>
-
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,44px);color:var(--white);letter-spacing:1px;margin-bottom:24px;">
-      🔥 WHAT MAKES US <span style="color:var(--gold)">#1 IN NIGERIA</span>
-    </h3>
-
-    <div class="why-us-grid">
-      <div class="why-us-card">
-        <div class="why-us-icon">⚙️</div>
-        <div class="why-us-title">Advanced Configuration</div>
-        <p class="why-us-desc">We use <strong>professional PayPal settings and configurations that most general providers don't know.</strong> Your account is set up at a professional level from day one.</p>
-      </div>
-      <div class="why-us-card">
-        <div class="why-us-icon">🛡️</div>
-        <div class="why-us-title">Stable, Long-Term Setup</div>
-        <p class="why-us-desc"><strong>Properly configured accounts stay working.</strong> We build your account correctly from the very first step — so you can focus on earning, not troubleshooting.</p>
-      </div>
-      <div class="why-us-card">
-        <div class="why-us-icon">📋</div>
-        <div class="why-us-title">Complete Documentation</div>
-        <p class="why-us-desc">Professional documentation and verification guidance that <strong>ensures your account passes every required check</strong> — set up the right way from the start.</p>
-      </div>
-      <div class="why-us-card">
-        <div class="why-us-icon">⚡</div>
-        <div class="why-us-title">Fast Turnaround</div>
-        <p class="why-us-desc">While others wait <strong>weeks</strong>, you are set up and ready to receive your first payment in as little as <strong>72 hours.</strong> Express setup also available.</p>
-      </div>
-    </div>
-
-    <!-- Complete Package Box -->
-    <div class="package-box">
-      <div class="package-box-title">🏆 YOUR COMPLETE PACKAGE</div>
-      <div class="package-grid">
-        <div class="package-item"><span class="pkg-check">✅</span> Professionally verified PayPal account setup</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Complete documentation & verification guidance</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Professional configuration for international payments</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Global payment access — send & receive worldwide</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Send & Receive GNS + FNF payments seamlessly</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Direct withdrawals to your local Nigerian bank</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Stable, long-term account configuration</div>
-        <div class="package-item"><span class="pkg-check">✅</span> 72-hour delivery — express setup available</div>
-        <div class="package-item"><span class="pkg-check">✅</span> 30-day premium support included</div>
-        <div class="package-item"><span class="pkg-check">✅</span> Direct WhatsApp support from Richard personally</div>
-      </div>
-    </div>
-
-    <!-- Sleep Peaceful -->
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4vw,38px);color:var(--white);letter-spacing:1px;margin-bottom:20px;text-align:center;">
-      OUR PROCESS COULD BE MAGIC — <span style="color:var(--green)">WHAT COUNTS IS:</span>
-    </h3>
-
-    <div class="sleep-box">
-      <div class="sleep-item">
-        <span class="sleep-icon">✅</span>
-        <span class="sleep-text">Your account is properly configured & stable</span>
-      </div>
-      <div class="sleep-item">
-        <span class="sleep-icon">🌍</span>
-        <span class="sleep-text">You receive payments globally</span>
-      </div>
-      <div class="sleep-item">
-        <span class="sleep-icon">📈</span>
-        <span class="sleep-text">You scale your business internationally</span>
-      </div>
-      <div class="sleep-item">
-        <span class="sleep-icon">😴</span>
-        <span class="sleep-text">You focus on earning — not PayPal stress</span>
-      </div>
-    </div>
-
-    <div class="naira-note">
-      <span class="naira-flag">🇳🇬</span>
-      <div class="naira-text">
-        Pay comfortably in Naira equivalent: <strong>₦180,000</strong> at today's rate<br>
-        <small style="color:var(--muted)">Bank transfer accepted — confirmed immediately</small>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:36px;">
-      <p style="color:var(--muted);font-size:15px;margin-bottom:16px;">We've helped <strong style="color:var(--white)">500+ Nigerian professionals</strong> get properly set up to receive international payments.<br>For those ready to invest in a <strong style="color:var(--white)">professional solution</strong> rather than trial-and-error — this service makes a real difference.</p>
-      <a href="order.html" class="cta-btn" target="_blank">
-        Start Your Setup — Fill Order Form
-        <span class="arrow">→</span>
-      </a>
+    <div class="hero-badges">
+      <div class="hbadge"><span class="dot"></span> 200+ Orders Delivered</div>
+      <div class="hbadge"><span class="dot"></span> 100% Authentic Guaranteed</div>
+      <div class="hbadge"><span class="dot"></span> Flutterwave Secure</div>
+      <div class="hbadge"><span class="dot"></span> Zero Markup on Products</div>
+      <div class="hbadge"><span class="dot"></span> All 36 States Served</div>
     </div>
   </div>
-</div>
-
-<!-- PAIN SECTION -->
-<div style="background:var(--navy2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-<section class="section fade-up">
-  <div class="section-tag">The Problem</div>
-  <h2>SOUND <span>FAMILIAR?</span></h2>
-  <p>If you are a Nigerian freelancer, seller, or remote worker — you already know this pain personally.</p>
-
-  <div class="pain-list">
-    <div class="pain-item">
-      <span class="pain-icon">❌</span>
-      <p>Your international client is ready to pay but PayPal keeps rejecting Nigerian accounts</p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">❌</span>
-      <p>You have a PayPal account but it is limited and you cannot receive or withdraw payments</p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">❌</span>
-      <p>You tried setting it up yourself and got stuck on the verification process</p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">❌</span>
-      <p>You used third parties for withdrawals and people <strong style="color:var(--red)">stole your money</strong></p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">❌</span>
-      <p>You paid for a cheap "₦50k solution" and it failed within weeks</p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">❌</span>
-      <p>Every month without PayPal is thousands of naira in lost income going to someone else</p>
-    </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 C360,140 1080,0 1440,70 L1440,140 L0,140 Z" fill="#F8F4ED"/>
+    </svg>
   </div>
-
-  <p style="font-size:17px;color:var(--white);font-weight:700;">This is exactly what we permanently solve. Every single day.</p>
 </section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item"><span class="stat-n">200+</span><span class="stat-l">Orders Completed</span></div>
+    <div class="stat-item"><span class="stat-n">100%</span><span class="stat-l">Authentic Products</span></div>
+    <div class="stat-item"><span class="stat-n">ZERO</span><span class="stat-l">Fakes — Ever</span></div>
+    <div class="stat-item"><span class="stat-n">36</span><span class="stat-l">States Delivered</span></div>
+    <div class="stat-item"><span class="stat-n">4.9★</span><span class="stat-l">Customer Rating</span></div>
+    <div class="stat-item"><span class="stat-n">&lt;2hr</span><span class="stat-l">Reply Time</span></div>
+  </div>
 </div>
 
-<!-- WHAT YOU GET -->
-<section class="section fade-up">
-  <div class="section-tag">The Solution</div>
-  <h2>EVERYTHING <span>INCLUDED</span></h2>
-  <p>One payment. Complete solution. Nothing left for you to figure out on your own.</p>
+<!-- MOBILE SEARCH -->
+<div class="mobile-search-section">
+  <div class="mobile-search-wrap">
+    <input type="text" id="mobileSearch" placeholder="Search iPhone, MacBook, bags, shoes..." oninput="handleMobileSearch(this.value)">
+    <span class="ms-icon">🔍</span>
+  </div>
+  <div id="mobileSearchResults"></div>
+</div>
 
-  <div class="deliverable-list">
-    <div class="deliverable-item">
-      <div class="deliverable-check">✓</div>
-      <div class="deliverable-content">
-        <h4>Professionally Verified Account Setup</h4>
-        <p>Your PayPal account created and configured correctly from scratch — personal or business — with all the right documentation to pass verification.</p>
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  <div class="urgency-inner">
+    <div class="urgency-left">
+      <h3>⚡ Round 2 Pre-Order Closes In</h3>
+      <p>Lock in today's cost prices. Exchange rates change — prices rise next round.</p>
+    </div>
+    <div class="cd-row">
+      <div class="cd-unit"><span class="cd-num" id="cdD">05</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cdH">12</span><span class="cd-lbl">Hrs</span></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">Mins</span></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">Secs</span></div>
+    </div>
+    <div class="urgency-right">
+      <p>Slots filled this round:</p>
+      <div class="slots-bar"><div class="slots-fill" id="slotsFill" style="width:53%"></div></div>
+      <strong id="slotsText">8 of 15 slots · 7 remaining</strong>
+    </div>
+  </div>
+</div>
+
+<!-- SHIPPING (CREAM) -->
+<section class="cream-section" id="shipping">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">📦 Shipping Options</span>
+      <h2 class="sec-h">Choose Your <em>Delivery Speed</em></h2>
+      <p class="sec-p">Product prices are pure factory cost — zero markup. Shipping is calculated by actual weight when goods arrive. Choose your method at checkout.</p>
+    </div>
+    <div class="ship-cards reveal">
+      <div class="ship-card featured">
+        <span class="ship-icon-big">✈️⚡</span>
+        <div class="ship-days">3–7 Days</div>
+        <div class="ship-type">Express Air Freight</div>
+        <div class="ship-desc">Fastest option — priority door-to-door courier. Ideal for urgent gadget orders. Your item ships first in the batch with real-time tracking.</div>
+        <div class="ship-tag">🔋 Battery-safe · Best for phones & laptops</div>
+        <div class="ship-note"><strong>Best for:</strong> iPhones, Samsung, MacBooks, iPads, AirPods, urgent orders.<br><br><strong>Estimate:</strong> ~₦15,000–₦40,000 depending on weight.</div>
+      </div>
+      <div class="ship-card">
+        <span class="ship-icon-big">✈️</span>
+        <div class="ship-days">7–14 Days</div>
+        <div class="ship-type">Standard Air Cargo</div>
+        <div class="ship-desc">Reliable air shipping for non-battery goods. Calculated by weight. Great balance between speed and cost for fashion items.</div>
+        <div class="ship-tag">⚠️ Non-battery items only</div>
+        <div class="ship-note"><strong>Best for:</strong> Handbags, shoes, clothing, non-electronic accessories.<br><br><strong>Note:</strong> No battery items allowed on this route per aviation regulations.</div>
+      </div>
+      <div class="ship-card">
+        <span class="ship-icon-big">✈️🔋</span>
+        <div class="ship-days">14–21 Days</div>
+        <div class="ship-type">Battery Air Cargo</div>
+        <div class="ship-desc">Certified air freight for battery-containing electronics. Fully compliant, safe, and tracked. Weight-based pricing.</div>
+        <div class="ship-tag">✅ Battery-certified route</div>
+        <div class="ship-note"><strong>Best for:</strong> Electronics with built-in batteries, power banks, devices.<br><br><strong>Note:</strong> Slightly higher than standard air due to battery compliance handling.</div>
+      </div>
+      <div class="ship-card">
+        <span class="ship-icon-big">🚢</span>
+        <div class="ship-days">50–60 Days</div>
+        <div class="ship-type">Sea Freight — Bulk</div>
+        <div class="ship-desc">Most economical per kg. Ideal for large or bulk orders where speed is not the priority. Massive cost savings for heavy goods.</div>
+        <div class="ship-tag">💰 Lowest cost per kg · Bulk orders</div>
+        <div class="ship-note"><strong>Best for:</strong> Multiple large fashion items, business stock, heavy goods.<br><br><strong>Cost:</strong> Significantly cheaper than air for heavy loads.</div>
       </div>
     </div>
-    <div class="deliverable-item">
-      <div class="deliverable-check">✓</div>
-      <div class="deliverable-content">
-        <h4>Complete Verification & Stable Configuration</h4>
-        <p>Full identity and bank verification handled. Your account is fully verified, properly configured, and set up to work reliably from day one.</p>
-      </div>
-    </div>
-    <div class="deliverable-item">
-      <div class="deliverable-check">✓</div>
-      <div class="deliverable-content">
-        <h4>Direct Withdrawal to Nigerian Bank</h4>
-        <p>We set up a confirmed withdrawal method that works directly to your Nigerian bank account — no third parties, no middlemen, no one stealing your money.</p>
-      </div>
-    </div>
-    <div class="deliverable-item">
-      <div class="deliverable-check">✓</div>
-      <div class="deliverable-content">
-        <h4>Send & Receive GNS + FNF Globally</h4>
-        <p>Your account sends and receives from clients anywhere in the world — Fiverr, Upwork, Toptal, Amazon, eBay, and any international platform.</p>
-      </div>
-    </div>
-    <div class="deliverable-item">
-      <div class="deliverable-check">✓</div>
-      <div class="deliverable-content">
-        <h4>72-Hour Delivery Guaranteed</h4>
-        <p>From the moment you pay, your fully working account is delivered within 72 hours. Express 3–5 day setup available. Not weeks of waiting.</p>
-      </div>
-    </div>
-    <div class="deliverable-item">
-      <div class="deliverable-check">✓</div>
-      <div class="deliverable-content">
-        <h4>30-Day Premium Support</h4>
-        <p>Direct WhatsApp support from Richard personally for 30 days after delivery — your account guaranteed to work exactly as it should.</p>
+    <div class="ship-alert reveal">
+      <div class="sa-icon">⚠️</div>
+      <div>
+        <div class="sa-title">Shipping Is NOT Included in Product Prices</div>
+        <p class="sa-p">What you see in the catalog is the <strong>exact factory cost price</strong> — no hidden markup. When goods arrive in Nigeria, we send you the shipping company's pickup message showing the weight-based fee. You pay that to clear your goods. <strong>Port Harcourt customers: free local delivery. All other states: flat ₦5,000 delivery fee.</strong></p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<div style="background:var(--navy2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-<section class="section fade-up">
-  <div class="section-tag">The Process</div>
-  <h2>HOW IT <span>WORKS</span></h2>
-  <p>Simple. Fast. Fully automated — from your first click to delivery.</p>
-
-  <div class="process-list">
-    <div class="process-item">
-      <div class="process-num">1</div>
-      <div class="process-content">
-        <h4>Click The Button & Fill Your Details</h4>
-        <p>Tap the button on this page — you'll be taken to our secure order form. Fill in your details in under 2 minutes. No WhatsApp back-and-forth needed.</p>
-      </div>
+<section class="dark-section" id="how">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Simple Process</span>
+      <h2 class="sec-h">From Browsing to<br><em>Your Door in 5 Steps</em></h2>
+      <p class="sec-p">Transparent, stress-free, fully trackable from order placement to delivery.</p>
     </div>
-    <div class="process-item">
-      <div class="process-num">2</div>
-      <div class="process-content">
-        <h4>Complete Secure Payment</h4>
-        <p>After submitting your details you'll be redirected to our secure Flutterwave payment page. Pay ₦180,000 safely via bank transfer, card or USSD.</p>
-      </div>
+    <div class="steps-row reveal">
+      <div class="step"><div class="step-num">01</div><span class="step-icon">🛍️</span><div class="step-title">Browse & Search</div><div class="step-desc">Explore the catalog or use the search bar. Choose item, color, variant. All prices are exact factory cost — zero markup.</div><span class="step-note">↓ Scroll to catalog</span></div>
+      <div class="step"><div class="step-num">02</div><span class="step-icon">🛒</span><div class="step-title">Add to Cart</div><div class="step-desc">Add one or many items. Mix tech and fashion in one order. Choose your preferred shipping method at checkout.</div><span class="step-note">Multiple items welcome</span></div>
+      <div class="step"><div class="step-num">03</div><span class="step-icon">💳</span><div class="step-title">Pay Cost Price</div><div class="step-desc">Checkout securely via Flutterwave. Pay the product cost to lock your order. Card, transfer, USSD accepted. Instant receipt.</div><span class="step-note">Powered by Flutterwave</span></div>
+      <div class="step"><div class="step-num">04</div><span class="step-icon">📦</span><div class="step-title">We Source & Ship</div><div class="step-desc">We place your order with verified China suppliers. WhatsApp tracking updates every 5–7 days from sourcing to Nigeria.</div><span class="step-note">WhatsApp updates</span></div>
+      <div class="step"><div class="step-num">05</div><span class="step-icon">🎉</span><div class="step-title">Receive & Enjoy</div><div class="step-desc">Goods arrive in Nigeria. We send you the shipping invoice. Pay it, we collect and deliver to your doorstep.</div><span class="step-note">PH: Free · Others: ₦5,000</span></div>
     </div>
-    <div class="process-item">
-      <div class="process-num">3</div>
-      <div class="process-content">
-        <h4>Your Details Arrive on WhatsApp Automatically</h4>
-        <p>After payment your order summary automatically opens on WhatsApp with all your details pre-filled. Just tap Send — Richard receives everything instantly and setup begins immediately.</p>
+    <div class="payment-cards reveal">
+      <div class="pay-card gold-border">
+        <span class="pay-icon">💳</span>
+        <div class="pay-title">Secure Online Payment</div>
+        <ul class="pay-list">
+          <li>Pay the exact <strong>cost price</strong> online to lock your order and current rate</li>
+          <li>Accepted: Debit/Credit cards, Bank Transfer, USSD, Mobile Money</li>
+          <li>Powered by <strong>Flutterwave</strong> — Nigeria's most trusted gateway</li>
+          <li>Payment receipt sent instantly to your email</li>
+          <li>Shipping paid separately on arrival — weight-based, per chosen method</li>
+        </ul>
       </div>
-    </div>
-    <div class="process-item">
-      <div class="process-num">4</div>
-      <div class="process-content">
-        <h4>We Handle Everything</h4>
-        <p>Full professional setup and configuration handled completely on our end. You receive progress updates throughout the process via WhatsApp.</p>
-      </div>
-    </div>
-    <div class="process-item">
-      <div class="process-num">5</div>
-      <div class="process-content">
-        <h4>Your Working Account Is Delivered</h4>
-        <p>Within 72 hours — fully verified, properly configured PayPal delivered to you. Login credentials and confirmed withdrawal method ready to use immediately.</p>
+      <div class="pay-card">
+        <span class="pay-icon">🚚</span>
+        <div class="pay-title">Delivery & Tracking</div>
+        <ul class="pay-list">
+          <li>Real-time updates every <strong>5–7 days</strong> via WhatsApp</li>
+          <li>Nationwide delivery to all 36 states</li>
+          <li>All products insured during transit</li>
+          <li>Port Harcourt customers: <strong>free local delivery</strong></li>
+          <li>All other states: flat <strong>₦5,000</strong> delivery fee</li>
+        </ul>
+        <div class="delivery-chips">
+          <div class="dchip"><strong>3–7</strong><span>Express</span></div>
+          <div class="dchip"><strong>7–14</strong><span>Air Std</span></div>
+          <div class="dchip"><strong>14–21</strong><span>Battery</span></div>
+          <div class="dchip"><strong>50–60</strong><span>Sea Bulk</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-</div>
 
-<!-- ====== TESTIMONIAL SLIDESHOW ====== -->
-<div class="testimonials-section fade-up">
-  <div class="testimonials-inner">
-    <div class="section-tag">Real Proof</div>
-    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,6vw,56px);color:var(--white);letter-spacing:1px;margin-bottom:8px;">
-      REAL CLIENTS. <span style="color:var(--gold)">REAL RESULTS.</span>
-    </h2>
-    <p style="color:var(--muted);font-size:16px;margin-bottom:0;">These are actual WhatsApp conversations from real clients who are now receiving international payments.</p>
+<!-- CATALOG -->
+<section class="surface-section" id="catalog">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">📋 Live Catalog — Round 2</span>
+      <h2 class="sec-h">Shop at <em>Factory Cost Price</em></h2>
+      <p class="sec-p">Exact supplier cost prices — zero markup. Shipping is separate and paid on arrival by weight. Add to cart and pay securely via Flutterwave.</p>
+    </div>
 
-    <div class="slideshow-container">
-      <!-- Slide 1 -->
-      <div class="slide active">
-        <div class="whatsapp-screenshot">
-          <div class="wa-header">
-            <div class="wa-avatar">😊</div>
-            <div>
-              <div class="wa-name">Happy Client</div>
-              <div class="wa-status">Verified PayPal ✓</div>
-            </div>
-          </div>
-          <div class="wa-body">
-            <div class="wa-msg-received">
-              Thank you 🙏 for assisting me in setting up my PayPal account, and since then I've been using it to receive payments from my clients without any issues. The best part is, once I provided the required details, they handled everything for me. When they were done, I had a fully working PayPal account ready to receive money. Your service was smooth, stress-free, and I'm really happy with the results.
-              <div class="wa-time">5:36 PM</div>
-              <div class="wa-stars">★★★★★</div>
-            </div>
-            <div class="wa-msg-sent">
-              Thank you very much For this wonderful Reviews 💯💯
-              <div class="wa-time">5:42 PM ✓✓</div>
-            </div>
-          </div>
+    <div class="cat-bar reveal">
+      <button class="cat-tab active" onclick="switchTab(this,'tech')">📱 Tech & Gadgets</button>
+      <button class="cat-tab" onclick="switchTab(this,'fashion')">👜 Fashion & Lifestyle</button>
+      <button class="cat-tab" onclick="switchTab(this,'all')">✨ All Products</button>
+    </div>
+
+    <div class="search-results-banner" id="searchBanner">
+      <span class="srb-text" id="searchBannerText">Showing results for "..."</span>
+      <button class="srb-clear" onclick="clearSearch()">✕ Clear Search</button>
+    </div>
+
+    <div class="panel active" id="panel-tech"><div class="prod-grid" id="techGrid"></div></div>
+    <div class="panel" id="panel-fashion"><div class="prod-grid" id="fashionGrid"></div></div>
+    <div class="panel" id="panel-all"><div class="prod-grid" id="allGrid"></div></div>
+
+    <p style="text-align:center;margin-top:30px;font-size:.83rem;color:var(--muted2)">
+      50+ more styles available. <a href="https://wa.me/2348142717585?text=Please%20send%20me%20the%20full%20catalog" target="_blank" style="color:var(--gold-bright);text-decoration:none;font-weight:700">Request full catalog on WhatsApp →</a>
+    </p>
+  </div>
+</section>
+
+<!-- CUSTOM REQUEST (CREAM) -->
+<section class="cream-section" id="request">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Custom Import</span>
+      <h2 class="sec-h">Can't Find It?<br><em>We'll Source It.</em></h2>
+      <p class="sec-p">Any product. Any brand. Any specification. If you can find it online, we can import it at cost price.</p>
+    </div>
+    <div class="req-card reveal">
+      <div class="form-row">
+        <div class="field"><label>Full Name</label><input type="text" id="rName" placeholder="Your full name"></div>
+        <div class="field"><label>WhatsApp Number</label><input type="tel" id="rPhone" placeholder="+234 801 234 5678"></div>
+      </div>
+      <div class="field"><label>Product Category</label>
+        <select id="rCat">
+          <option value="">Choose category...</option>
+          <option>📱 Smartphone (iPhone / Samsung / Other)</option>
+          <option>💻 Laptop (MacBook / Windows / Gaming)</option>
+          <option>🎧 Tech Accessories</option>
+          <option>🪑 Gaming Chair / Setup</option>
+          <option>👜 Designer Handbag</option>
+          <option>👠 Ladies Footwear</option>
+          <option>👞 Men's Footwear</option>
+          <option>💼 Fashion Accessories</option>
+          <option>📦 Something Else</option>
+        </select>
+      </div>
+      <div class="field"><label>Describe What You Want</label><textarea id="rDesc" placeholder="Be specific: model name, color, storage, brand, or paste a product link. The more detail, the better."></textarea></div>
+      <div class="form-row">
+        <div class="field"><label>Your Budget</label>
+          <select id="rBudget">
+            <option value="">Select budget range...</option>
+            <option>Under ₦100,000</option>
+            <option>₦100,000 – ₦300,000</option>
+            <option>₦300,000 – ₦600,000</option>
+            <option>₦600,000 – ₦1,000,000</option>
+            <option>₦1,000,000 – ₦2,000,000</option>
+            <option>Over ₦2,000,000</option>
+          </select>
         </div>
-        <div class="slide-meta">
-          <div class="slide-author">Freelancer — Lagos</div>
-          <div class="slide-location">Now Receiving International Payments 🎉</div>
+        <div class="field"><label>Referral Code (optional)</label><input type="text" id="rRef" placeholder="Referred-by-Name"></div>
+      </div>
+      <button class="req-btn" onclick="submitCustom()">📩 Send Request via WhatsApp</button>
+      <p class="form-note">We reply within 1–2 hours. Or <a href="https://wa.me/2348142717585" target="_blank">DM us directly →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="surface-section" id="testimonials">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Real Customer Reviews</span>
+      <h2 class="sec-h">200+ Nigerians Who<br><em>Trust GGS</em></h2>
+      <p class="sec-p">Every review is from a verified GGS customer. No paid promotions. Real people, real orders, real savings.</p>
+    </div>
+    <div class="slider-wrap reveal">
+      <div class="slider-track" id="tTrack">
+        <div class="t-slide">
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">iPhone 15 Pro Max arrived in 24 days — perfectly sealed Apple packaging. Verified the serial on apple.com, 100% authentic. GGS sent WhatsApp updates every single week. Will absolutely order again!</p><div class="t-author"><div class="t-av">AO</div><div><div class="t-name">Adaeze O.</div><div class="t-meta">Lagos · Verified Buyer</div></div></div><span class="t-prod">📱 iPhone 15 Pro Max</span></div>
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">The designer bag looks better in person! Premium leather, beautiful finish. Cost price + shipping saved me almost ₦80,000 compared to local shops. Second order already placed!</p><div class="t-author"><div class="t-av">FN</div><div><div class="t-name">Funmi N.</div><div class="t-meta">Abuja · Verified Buyer</div></div></div><span class="t-prod">👜 Designer Crossbody Bag</span></div>
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">MacBook Air M2 in 23 days. Original Apple seal. Took it to Apple Premium Reseller — confirmed genuine. Paid on Flutterwave in 2 minutes. GGS is the real deal!</p><div class="t-author"><div class="t-av">CO</div><div><div class="t-name">Chukwudi O.</div><div class="t-meta">Asaba · Verified Buyer</div></div></div><span class="t-prod">💻 MacBook Air M2</span></div>
+        </div>
+        <div class="t-slide">
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">Used 3 other importers before — all disappointments. GGS is completely different. Samsung S24 arrived sealed, original. The transparency about shipping costs upfront gave me so much confidence.</p><div class="t-author"><div class="t-av">TM</div><div><div class="t-name">Tunde M.</div><div class="t-meta">Enugu · Verified Buyer</div></div></div><span class="t-prod">📱 Samsung S24 Ultra</span></div>
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">Heels for my wedding were stunning! Genuine leather, true to size. Cost price + shipping saved me so much. GGS doesn't play with quality — worth every naira!</p><div class="t-author"><div class="t-av">BU</div><div><div class="t-name">Blessing U.</div><div class="t-meta">Warri · Verified Buyer</div></div></div><span class="t-prod">👠 Premium Ladies Heels</span></div>
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">Referred 3 friends and received ₦100,000 store credit — the referral rewards are absolutely real! Combined with my next order I basically got a discounted handbag. GGS is next-level!</p><div class="t-author"><div class="t-av">IA</div><div><div class="t-name">Ifunanya A.</div><div class="t-meta">Owerri · Silver Referrer 🥈</div></div></div><span class="t-prod">💰 Referral Winner</span></div>
+        </div>
+        <div class="t-slide">
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">iPad Air 22 days, original Apple stickers, serial verified. Shipping fee on arrival was very reasonable. Paid GTB card on Flutterwave in seconds. Brilliant experience!</p><div class="t-author"><div class="t-av">DL</div><div><div class="t-name">David L.</div><div class="t-meta">Benin · Verified Buyer</div></div></div><span class="t-prod">📲 iPad Air 11" M2</span></div>
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">Ordered men's shoes and a bag for my wife in one round — both perfect on the same day. The leather shoe quality was worth double the cost price I paid.</p><div class="t-author"><div class="t-av">EO</div><div><div class="t-name">Emeka O.</div><div class="t-meta">Onitsha · Verified Buyer</div></div></div><span class="t-prod">👞👜 Shoes + Bag Combo</span></div>
+          <div class="t-card"><div class="t-qq">"</div><div class="t-stars">★★★★★</div><p class="t-text">Custom ordered a gaming laptop not in the catalog. GGS sourced it in 2 days, delivered in 27 days at 30% below local price. This is the future of shopping!</p><div class="t-author"><div class="t-av">KA</div><div><div class="t-name">Kingsley A.</div><div class="t-meta">Port Harcourt · Custom Order</div></div></div><span class="t-prod">💻 Custom Gaming Laptop</span></div>
         </div>
       </div>
-
-      <!-- Slide 2 -->
-      <div class="slide">
-        <div class="whatsapp-screenshot">
-          <div class="wa-header">
-            <div class="wa-avatar">💼</div>
-            <div>
-              <div class="wa-name">Business Owner</div>
-              <div class="wa-status">Verified PayPal ✓</div>
-            </div>
-          </div>
-          <div class="wa-body">
-            <div class="wa-msg-received">
-              The PayPal has been so helpful, been able to receive payment after my service has been a serious challenge, especially GNS. Now I don't need to convince my clients anymore, I just send them my payment link and receive payment ASAP. This is one of my best investments. Thank you, God bless 🙏
-              <div class="wa-time">9:07 AM</div>
-              <div class="wa-stars">★★★★★</div>
-            </div>
-            <div class="wa-msg-sent">
-              Thank You For This Wonderful Review ❤️
-              <div class="wa-time">9:08 AM ✓✓</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide-meta">
-          <div class="slide-author">Service Provider — Abuja</div>
-          <div class="slide-location">"One of my best investments" 💰</div>
-        </div>
+    </div>
+    <div class="slide-dots" id="tDots">
+      <button class="dot on" onclick="goSlide(0)"></button>
+      <button class="dot" onclick="goSlide(1)"></button>
+      <button class="dot" onclick="goSlide(2)"></button>
+    </div>
+    <div class="slide-arrows">
+      <button class="sarr" onclick="prevSlide()">←</button>
+      <button class="sarr" onclick="nextSlide()">→</button>
+    </div>
+    <!-- PROOF -->
+    <div style="margin-top:80px" class="reveal">
+      <div class="sec-head" style="margin-bottom:28px">
+        <span class="sec-tag">Delivery Proof</span>
+        <h2 class="sec-h" style="font-size:2rem;margin-top:12px">Real Orders. Real Photos.</h2>
       </div>
-
-      <!-- Slide 3 -->
-      <div class="slide">
-        <div class="whatsapp-screenshot">
-          <div class="wa-header">
-            <div class="wa-avatar">🎉</div>
-            <div>
-              <div class="wa-name">Satisfied Client</div>
-              <div class="wa-status">Verified PayPal ✓</div>
-            </div>
-          </div>
-          <div class="wa-body">
-            <div class="wa-msg-received">
-              The account is working really fine sir, just like you said 💯 👍 I've used it to receive payments and have not had any issues with it. I've made several attempts before now to get a working PayPal account but there's always one issue or another. It's really a relief to finally have a stable and working account. Thanks again 🙏
-              <div class="wa-time">3:46 AM</div>
-              <div class="wa-stars">★★★★★</div>
-            </div>
-            <div class="wa-msg-sent">
-              Wonderful, Am Glad we Could Help you with Getting a Perfect Business PayPal Account 🙏🙏 Congratulations 🥰🥰
-              <div class="wa-time">3:47 AM ✓✓</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide-meta">
-          <div class="slide-author">Remote Worker — Port Harcourt</div>
-          <div class="slide-location">"Really a relief to finally have a stable account" ✅</div>
-        </div>
-      </div>
-
-      <!-- Slide 4 -->
-      <div class="slide">
-        <div class="whatsapp-screenshot">
-          <div class="wa-header">
-            <div class="wa-avatar">💳</div>
-            <div>
-              <div class="wa-name">Withdrawal Success</div>
-              <div class="wa-status">Verified PayPal ✓</div>
-            </div>
-          </div>
-          <div class="wa-body">
-            <div class="wa-msg-received">
-              In fact the withdrawal has been smooth. When I placed withdrawal, it landed in 3 hours. You really know this PayPal stuff 😏 Thank you very much boss. I truly appreciate your effort and your expertise.
-              <div class="wa-time">10:17 PM</div>
-              <div class="wa-stars">★★★★★</div>
-            </div>
-            <div class="wa-msg-sent">
-              You are Always welcome... I really appreciate your trust in Us 🙏🙏
-              <div class="wa-time">10:19 PM ✓✓</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide-meta">
-          <div class="slide-author">Entrepreneur — Nigeria</div>
-          <div class="slide-location">Withdrawal landed in 3 hours ⚡</div>
-        </div>
-      </div>
-
-      <!-- Slide 5 -->
-      <div class="slide">
-        <div class="whatsapp-screenshot">
-          <div class="wa-header">
-            <div class="wa-avatar">⭐</div>
-            <div>
-              <div class="wa-name">5-Star Review</div>
-              <div class="wa-status">Verified PayPal ✓</div>
-            </div>
-          </div>
-          <div class="wa-body">
-            <div class="wa-msg-received" style="font-size:13px;">
-              <strong>Excellent Service! 5/5 Stars</strong><br><br>
-              I'm thoroughly impressed with the exceptional service I received! They helped me set up my PayPal account quickly and efficiently. The process was seamless, and everything works perfectly. The speed and expertise displayed were truly impressive. I highly recommend this service for anyone needing help with PayPal. You won't be disappointed!
-              <div class="wa-time">11:46 AM</div>
-              <div class="wa-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide-meta">
-          <div class="slide-author">Verified Client Review</div>
-          <div class="slide-location">5/5 Stars ⭐⭐⭐⭐⭐</div>
-        </div>
-      </div>
-
-      <!-- Slide 6 -->
-      <div class="slide">
-        <div class="whatsapp-screenshot">
-          <div class="wa-header">
-            <div class="wa-avatar">💵</div>
-            <div>
-              <div class="wa-name">First Payment Received</div>
-              <div class="wa-status">Verified PayPal ✓</div>
-            </div>
-          </div>
-          <div class="wa-body">
-            <div class="wa-msg-received">
-              It's been so effective, I didn't believe at first that I could use a PayPal in Nigeria. It has saved me from a lot of stress and trouble — people have stolen money from me cause I used them as third parties to do my withdrawal. I'm glad I have my personal PayPal and can get my money to me safely with no hassle.
-              <div class="wa-time">1:06 PM</div>
-              <div class="wa-stars">★★★★★</div>
-            </div>
-            <div class="wa-msg-sent">
-              Congratulations 🎉, Am Glad we Could Help You Overcome this Issue 🤝...
-              <div class="wa-time">1:07 PM ✓✓</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide-meta">
-          <div class="slide-author">Freelancer — Nigeria</div>
-          <div class="slide-location">"No more third parties stealing my money" 🔒</div>
-        </div>
-      </div>
-
-      <!-- Slideshow Controls -->
-      <div class="slideshow-controls">
-        <button class="slide-btn" onclick="changeSlide(-1)">‹</button>
-        <div class="slide-dots" id="dots"></div>
-        <button class="slide-btn" onclick="changeSlide(1)">›</button>
+      <div class="proof-grid">
+        <div class="proof-card"><div class="proof-inner"><span class="pi">📱</span><p>iPhone Delivery<br>Sealed Box · Lagos</p></div><div class="proof-lbl">✅ Verified Customer</div></div>
+        <div class="proof-card"><div class="proof-inner"><span class="pi">👜</span><p>Designer Bag<br>Unboxing · Abuja</p></div><div class="proof-lbl">✅ Verified Customer</div></div>
+        <div class="proof-card"><div class="proof-inner"><span class="pi">💻</span><p>MacBook Received<br>Sealed · Port Harcourt</p></div><div class="proof-lbl">✅ Verified Customer</div></div>
+        <div class="proof-card"><div class="proof-inner"><span class="pi">👠</span><p>Heels Collection<br>Exact as Ordered</p></div><div class="proof-lbl">✅ Verified Customer</div></div>
+        <div class="proof-card"><div class="proof-inner"><span class="pi">🎧</span><p>AirPods Pro<br>Original Apple Box</p></div><div class="proof-lbl">✅ Verified Customer</div></div>
+        <div class="proof-card" onclick="window.open('https://wa.me/2348142717585?text=Send%20me%20delivery%20photos','_blank')" style="cursor:pointer"><div class="proof-inner"><span class="pi">📸</span><p>View 50+ real delivery photos on WhatsApp</p></div><div class="proof-lbl">→ Full Gallery</div></div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- PRICING -->
-<div class="price-section fade-up">
-  <div class="section-tag" style="justify-content:center;margin-bottom:16px;">Investment</div>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);color:var(--white);letter-spacing:1px;margin-bottom:40px;">
-    ONE PRICE. <span style="color:var(--gold)">COMPLETE SOLUTION.</span>
-  </h2>
-
-  <div class="price-card">
-    <div class="price-card-tag">🏆 Professional PayPal Setup Package</div>
-    <div class="price-big"><span class="price-currency">$</span>120</div>
-
-    <div class="price-was-row">
-      <span class="price-was">Standard Rate: $250</span>
-      <span class="price-save-badge">PROMO RATE</span>
+<!-- TRUST (CREAM) -->
+<section class="cream-section" id="trust">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Why Trust GGS</span>
+      <h2 class="sec-h">Built on Proof,<br><em>Not Promises</em></h2>
     </div>
-
-    <div class="price-period">One-Time Payment — No Recurring Fees</div>
-    <div class="price-naira">🇳🇬 Pay in Naira: ₦180,000 (bank transfer accepted)</div>
-
-    <div class="price-includes">
-      <div class="price-includes-title">Everything Included</div>
-      <div class="price-line">Professional verified account setup & configuration</div>
-      <div class="price-line">Complete documentation & verification guidance</div>
-      <div class="price-line">Direct withdrawal to Nigerian bank account</div>
-      <div class="price-line">Send & receive GNS + FNF internationally</div>
-      <div class="price-line">72-hour delivery guaranteed</div>
-      <div class="price-line">30-day premium WhatsApp support</div>
-      <div class="price-line">No hidden fees. No surprises.</div>
+    <div class="trust-stats reveal">
+      <div class="ts-cell"><span class="ts-n">200+</span><span class="ts-l">Orders Completed</span></div>
+      <div class="ts-cell"><span class="ts-n">100%</span><span class="ts-l">Authentic Products</span></div>
+      <div class="ts-cell"><span class="ts-n">ZERO</span><span class="ts-l">Fakes — Ever</span></div>
+      <div class="ts-cell"><span class="ts-n">36</span><span class="ts-l">States Delivered</span></div>
+      <div class="ts-cell"><span class="ts-n">0%</span><span class="ts-l">Product Markup</span></div>
     </div>
+    <div class="trust-grid reveal">
+      <div class="trust-card"><span class="tc-icon">🏭</span><div class="tc-title">Direct Factory Sourcing</div><p class="tc-desc">We source directly from certified manufacturers — no middlemen, no inflated prices. You pay exactly what the factory charges.</p></div>
+      <div class="trust-card"><span class="tc-icon">💳</span><div class="tc-title">Flutterwave Secure Checkout</div><p class="tc-desc">Nigeria's most trusted payment gateway. Card, bank transfer, USSD, mobile money. Instant receipt. We never store card details.</p></div>
+      <div class="trust-card"><span class="tc-icon">📡</span><div class="tc-title">Full WhatsApp Tracking</div><p class="tc-desc">Updates every 5–7 days from the moment we place your order to delivery day. You always know where your goods are.</p></div>
+      <div class="trust-card"><span class="tc-icon">🛡️</span><div class="tc-title">Authenticity Guaranteed</div><p class="tc-desc">200+ orders completed. Zero counterfeits — ever. Every product ships in original manufacturer packaging with verifiable serial numbers.</p></div>
+      <div class="trust-card"><span class="tc-icon">💰</span><div class="tc-title">Zero Product Markup</div><p class="tc-desc">What you see is what we paid the factory. No hidden markup on products. Shipping is separate, weight-based, and fully transparent.</p></div>
+      <div class="trust-card"><span class="tc-icon">🚚</span><div class="tc-title">Nationwide Delivery</div><p class="tc-desc">We deliver across all 36 states. Port Harcourt: free local delivery. Other states: flat ₦5,000. All packages insured in transit.</p></div>
+    </div>
+  </div>
+</section>
 
-    <div class="guarantee-box">
-      <span class="guarantee-icon">🔒</span>
+<!-- REFERRAL -->
+<section class="dark-section" id="referral">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">🎁 Earn While You Share</span>
+      <h2 class="sec-h">GGS Referral Program<br><em>Real Cash. Real Rewards.</em></h2>
+      <p class="sec-p">Refer friends who place orders. Earn cash or store credit — no cap, credits never expire.</p>
+    </div>
+    <div class="ref-tiers reveal">
+      <div class="ref-card tier-bronze"><span class="ref-medal">🥉</span><div class="ref-tier-name">Bronze</div><div class="ref-count">1 <small>referral</small></div><div class="ref-reward">₦25,000 store credit</div><div class="ref-alt">Applied on next order</div></div>
+      <div class="ref-card tier-silver"><span class="ref-medal">🥈</span><div class="ref-tier-name">Silver</div><div class="ref-count">3 <small>referrals</small></div><div class="ref-reward">₦100,000 credit</div><div class="ref-alt">OR 15% off next order</div></div>
+      <div class="ref-card tier-gold"><span class="ref-medal">🥇</span><div class="ref-tier-name">Gold</div><div class="ref-count">5 <small>referrals</small></div><div class="ref-reward">₦200,000 CASH</div><div class="ref-alt">OR free product up to ₦300K</div></div>
+      <div class="ref-card tier-plat"><span class="ref-medal">💎</span><div class="ref-tier-name">Platinum</div><div class="ref-count">10 <small>referrals</small></div><div class="ref-reward">₦500,000 CASH</div><div class="ref-alt">OR a free iPhone</div></div>
+    </div>
+    <div class="ref-info reveal">
       <div>
-        <h4>Our Commitment to You</h4>
-        <p>We work with you until your account is fully set up and working correctly. Richard is personally available on WhatsApp for 30 days after delivery to assist with any follow-up questions — at no extra charge.</p>
+        <div class="ri-label">Program Rules</div>
+        <ul class="ri-list">
+          <li>Referred friend must place an order to qualify</li>
+          <li>Credit applied after their payment clears</li>
+          <li>Credits never expire — use anytime</li>
+          <li>Cash paid after their delivery completes</li>
+          <li>Top 3 referrers each month win bonus prizes 🏆</li>
+        </ul>
+      </div>
+      <div>
+        <div class="ri-label">Your Referral Link</div>
+        <p style="font-size:.8rem;color:var(--muted2);margin-bottom:12px">Share with friends. They mention your name when ordering.</p>
+        <div class="ref-link-box">
+          <code id="refCode">wa.me/2348142717585?text=Referred-by-[YourName]</code>
+          <button class="copy-btn" onclick="copyRef()">Copy</button>
+        </div>
+        <a href="https://wa.me/2348142717585?text=I%20want%20to%20check%20my%20referral%20progress" target="_blank" style="display:inline-block;margin-top:14px;font-size:.8rem;color:var(--gold-bright);text-decoration:none;font-weight:700">📊 Check My Progress →</a>
       </div>
     </div>
-
-    <a href="order.html" class="cta-btn" target="_blank" style="width:100%;justify-content:center;">
-      Start Your Setup — Fill Order Form
-      <span class="arrow">→</span>
-    </a>
-    <div class="urgency-text" style="margin-top:14px;">⏰ Limited slots available this week — Secure your spot today</div>
   </div>
-</div>
+</section>
 
-<!-- FAQ -->
-<section class="section fade-up">
-  <div class="section-tag">Questions</div>
-  <h2>FREQUENTLY <span>ASKED</span></h2>
-  <p>Everything you want to know before getting started.</p>
-
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span>Is this service legal and safe?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <p>Yes. GGS Global is an independent digital consulting service. We are not affiliated with PayPal Inc. We provide professional account setup guidance, configuration assistance, and documentation support to help clients correctly establish their own personal PayPal accounts. Our service is for legitimate business and personal use only, and we operate fully within the guidelines of Nigerian law.</p>
-      </div>
+<!-- FAQ (CREAM) -->
+<section class="cream-section" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Common Questions</span>
+      <h2 class="sec-h">Everything You<br><em>Need to Know</em></h2>
     </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span>What makes your setup more stable than others?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <p>We use advanced pre-configuration settings that 99% of providers don't know. Combined with our premium legal documentation package, your account is built so PayPal's system recognizes it as a trusted, verified enterprise account — not a flagged Nigerian account.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span>What if my account gets limited after setup?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <p>Richard provides 30 days of direct WhatsApp support after delivery. If any issue arises he is personally available to resolve it at no extra charge. We stand behind our work completely.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span>How do I make payment?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <p>₦180,000 via our secure Flutterwave payment page. After filling your order form you are automatically redirected to Flutterwave to complete payment safely via bank transfer, card or USSD. No manual bank details needed.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span>Does this work from any state in Nigeria?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <p>Yes. We have served clients across Lagos, Abuja, Port Harcourt, Enugu, Kano, and every other state. Location within Nigeria does not affect the process at all.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span>Can I use this for Fiverr, Upwork, and other platforms?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <p>Yes. Your verified PayPal account works with all major international platforms including Fiverr, Upwork, Toptal, Shutterstock, Amazon, eBay, and any platform that accepts PayPal globally.</p>
-      </div>
+    <div class="faq-stack reveal">
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Why isn't shipping included in the product price? <span class="faq-ico">+</span></div><div class="faq-answer">We show the exact factory cost price — zero markup. Shipping is calculated by actual weight when goods arrive. This means you never overpay. We send you the shipping company's pickup invoice, you pay them, and we collect and deliver to you. This is the most transparent model possible.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">How much will shipping cost approximately? <span class="faq-ico">+</span></div><div class="faq-answer">Rough estimates: Phone via Express Air ~₦15,000–₦40,000. Laptop ~₦25,000–₦55,000. Handbag via Standard Air ~₦8,000–₦20,000. Shoes ~₦10,000–₦22,000. These vary based on final package weight. Sea freight for bulk orders is significantly cheaper per kg.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Are all products 100% authentic? <span class="faq-ico">+</span></div><div class="faq-answer">Absolutely. We source exclusively from certified manufacturers and authorized distributors. Every product arrives in original manufacturer packaging with intact seals and verifiable serial numbers. We have completed 200+ orders and have never sold a single counterfeit product.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">How does the online payment work? <span class="faq-ico">+</span></div><div class="faq-answer">Add items to cart, select your shipping method, fill in your details at checkout, and pay the product cost price via Flutterwave. Accepted: Nigerian debit/credit cards, bank transfer, USSD, mobile money. You receive an instant receipt to your email. Shipping is paid separately when goods arrive.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What if my item arrives damaged or doesn't arrive? <span class="faq-ico">+</span></div><div class="faq-answer">All items are insured during transit. If anything goes wrong — which is extremely rare in our 200+ order history — we resolve it fully. Your payment is protected and we stand behind every order we process.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Can I order something not in the catalog? <span class="faq-ico">+</span></div><div class="faq-answer">Yes — that's one of our core services! Use the Custom Request form or WhatsApp us directly. If you can find it online anywhere, we can source and import it at cost price. Just share the product name, link, or full specifications and we'll send a quote within 1–2 hours.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Is Port Harcourt delivery really free? <span class="faq-ico">+</span></div><div class="faq-answer">Yes! Port Harcourt customers receive completely free local delivery after goods clear shipping from China. All other states pay a flat ₦5,000 delivery fee regardless of order size. This is separate from the China-to-Nigeria shipping fee, which is weight-based.</div></div>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<div class="final-cta fade-up">
-  <h2>READY TO START<br><span>RECEIVING INTERNATIONAL PAYMENTS?</span></h2>
-  <p>Join <strong>500+ Nigerian professionals</strong> who are now set up to receive payments from clients worldwide — reliably and professionally.</p>
-
-  <a href="order.html" class="cta-btn" target="_blank">
-    Start Your Setup — Fill Order Form
-    <span class="arrow">→</span>
-  </a>
-
-  <div class="urgency-text" style="margin-top:16px;">⏰ Limited client slots available this week — We respond within 15 minutes</div>
-
-  <div style="margin-top:36px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;">
-    <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">🔒 SECURE</div>
-    <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">⚡ 72HR DELIVERY</div>
-    <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">🏆 500+ CLIENTS</div>
-    <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">📱 30-DAY SUPPORT</div>
-    <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">✅ PROFESSIONAL SETUP</div>
+<section id="final">
+  <div class="final-glow"></div>
+  <div class="final-teal-line"></div>
+  <div class="container">
+    <div class="final-inner reveal">
+      <span class="sec-tag" style="margin-bottom:26px;display:inline-flex">⚡ Round 2 · 7 Slots Remaining</span>
+      <h2>Ready to Buy at<br><em>Factory Cost Price?</em></h2>
+      <p>Join 200+ Nigerians who are saving big on authentic products. Browse the catalog, add to cart, pay securely. We handle everything else.</p>
+      <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" style="font-size:1.05rem;padding:20px 48px">🛒 Browse Catalog & Order Now</button>
+      <div class="contact-row">
+        <a href="https://wa.me/2348142717585" class="contact-chip" target="_blank">💬 +234 814 271 7585</a>
+        <span class="contact-chip">📍 Port Harcourt, Nigeria</span>
+        <span class="contact-chip">🚚 All 36 States</span>
+        <span class="contact-chip">⏰ Reply under 2 hours</span>
+      </div>
+      <div class="guarantee-box">
+        <div class="g-icon">🛡️</div>
+        <div class="g-text">
+          <h4>GGS Authenticity & Transparency Guarantee</h4>
+          <p>100% authentic products. Zero markup on cost price. Shipping fully transparent and weight-based on arrival. Powered by Flutterwave secure checkout.</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- FOOTER -->
-<div class="footer">
-  <div class="footer-name">RICHARD OJUKWU — GGS GLOBAL</div>
-  <p style="margin-bottom:12px;">Professional PayPal Setup & Configuration Service · Nigeria · 5+ Years Experience · +2348106334849</p>
-
-  <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;">
-    <a href="#privacy" style="color:var(--muted);font-size:12px;font-family:'DM Mono',monospace;letter-spacing:1px;text-decoration:underline;">Privacy Policy</a>
-    <a href="#terms" style="color:var(--muted);font-size:12px;font-family:'DM Mono',monospace;letter-spacing:1px;text-decoration:underline;">Terms of Service</a>
-    <a href="#contact" style="color:var(--muted);font-size:12px;font-family:'DM Mono',monospace;letter-spacing:1px;text-decoration:underline;">Contact Us</a>
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <div class="name">GGS <em>Global</em></div>
+      <span class="tag">Personal Shopping & Import Service</span>
+      <p>Port Harcourt's most trusted personal shopper. Authentic tech and fashion imported directly at cost price. 200+ satisfied customers, nationwide delivery.</p>
+    </div>
+    <div class="f-col">
+      <h4>Quick Links</h4>
+      <a href="#shipping">Shipping Options</a>
+      <a href="#how">How It Works</a>
+      <a href="#catalog">Browse Catalog</a>
+      <a href="#request">Custom Request</a>
+      <a href="#referral">Referral Program</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="f-col">
+      <h4>Shipping Times</h4>
+      <span>✈️⚡ Express: 3–7 days</span>
+      <span>✈️ Air (no battery): 7–14 days</span>
+      <span>✈️🔋 Air (battery): 14–21 days</span>
+      <span>🚢 Sea Freight: 50–60 days</span>
+      <span style="color:var(--teal-bright);margin-top:8px">🚚 PH Delivery: Free</span>
+      <span>🚚 Other States: ₦5,000</span>
+    </div>
+    <div class="f-col">
+      <h4>Contact Us</h4>
+      <a href="https://wa.me/2348142717585" target="_blank">WhatsApp: +234 814 271 7585</a>
+      <span>📍 Port Harcourt, Nigeria</span>
+      <span>🕐 Mon–Sat · 8AM–8PM</span>
+      <span style="color:var(--gold-bright);font-weight:600;margin-top:10px">"Where Quality Meets Affordability"</span>
+      <span style="font-size:.66rem;color:rgba(240,237,231,.18);margin-top:8px">Checkout powered by Flutterwave</span>
+      <a href="admin.html" style="font-size:.6rem;color:rgba(255,255,255,.06);margin-top:22px" target="_blank">⚙️ Admin</a>
+    </div>
   </div>
-
-  <!-- LEGAL DISCLAIMER -->
-  <div style="max-width:680px;margin:0 auto;padding:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);text-align:left;">
-    <p style="font-size:11px;color:var(--muted);line-height:1.8;font-family:'DM Mono',monospace;letter-spacing:0.5px;">
-      <strong style="color:var(--text)">DISCLAIMER:</strong> GGS Global (operated by Richard Ojukwu) is an independent digital consulting and account configuration service. We are not affiliated with, endorsed by, or partnered with PayPal Inc. or any of its subsidiaries. "PayPal" is a registered trademark of PayPal, Inc. We provide professional account setup guidance, configuration assistance, and documentation support to help clients correctly establish their own accounts. Results may vary. Individual account approval and ongoing account status are subject to PayPal's own terms, conditions, and policies. By engaging our service you confirm that you have read and agree to our Terms of Service. This service is intended for legitimate business and personal use only.
-    </p>
+  <div class="footer-bot">
+    <span>© 2025 GGS Global Consult · All rights reserved · Port Harcourt, Nigeria</span>
+    <span>Authentic Tech & Fashion Imports · Nationwide Delivery</span>
   </div>
+</footer>
 
-  <!-- PRIVACY POLICY -->
-  <div id="privacy" style="max-width:680px;margin:16px auto 0;padding:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);text-align:left;">
-    <p style="font-size:12px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Privacy Policy</p>
-    <p style="font-size:11px;color:var(--muted);line-height:1.8;font-family:'DM Mono',monospace;letter-spacing:0.5px;">
-      GGS Global takes your privacy seriously. When you contact us via WhatsApp or any other channel, the information you share (name, contact details, service requirements) is used solely to deliver our service to you. We do not sell, share, or distribute your personal information to any third party. Your information is stored securely and used only for the purpose of fulfilling your service request and providing follow-up support. You may request deletion of your data at any time by contacting us directly on WhatsApp at +2348106334849. This policy applies to all users of this website and our services.
-    </p>
+<!-- WA FAB -->
+<a href="https://wa.me/2348142717585?text=Hi%20GGS%2C%20I%20want%20to%20place%20a%20pre-order" class="wa-fab" target="_blank">💬</a>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-hdr">
+    <h2>Your <em>Cart</em></h2>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
   </div>
-
-  <!-- TERMS OF SERVICE -->
-  <div id="terms" style="max-width:680px;margin:16px auto 0;padding:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);text-align:left;">
-    <p style="font-size:12px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Terms of Service</p>
-    <p style="font-size:11px;color:var(--muted);line-height:1.8;font-family:'DM Mono',monospace;letter-spacing:0.5px;">
-      By engaging GGS Global's services you agree to the following: (1) Our service provides professional PayPal account setup guidance and configuration assistance only. (2) Payment is required before service delivery begins. (3) 30-day post-delivery support is included for issues directly related to our setup. (4) You agree to use the configured account for lawful purposes only, in accordance with PayPal's Terms of Service. (5) GGS Global is not liable for any account actions taken by PayPal after delivery that result from the client's own usage behaviour. (6) All payments are final once service delivery has commenced. For questions, contact us at +2348106334849.
-    </p>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty"><span class="ei">🛒</span><p>Your cart is empty.<br>Browse the catalog to add items.</p></div>
   </div>
-
-  <div id="contact" style="margin-top:16px;">
-    <p style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">© 2025 GGS Global · All Rights Reserved · Contact: +2348106334849</p>
+  <div class="cart-foot">
+    <div class="cart-totals" id="cartTotals" style="display:none">
+      <div class="ct-row"><span>Total Product Cost</span><span id="ctTotal">₦0</span></div>
+      <div class="ct-highlight ct-row">
+        <span class="label">💳 Pay Now (Cost Price)</span>
+        <span class="amount" id="ctAmount">₦0</span>
+      </div>
+      <p class="ct-note">* Shipping paid separately on arrival</p>
+    </div>
+    <button class="checkout-cta" id="checkoutCta" onclick="openCheckout()" disabled>🔒 Proceed to Checkout</button>
+    <p class="cart-fn">Powered by Flutterwave · Card · Transfer · USSD · Mobile Money</p>
   </div>
 </div>
 
-<!-- WHATSAPP FLOAT BUTTON -->
-<a href="https://wa.me/2348106334849?text=Hello%20Richard%2C%20I%20want%20to%20get%20my%20PayPal%20sorted" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+<!-- CHECKOUT MODAL -->
+<div class="modal-bg" id="checkoutModal">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeCheckout()">✕</button>
+    <div class="modal-title">Secure Checkout</div>
+    <div class="modal-sub">Pay the product cost now. Shipping is communicated when your goods arrive in Nigeria.</div>
+    <div class="order-summary">
+      <div class="os-title">📋 Order Summary</div>
+      <div id="obItems"></div>
+      <div class="os-total"><span>Total to Pay Now</span><span id="obTotal">₦0</span></div>
+      <p style="font-size:.66rem;color:var(--muted);margin-top:8px">+ Shipping fee paid when goods arrive (weight-based)</p>
+    </div>
+    <div class="ck-row">
+      <div class="ck-field"><label>First Name</label><input type="text" id="ckFirst" placeholder="First name"></div>
+      <div class="ck-field"><label>Last Name</label><input type="text" id="ckLast" placeholder="Last name"></div>
+    </div>
+    <div class="ck-field"><label>Email Address</label><input type="email" id="ckEmail" placeholder="your@email.com"></div>
+    <div class="ck-field"><label>WhatsApp Number</label><input type="tel" id="ckPhone" placeholder="+234 801 234 5678"></div>
+    <div class="ck-field">
+      <label>Preferred Shipping Method</label>
+      <div class="ship-opts" id="shipSel">
+        <div class="sopt on" data-ship="Express Air (3–7 days)" onclick="pickShip(this)"><div class="sopt-name">✈️⚡ Express Air</div><div class="sopt-time">3–7 Days</div><div class="sopt-note">Urgent orders</div></div>
+        <div class="sopt" data-ship="Standard Air (7–14 days)" onclick="pickShip(this)"><div class="sopt-name">✈️ Standard Air</div><div class="sopt-time">7–14 Days</div><div class="sopt-note">Non-battery</div></div>
+        <div class="sopt" data-ship="Battery Air Cargo (14–21 days)" onclick="pickShip(this)"><div class="sopt-name">✈️🔋 Battery Air</div><div class="sopt-time">14–21 Days</div><div class="sopt-note">Electronics</div></div>
+        <div class="sopt" data-ship="Sea Freight (50–60 days)" onclick="pickShip(this)"><div class="sopt-name">🚢 Sea Freight</div><div class="sopt-time">50–60 Days</div><div class="sopt-note">Bulk · cheapest</div></div>
+      </div>
+    </div>
+    <div class="ck-field"><label>Delivery State</label>
+      <select id="ckState"><option value="">Select state...</option><option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT – Abuja</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option></select>
+    </div>
+    <div class="ck-field"><label>Delivery Address</label><input type="text" id="ckAddr" placeholder="Street address, estate, city"></div>
+    <div class="ck-field"><label>Referral Code (optional)</label><input type="text" id="ckRef" placeholder="Referred-by-Name"></div>
+    <div class="ship-caveat">
+      <p><strong>⚠️ Shipping Notice:</strong> The amount above is product cost only. When goods arrive in Nigeria, you'll receive the shipping company's weight-based invoice. Port Harcourt delivery is free. All other states: ₦5,000 local delivery.</p>
+    </div>
+    <button class="pay-btn" onclick="doPayment()">🔒 Pay Securely with Flutterwave</button>
+    <p class="pay-note">Secured by Flutterwave. We never store your card details.</p>
+    <div class="fw-badge">🔐 Powered by <strong style="color:var(--gold-bright);margin-left:3px">Flutterwave</strong></div>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="success-modal" id="successModal">
+  <div class="success-box">
+    <span class="success-icon">🎉</span>
+    <h2>Order Confirmed!</h2>
+    <p>Your payment has been received. We'll contact you on WhatsApp within 2 hours with confirmation and tracking details.</p>
+    <div class="txn-ref"><strong id="txnNum">TXN-XXXXXXXXXX</strong>Save this transaction reference.</div>
+    <a href="#" id="waLink" class="wa-follow" target="_blank">💬 Follow Up on WhatsApp</a>
+    <button class="close-suc" onclick="closeSuc()">Continue Shopping</button>
+  </div>
+</div>
 
 <script>
-    // ====== FACEBOOK PIXEL — PAGEVIEW ONLY (Landing Page) ======
-  // ✅ PageView already fires on page load above (in <head>)
-  // ✅ Lead event fires on order.html after form submission
-  // ✅ Purchase event fires on thankyou.html after payment confirmed
-  // No additional pixel events needed on this page
+// ═══════════════════════════════
+// CONFIG
+// ═══════════════════════════════
+const FW_KEY = 'FLWPUBK-14a050e1c6e7309deb9d08c19c4e4013-X';
+const WA = '2348142717585';
+const BIZ = 'GGS Global Consult';
+const STORE_KEY = 'ggs_admin';
 
-  // ====== COUNTDOWN TIMER ======
-  function initCountdown() {
-    const storedEnd = sessionStorage.getItem('cdEnd');
-    let endTime;
-    if (storedEnd) {
-      endTime = parseInt(storedEnd);
-    } else {
-      endTime = Date.now() + (23 * 3600 + 59 * 60 + 47) * 1000;
-      sessionStorage.setItem('cdEnd', endTime);
-    }
+// ═══════════════════════════════
+// DEFAULT PRODUCTS
+// ═══════════════════════════════
+const defaultProducts = {
+  tech: [
+    {id:'T01',name:'iPhone 15 Pro Max',spec:'256GB · All Colors · Factory Sealed · Unlocked · Verified Authentic',price:2100000,icon:'📱',badge:'hot',badgeText:'🔥 Bestseller',variants:['Natural Titanium','Blue Titanium','White Titanium','Black Titanium'],img:'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&q=80'},
+    {id:'T02',name:'iPhone 14 Pro',spec:'256GB · All Colors · Factory Sealed · Verified Authentic',price:1350000,icon:'📱',badge:'pick',badgeText:'💰 Budget Pick',variants:['Space Black','Gold','Silver','Deep Purple'],img:'https://images.unsplash.com/photo-1664478546384-d57ffe74a78c?w=600&q=80'},
+    {id:'T03',name:'Samsung S24 Ultra',spec:'All Storage Variants · Unlocked · Original Factory Seal',price:1450000,icon:'📱',badge:'',badgeText:'',variants:['Titanium Black','Titanium Gray','Titanium Violet','Titanium Yellow'],img:'https://images.unsplash.com/photo-1707148029295-0b24dc8c45e6?w=600&q=80'},
+    {id:'T04',name:'MacBook Air M2',spec:'256GB SSD · 8GB RAM · All Colors · Original Apple Seal',price:1850000,icon:'💻',badge:'hot',badgeText:'⭐ Top Rated',variants:['Midnight','Starlight','Space Gray','Silver'],img:'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600&q=80'},
+    {id:'T05',name:'iPad Air 11" M2',spec:'128GB · WiFi · All Colors · Sealed Apple Box',price:950000,icon:'📲',badge:'',badgeText:'',variants:['Blue','Purple','Starlight','Space Gray'],img:'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&q=80'},
+    {id:'T06',name:'AirPods Pro 2nd Gen',spec:'USB-C Charging Case · Adaptive Audio · Original Apple Seal',price:180000,icon:'🎧',badge:'',badgeText:'',variants:['White (Standard)'],img:'https://images.unsplash.com/photo-1588156979435-379b9d802b0a?w=600&q=80'},
+    {id:'T07',name:'Apple Watch Series 9',spec:'45mm · GPS · All Colors · Sealed Apple Box',price:320000,icon:'⌚',badge:'new',badgeText:'🆕 New',variants:['Midnight','Starlight','Product Red','Pink'],img:'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=600&q=80'},
+    {id:'T08',name:'Anker PowerBank 20K',spec:'20,000mAh · PD Fast Charge · Original Packaging',price:45000,icon:'⚡',badge:'pick',badgeText:'Add-On',variants:['Black','White'],img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&q=80'},
+  ],
+  fashion: [
+    {id:'F01',name:'Designer Crossbody Bag',spec:'50+ styles · Premium leather finish · All colors · DM for full catalog',price:70000,icon:'👜',badge:'new',badgeText:'💎 New Drop',variants:['Black','Brown','Beige/Nude','White','Red','Navy Blue'],img:'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80'},
+    {id:'F02',name:'Luxury Tote Bag',spec:'Structured & soft styles · Multiple sizes · Premium finish',price:78000,icon:'👜',badge:'',badgeText:'',variants:['Black','Brown','Beige','Caramel','Grey'],img:'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80'},
+    {id:'F03',name:'Premium Ladies Heels',spec:'Kitten · Block · Stiletto styles · Sizes 36–42',price:48000,icon:'👠',badge:'hot',badgeText:'🔥 High Demand',variants:['Size 36 – Kitten','Size 37 – Kitten','Size 38 – Block','Size 39 – Block','Size 40 – Stiletto','Size 41 – Stiletto','Size 42 – Block'],img:'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80'},
+    {id:'F04',name:'Ladies Flats & Loafers',spec:'Leather loafers · Ballet flats · Sizes 36–42',price:38000,icon:'👟',badge:'',badgeText:'',variants:['Size 36','Size 37','Size 38','Size 39','Size 40','Size 41','Size 42'],img:'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=600&q=80'},
+    {id:'F05',name:"Men's Premium Oxfords",spec:'Genuine leather · Sizes 40–47 · Black & Brown',price:55000,icon:'👞',badge:'',badgeText:'',variants:['Size 40 – Black','Size 40 – Brown','Size 41 – Black','Size 41 – Brown','Size 42 – Black','Size 42 – Brown','Size 43 – Black','Size 43 – Brown','Size 44 – Black','Size 44 – Brown'],img:'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&q=80'},
+    {id:'F06',name:'Evening Clutch / Mini Bag',spec:'Embellished · Plain leather · Chain strap · All colors',price:38000,icon:'💼',badge:'',badgeText:'',variants:['Black – Plain Leather','Gold – Embellished','Silver – Embellished','Nude – Plain','Red – Chain Strap'],img:'https://images.unsplash.com/photo-1566150905458-1bf1fb99e4b8?w=600&q=80'},
+  ]
+};
 
-    function update() {
-      const remaining = Math.max(0, endTime - Date.now());
-      const totalSecs = Math.floor(remaining / 1000);
-      const h = Math.floor(totalSecs / 3600);
-      const m = Math.floor((totalSecs % 3600) / 60);
-      const s = totalSecs % 60;
-
-      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-      document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
-      document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
-
-      if (remaining > 0) setTimeout(update, 1000);
-      else {
-        sessionStorage.removeItem('cdEnd');
-        initCountdown();
+// ═══════════════════════════════
+// LOAD PRODUCTS (synced with admin)
+// ═══════════════════════════════
+function loadProducts() {
+  try {
+    const stored = localStorage.getItem(STORE_KEY);
+    if (stored) {
+      const data = JSON.parse(stored);
+      if (data.products && (data.products.tech.length || data.products.fashion.length)) {
+        return data.products;
       }
     }
-    update();
+  } catch(e) {}
+  return defaultProducts;
+}
+
+let allProducts = loadProducts();
+
+// Listen for storage events (real-time sync across tabs)
+window.addEventListener('storage', (e) => {
+  if (e.key === STORE_KEY) {
+    allProducts = loadProducts();
+    // Firebase loads products automatically via firebase-store.js
+// renderCatalog() is now called after Firebase data loads
+    showToast('🔄 Catalog updated!');
   }
-  initCountdown();
+});
 
-  // ====== SLIDESHOW ======
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
-  const dotsContainer = document.getElementById('dots');
-  let autoPlay;
+// ═══════════════════════════════
+// UTILITIES
+// ═══════════════════════════════
+const fmt = n => '₦' + n.toLocaleString('en-NG');
 
-  // Create dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.onclick = () => goToSlide(i);
-    dotsContainer.appendChild(dot);
-  });
+// ═══════════════════════════════
+// RENDER CATALOG
+// ═══════════════════════════════
+function buildProductCard(p, cat) {
+  return `
+    <div class="prod-card" data-id="${p.id}">
+      ${p.badge ? `<div class="pc-badge b-${p.badge}">${p.badgeText}</div>` : ''}
+      <div class="pc-wish" title="Save to wishlist">🤍</div>
+      <div class="pc-img">
+        ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : `<span class="pc-emoji">${p.icon}</span>`}
+      </div>
+      <div class="pc-body">
+        <div class="pc-category">${p.icon} ${cat === 'tech' ? 'Tech & Gadgets' : 'Fashion & Lifestyle'}</div>
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-spec">${p.spec}</div>
+        <div class="pc-rating">
+          <span class="pc-stars">★★★★★</span>
+          <span class="pc-rating-n">(4.9) Verified Reviews</span>
+        </div>
+        <div class="price-block">
+          <span class="pc-cost-label">✅ Factory Cost Price — Zero Markup</span>
+          <div class="pc-price">${fmt(p.price)}</div>
+          <div class="pc-shipping-note">🚢 + Shipping paid on arrival (weight-based)</div>
+        </div>
+        <select class="var-select" id="v-${p.id}">
+          <option value="">Select option...</option>
+          ${(p.variants || []).map(v => `<option>${v}</option>`).join('')}
+        </select>
+        <button class="add-btn" id="abtn-${p.id}" onclick="addItem('${p.id}','${p.name.replace(/'/g,"\\'")}','${p.icon}',${p.price})">
+          🛒 Add to Cart
+        </button>
+      </div>
+    </div>`;
+}
 
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    document.querySelectorAll('.dot')[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    document.querySelectorAll('.dot')[currentSlide].classList.add('active');
-  }
-
-  function changeSlide(dir) {
-    clearInterval(autoPlay);
-    goToSlide(currentSlide + dir);
-    startAutoPlay();
-  }
-
-  function startAutoPlay() {
-    autoPlay = setInterval(() => goToSlide(currentSlide + 1), 5000);
-  }
-  startAutoPlay();
-
-  // ====== FAQ ======
-  function toggleFaq(btn) {
-    const answer = btn.nextElementSibling;
-    const icon = btn.querySelector('.faq-icon');
-    const isOpen = answer.classList.contains('open');
-    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
-    document.querySelectorAll('.faq-icon').forEach(i => { i.textContent = '+'; i.style.transform = 'rotate(0deg)'; });
-    if (!isOpen) {
-      answer.classList.add('open');
-      icon.textContent = '−';
+function renderCatalog() {
+  // Tech
+  const tg = document.getElementById('techGrid');
+  if (tg) {
+    if (!allProducts.tech.length) {
+      tg.innerHTML = '<div class="no-results"><span class="nr-icon">📭</span><p>No tech products yet. Check back soon!</p></div>';
+    } else {
+      tg.innerHTML = allProducts.tech.map(p => buildProductCard(p, 'tech')).join('');
     }
   }
+  // Fashion
+  const fg = document.getElementById('fashionGrid');
+  if (fg) {
+    if (!allProducts.fashion.length) {
+      fg.innerHTML = '<div class="no-results"><span class="nr-icon">📭</span><p>No fashion products yet. Check back soon!</p></div>';
+    } else {
+      fg.innerHTML = allProducts.fashion.map(p => buildProductCard(p, 'fashion')).join('');
+    }
+  }
+  // All
+  const ag = document.getElementById('allGrid');
+  if (ag) {
+    const allProds = [
+      ...allProducts.tech.map(p => ({...p, cat:'tech'})),
+      ...allProducts.fashion.map(p => ({...p, cat:'fashion'}))
+    ];
+    ag.innerHTML = allProds.map(p => buildProductCard(p, p.cat)).join('');
+  }
+}
 
-  // ====== SCROLL ANIMATIONS ======
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+// ═══════════════════════════════
+// SEARCH
+// ═══════════════════════════════
+let searchTimeout;
+
+function getAllProdsFlat() {
+  return [
+    ...allProducts.tech.map(p => ({...p, cat:'tech'})),
+    ...allProducts.fashion.map(p => ({...p, cat:'fashion'}))
+  ];
+}
+
+function searchProducts(query) {
+  if (!query.trim()) return [];
+  const q = query.toLowerCase();
+  return getAllProdsFlat().filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.spec.toLowerCase().includes(q) ||
+    (p.id && p.id.toLowerCase().includes(q)) ||
+    (p.variants && p.variants.some(v => v.toLowerCase().includes(q)))
+  );
+}
+
+function handleSearch(val) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const results = searchProducts(val);
+    renderSearchDropdown(val, results);
+  }, 180);
+}
+
+function renderSearchDropdown(query, results) {
+  const dd = document.getElementById('searchDropdown');
+  if (!query.trim()) { dd.classList.remove('show'); return; }
+  if (!results.length) {
+    dd.innerHTML = `<div class="sd-empty">No products found for "<strong>${query}</strong>".<br>Try WhatsApp for custom orders →</div>`;
+    dd.classList.add('show'); return;
+  }
+  let html = `<div class="sd-section">Products Found (${results.length})</div>`;
+  results.slice(0, 6).forEach(p => {
+    html += `
+      <div class="sd-item" onclick="gotoProduct('${p.id}','${p.cat}')">
+        <div class="sd-thumb">${p.img ? `<img src="${p.img}" alt="${p.name}">` : p.icon}</div>
+        <div>
+          <div class="sd-name">${p.name}</div>
+          <div class="sd-cat">${p.cat === 'tech' ? '📱 Tech' : '👜 Fashion'}</div>
+          <div class="sd-price">${fmt(p.price)}</div>
+        </div>
+      </div>`;
+  });
+  if (results.length > 6) html += `<div class="sd-section" style="padding-bottom:10px;color:var(--gold)">+ ${results.length - 6} more results in catalog ↓</div>`;
+  dd.innerHTML = html;
+  dd.classList.add('show');
+}
+
+function showSearchDrop() {
+  const val = document.getElementById('headerSearch').value;
+  if (val.trim()) {
+    const r = searchProducts(val);
+    renderSearchDropdown(val, r);
+  }
+}
+function hideSearchDrop() {
+  document.getElementById('searchDropdown').classList.remove('show');
+}
+
+function gotoProduct(id, cat) {
+  hideSearchDrop();
+  document.getElementById('headerSearch').value = '';
+  // Switch to correct tab and scroll
+  document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
+  const tabMap = {tech:'tech', fashion:'fashion'};
+  const activeTab = document.querySelector(`.cat-tab[onclick*="'${cat}'"]`);
+  if (activeTab) switchTab(activeTab, cat);
+  setTimeout(() => {
+    const card = document.querySelector(`[data-id="${id}"]`);
+    if (card) {
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+      card.style.boxShadow = '0 0 0 3px rgba(18,184,150,.6), 0 28px 70px rgba(0,0,0,.5)';
+      card.style.borderColor = 'rgba(18,184,150,.5)';
+      setTimeout(() => {
+        card.style.boxShadow = '';
+        card.style.borderColor = '';
+      }, 2500);
+    }
+  }, 600);
+}
+
+// Mobile search
+function handleMobileSearch(val) {
+  const results = searchProducts(val);
+  const container = document.getElementById('mobileSearchResults');
+  if (!val.trim() || !results.length) { container.innerHTML = ''; return; }
+  container.innerHTML = `
+    <div style="margin-top:14px;display:grid;gap:10px">
+      ${results.slice(0,4).map(p => `
+        <div onclick="gotoProduct('${p.id}','${p.cat}')" style="background:#fff;border:1px solid var(--cream2);border-radius:10px;padding:12px;display:flex;gap:12px;cursor:pointer;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.06)">
+          <div style="font-size:1.8rem">${p.icon}</div>
+          <div>
+            <div style="font-weight:800;font-size:.87rem;color:var(--cream-ink)">${p.name}</div>
+            <div style="font-size:.78rem;color:var(--gold-deep);font-weight:700;margin-top:2px">${fmt(p.price)}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// Catalog-level search via banner
+function filterCatalogBySearch(query) {
+  const results = searchProducts(query);
+  const banner = document.getElementById('searchBanner');
+  const bannerText = document.getElementById('searchBannerText');
+  // Show all tab
+  switchTab(document.querySelector('.cat-tab[onclick*="\'all\'"]'), 'all');
+  if (!results.length) {
+    document.getElementById('allGrid').innerHTML = `<div class="no-results"><span class="nr-icon">🔍</span><p>No products found for "<strong>${query}</strong>".<br>Try our <a href="https://wa.me/${WA}?text=I%20am%20looking%20for%20${encodeURIComponent(query)}" target="_blank" style="color:var(--teal-bright)">WhatsApp custom request →</a></p></div>`;
+  } else {
+    document.getElementById('allGrid').innerHTML = results.map(p => buildProductCard(p, p.cat)).join('');
+  }
+  bannerText.textContent = `Showing ${results.length} results for "${query}"`;
+  banner.classList.add('show');
+}
+
+function clearSearch() {
+  document.getElementById('headerSearch').value = '';
+  document.getElementById('mobileSearch') && (document.getElementById('mobileSearch').value = '');
+  document.getElementById('searchBanner').classList.remove('show');
+  renderCatalog();
+  switchTab(document.querySelector('.cat-tab.active'), 'tech');
+}
+
+// ═══════════════════════════════
+// TABS
+// ═══════════════════════════════
+function switchTab(el, cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const panel = document.getElementById('panel-' + cat);
+  if (panel) panel.classList.add('active');
+}
+
+// ═══════════════════════════════
+// CART
+// ═══════════════════════════════
+let cart = [];
+
+function addItem(id, name, icon, price) {
+  const sel = document.getElementById('v-' + id);
+  const variant = sel?.value || '';
+  if (!variant) {
+    if (sel) { sel.style.borderColor = 'rgba(18,184,150,.7)'; sel.focus(); setTimeout(() => sel.style.borderColor = '', 2500); }
+    showToast('⚠️ Please select an option first');
+    return;
+  }
+  const ex = cart.find(i => i.id === id && i.variant === variant);
+  if (ex) { ex.qty++; showToast('Quantity updated ✓'); }
+  else { cart.push({id, name, icon, price, variant, qty:1}); showToast('✅ Added to cart!'); }
+  renderCart(); updateDot();
+  const b = document.getElementById('abtn-' + id);
+  if (b) {
+    b.classList.add('added'); b.textContent = '✓ Added to Cart';
+    setTimeout(() => { b.classList.remove('added'); b.textContent = '🛒 Add to Cart'; }, 2200);
+  }
+  openCart();
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const totals = document.getElementById('cartTotals');
+  const cta = document.getElementById('checkoutCta');
+  if (!cart.length) {
+    body.innerHTML = '<div class="cart-empty"><span class="ei">🛒</span><p>Your cart is empty.<br>Browse the catalog to add items.</p></div>';
+    totals.style.display = 'none'; cta.disabled = true; return;
+  }
+  body.innerHTML = cart.map((item, i) => `
+    <div class="c-item">
+      <div class="c-icon">${item.icon}</div>
+      <div class="c-info">
+        <div class="c-name">${item.name}</div>
+        <div class="c-variant">${item.variant}</div>
+        <div class="c-row">
+          <div class="c-price">${fmt(item.price * item.qty)}</div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="qty-wrap">
+              <button class="qty-b" onclick="changeQty(${i},-1)">−</button>
+              <span style="font-weight:700;font-size:.9rem;min-width:16px;text-align:center">${item.qty}</span>
+              <button class="qty-b" onclick="changeQty(${i},1)">+</button>
+            </div>
+            <button class="c-del" onclick="removeItem(${i})">✕ Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('ctTotal').textContent = fmt(total);
+  document.getElementById('ctAmount').textContent = fmt(total);
+  totals.style.display = 'block'; cta.disabled = false;
+}
+
+function changeQty(i, d) { cart[i].qty += d; if (cart[i].qty <= 0) cart.splice(i, 1); renderCart(); updateDot(); }
+function removeItem(i) { cart.splice(i, 1); renderCart(); updateDot(); }
+function updateDot() {
+  const n = cart.reduce((s, i) => s + i.qty, 0);
+  const d = document.getElementById('cartDot');
+  d.textContent = n; d.classList.toggle('show', n > 0);
+}
+
+function toggleCart() {
+  const ov = document.getElementById('cartOverlay'), dr = document.getElementById('cartDrawer');
+  ov.classList.toggle('open'); dr.classList.toggle('open');
+  document.body.style.overflow = dr.classList.contains('open') ? 'hidden' : '';
+}
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// ═══════════════════════════════
+// CHECKOUT
+// ═══════════════════════════════
+let chosenShip = 'Express Air (3–7 days)';
+
+function pickShip(el) {
+  document.querySelectorAll('.sopt').forEach(o => o.classList.remove('on'));
+  el.classList.add('on'); chosenShip = el.dataset.ship;
+}
+
+function openCheckout() {
+  if (!cart.length) return;
+  let items = '';
+  cart.forEach(i => { items += `<div class="os-line"><span>${i.icon} ${i.name} × ${i.qty} (${i.variant})</span><span>${fmt(i.price * i.qty)}</span></div>`; });
+  document.getElementById('obItems').innerHTML = items;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('obTotal').textContent = fmt(total);
+  document.getElementById('checkoutModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCheckout() {
+  document.getElementById('checkoutModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════
+// FLUTTERWAVE PAYMENT
+// ═══════════════════════════════
+function doPayment() {
+  const first = document.getElementById('ckFirst').value.trim();
+  const last = document.getElementById('ckLast').value.trim();
+  const email = document.getElementById('ckEmail').value.trim();
+  const phone = document.getElementById('ckPhone').value.trim();
+  const state = document.getElementById('ckState').value;
+  const addr = document.getElementById('ckAddr').value.trim();
+  if (!first || !last) { alert('Please enter your full name.'); return; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
+  if (!phone) { alert('Please enter your WhatsApp number.'); return; }
+  if (!state) { alert('Please select your delivery state.'); return; }
+  if (!addr) { alert('Please enter your delivery address.'); return; }
+
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const ref = document.getElementById('ckRef').value.trim();
+  const txRef = 'GGS-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
+  const orderDesc = cart.map(i => `${i.name}×${i.qty}(${i.variant})`).join(', ');
+  const isRivers = state.toLowerCase().includes('rivers');
+  const delivery = isRivers ? 'Free (Port Harcourt)' : '₦5,000';
+
+  const waMsg = `Hi GGS! I just paid for my order.\n\n👤 Name: ${first} ${last}\n📧 Email: ${email}\n📱 WhatsApp: ${phone}\n📍 State: ${state}\n🏠 Address: ${addr}\n\n📦 Shipping: ${chosenShip}\n🚚 Local Delivery: ${delivery}\n\n📋 Items:\n${cart.map(i => `• ${i.name} × ${i.qty} – ${i.variant} = ${fmt(i.price * i.qty)}`).join('\n')}\n\n💰 Total Paid: ${fmt(total)}\n🧾 Ref: ${txRef}${ref ? '\n🎁 Referral: ' + ref : ''}\n\nPlease confirm. Thank you!`;
+
+  FlutterwaveCheckout({
+    public_key: FW_KEY, tx_ref: txRef, amount: total, currency: 'NGN',
+    payment_options: 'card,banktransfer,ussd,mobilemoney',
+    customer: { email, phone_number: phone, name: `${first} ${last}` },
+    customizations: { title: BIZ, description: 'Import Order – ' + orderDesc.substring(0, 80) },
+    meta: { order_items: orderDesc, shipping_method: chosenShip, delivery_state: state, delivery_address: addr, referral: ref || 'none', delivery_fee: delivery },
+    callback(r) {
+      if (r.status === 'successful' || r.status === 'completed') {saveOrderToFirebase(r, first, last, email, phone, state, addr, ref, chosenShip, total, txRef);
+        closeCheckout();
+        document.getElementById('txnNum').textContent = r.transaction_id || txRef;
+        document.getElementById('waLink').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(waMsg);
+        document.getElementById('successModal').classList.add('open');
+        cart = []; renderCart(); updateDot();
+        document.getElementById('cartOverlay').classList.remove('open');
+        document.getElementById('cartDrawer').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    },
+    onclose() {}
+  });
+}
+
+function closeSuc() { document.getElementById('successModal').classList.remove('open'); document.body.style.overflow = ''; }
+
+// ═══════════════════════════════
+// CUSTOM REQUEST
+// ═══════════════════════════════
+function submitCustom() {
+  const name = document.getElementById('rName').value.trim();
+  const desc = document.getElementById('rDesc').value.trim();
+  if (!name || !desc) { alert('Please enter your name and describe what you want.'); return; }
+  const phone = document.getElementById('rPhone').value.trim();
+  const cat = document.getElementById('rCat').value;
+  const budget = document.getElementById('rBudget').value;
+  const ref = document.getElementById('rRef').value.trim();
+  let msg = `Hi GGS! I have a custom import request.\n\n👤 Name: ${name}`;
+  if (phone) msg += `\n📱 WhatsApp: ${phone}`;
+  if (cat) msg += `\n📦 Category: ${cat}`;
+  msg += `\n\n📝 What I want:\n${desc}`;
+  if (budget) msg += `\n💰 Budget: ${budget}`;
+  if (ref) msg += `\n🎁 Referral: ${ref}`;
+  msg += '\n\nPlease send me pricing and details. Thank you!';
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ═══════════════════════════════
+// COUNTDOWN
+// ═══════════════════════════════
+function getDeadline() {
+  const d = new Date(); const diff = (7 - d.getDay()) % 7 || 7;
+  d.setDate(d.getDate() + diff); d.setHours(23, 59, 59, 0); return d;
+}
+const DL = getDeadline();
+function tick() {
+  const ms = DL - Date.now(); if (ms <= 0) return;
+  const D = Math.floor(ms / 864e5), H = Math.floor(ms % 864e5 / 36e5),
+        M = Math.floor(ms % 36e5 / 6e4), S = Math.floor(ms % 6e4 / 1e3);
+  document.getElementById('cdD').textContent = String(D).padStart(2, '0');
+  document.getElementById('cdH').textContent = String(H).padStart(2, '0');
+  document.getElementById('cdM').textContent = String(M).padStart(2, '0');
+  document.getElementById('cdS').textContent = String(S).padStart(2, '0');
+}
+tick(); setInterval(tick, 1000);
+
+// ═══════════════════════════════
+// SLIDER
+// ═══════════════════════════════
+let cur = 0, tot = 3, autoSlide = setInterval(nextSlide, 6000);
+function goSlide(n) {
+  cur = n;
+  document.getElementById('tTrack').style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === n));
+  clearInterval(autoSlide); autoSlide = setInterval(nextSlide, 6000);
+}
+function nextSlide() { goSlide((cur + 1) % tot); }
+function prevSlide() { goSlide((cur - 1 + tot) % tot); }
+
+// ═══════════════════════════════
+// FAQ
+// ═══════════════════════════════
+function faqToggle(el) {
+  const item = el.parentElement; const was = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!was) item.classList.add('open');
+}
+
+// ═══════════════════════════════
+// REFERRAL COPY
+// ═══════════════════════════════
+function copyRef() {
+  navigator.clipboard.writeText(document.getElementById('refCode').textContent)
+    .then(() => {
+      const b = document.querySelector('.copy-btn');
+      b.textContent = '✓ Copied!'; setTimeout(() => b.textContent = 'Copy', 2400);
     });
-  }, { threshold: 0.08 });
+}
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// ═══════════════════════════════
+// TOAST
+// ═══════════════════════════════
+function showToast(msg) {
+  let t = document.getElementById('siteToast');
+  if (!t) {
+    t = document.createElement('div'); t.id = 'siteToast';
+    t.style.cssText = 'position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:rgba(13,138,114,.15);border:1px solid rgba(18,184,150,.3);color:#34d399;padding:12px 24px;border-radius:10px;font-size:.82rem;font-weight:700;z-index:9998;white-space:nowrap;pointer-events:none;transition:opacity .3s';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg; t.style.opacity = '1';
+  clearTimeout(t._t); t._t = setTimeout(() => { t.style.opacity = '0'; }, 2600);
+}
+
+// ═══════════════════════════════
+// REVEAL ON SCROLL
+// ═══════════════════════════════
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: .07 });
+document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+// ═══════════════════════════════
+// ADMIN SYNC POLLING (every 5s)
+// ═══════════════════════════════
+setInterval(() => {
+  const newProds = loadProducts();
+  const changed = JSON.stringify(newProds) !== JSON.stringify(allProducts);
+  if (changed) { allProducts = newProds; renderCatalog(); }
+}, 5000);
+
+// ═══════════════════════════════
+// INIT
+// ═══════════════════════════════
+renderCatalog();
 </script>
-
 </body>
 </html>
