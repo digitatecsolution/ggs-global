@@ -441,7 +441,7 @@ fbq('track', 'PageView');
     </div>
     <div class="order-detail">
       <span class="order-detail-label">Amount Paid</span>
-      <span class="order-detail-value gold">₦180,000</span>
+      <span class="order-detail-value gold" id="sum-amount">₦180,000</span>
     </div>
     <div class="order-detail">
       <span class="order-detail-label">Status</span>
@@ -506,14 +506,16 @@ fbq('track', 'PageView');
   document.getElementById('sum-type').textContent     = orderData.businessType || 'Not provided';
   document.getElementById('sum-id').textContent       = orderData.idType       || 'Not provided';
   document.getElementById('sum-package').textContent  = orderData.packageType  || 'Standard (72 Hours)';
+  const isSplit = (orderData.packageType || '').includes('Split');
+document.getElementById('sum-amount').textContent = isSplit ? '₦100,000 (Deposit Paid)' : '₦180,000';
 
   // ✅ PURCHASE EVENT — fires ONCE here, correctly, after payment is confirmed
   // This is the correct place: person has paid and landed on this page
   if (typeof fbq !== 'undefined') {
     fbq('track', 'Purchase', {
-      currency: 'NGN',
-      value: 180000
-    });
+currency: 'NGN',
+value: isSplit ? 100000 : 180000
+});
   }
 
   // Build WhatsApp pre-filled message
