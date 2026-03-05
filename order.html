@@ -38,7 +38,6 @@ fbq('track', 'PageView');
     --border: rgba(255,255,255,0.08);
     --border-gold: rgba(245,200,66,0.2);
     --border-blue: rgba(59,130,246,0.25);
-    --card: rgba(255,255,255,0.04);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,7 +51,6 @@ fbq('track', 'PageView');
     min-height: 100vh;
   }
 
-  /* TOP BAR */
   .topbar {
     background: linear-gradient(90deg, #006400, var(--green), #006400);
     background-size: 200% 100%;
@@ -69,17 +67,13 @@ fbq('track', 'PageView');
 
   @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
 
-  /* PROGRESS BAR */
   .progress-bar {
     background: var(--navy2);
     padding: 16px 24px;
     border-bottom: 1px solid var(--border);
   }
 
-  .progress-inner {
-    max-width: 600px;
-    margin: 0 auto;
-  }
+  .progress-inner { max-width: 600px; margin: 0 auto; }
 
   .progress-label {
     display: flex;
@@ -109,17 +103,14 @@ fbq('track', 'PageView');
     width: 33%;
     background: linear-gradient(90deg, var(--gold), var(--green));
     border-radius: 2px;
-    transition: width 0.5s ease;
   }
 
-  /* MAIN CONTAINER */
   .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 40px 24px 80px;
   }
 
-  /* HEADER */
   .page-header {
     text-align: center;
     margin-bottom: 36px;
@@ -150,16 +141,9 @@ fbq('track', 'PageView');
   }
 
   .page-header h1 span { color: var(--gold); }
-
-  .page-header p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
+  .page-header p { font-size: 15px; color: var(--muted); line-height: 1.7; }
   .page-header p strong { color: var(--white); }
 
-  /* TRUST ROW */
   .trust-row {
     display: flex;
     justify-content: center;
@@ -180,7 +164,6 @@ fbq('track', 'PageView');
 
   .trust-item .icon { color: var(--green); font-size: 14px; }
 
-  /* FORM CARD */
   .form-card {
     background: var(--navy2);
     border: 1px solid var(--border-gold);
@@ -216,10 +199,7 @@ fbq('track', 'PageView');
     background: var(--border-gold);
   }
 
-  /* FORM FIELDS */
-  .form-group {
-    margin-bottom: 20px;
-  }
+  .form-group { margin-bottom: 20px; }
 
   .form-group label {
     display: block;
@@ -230,10 +210,7 @@ fbq('track', 'PageView');
     letter-spacing: 0.3px;
   }
 
-  .form-group label .required {
-    color: var(--red);
-    margin-left: 3px;
-  }
+  .form-group label .required { color: var(--red); margin-left: 3px; }
 
   .form-group label .hint {
     font-size: 11px;
@@ -263,7 +240,6 @@ fbq('track', 'PageView');
   }
 
   .form-input::placeholder { color: var(--muted); font-size: 14px; }
-
   .form-input.error { border-color: var(--red); }
 
   select.form-input {
@@ -274,10 +250,7 @@ fbq('track', 'PageView');
     padding-right: 40px;
   }
 
-  select.form-input option {
-    background: var(--navy2);
-    color: var(--white);
-  }
+  select.form-input option { background: var(--navy2); color: var(--white); }
 
   .form-row {
     display: grid;
@@ -297,105 +270,7 @@ fbq('track', 'PageView');
 
   .error-msg.show { display: block; }
 
-  /* IMPORTANT NOTE BOX */
-  .important-box {
-    background: rgba(245,200,66,0.06);
-    border: 1px solid rgba(245,200,66,0.2);
-    border-left: 3px solid var(--gold);
-    padding: 16px 20px;
-    margin: 24px 0;
-  }
-
-  .important-box-title {
-    font-size: 12px;
-    font-weight: 900;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .important-box ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .important-box ul li {
-    font-size: 13px;
-    color: var(--text);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.5;
-  }
-
-  .important-box ul li::before {
-    content: '✅';
-    flex-shrink: 0;
-    font-size: 12px;
-    margin-top: 1px;
-  }
-
-  /* SUBMIT BUTTON */
-  .submit-btn {
-    width: 100%;
-    background: var(--green);
-    color: var(--navy);
-    font-family: 'Manrope', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
-    padding: 20px;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 0.3px;
-    transition: all 0.2s;
-    border-radius: 4px;
-    box-shadow: 0 8px 32px rgba(0,200,83,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 8px;
-  }
-
-  .submit-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
-
-  .submit-btn:hover::before { transform: translateX(100%); }
-  .submit-btn:hover { background: #00E060; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,200,83,0.4); }
-  .submit-btn:disabled { background: #444; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
-
-  /* Bank transfer submit button variant */
-  .submit-btn.bank-btn {
-    background: var(--blue);
-    box-shadow: 0 8px 32px rgba(59,130,246,0.3);
-  }
-  .submit-btn.bank-btn:hover { background: #60A5FA; box-shadow: 0 12px 40px rgba(59,130,246,0.4); }
-
-  .submit-btn .arrow { font-size: 22px; transition: transform 0.2s; }
-  .submit-btn:hover .arrow { transform: translateX(4px); }
-
-  .submit-note {
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 12px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.5px;
-  }
-
-  /* PACKAGE SELECTOR — now 2x2 grid for 4 options */
+  /* PACKAGE SELECTOR */
   .package-selector {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -405,112 +280,7 @@ fbq('track', 'PageView');
 
   @media(max-width: 560px) { .package-selector { grid-template-columns: 1fr; } }
 
-  /* SPLIT PAYMENT BADGE */
-  .split-badge {
-    display: inline-block;
-    background: var(--orange);
-    color: white;
-    font-size: 9px;
-    font-weight: 900;
-    padding: 2px 6px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    border-radius: 2px;
-  }
-
-  /* BANK TRANSFER BADGE */
-  .bank-badge {
-    display: inline-block;
-    background: var(--blue);
-    color: white;
-    font-size: 9px;
-    font-weight: 900;
-    padding: 2px 6px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    border-radius: 2px;
-  }
-
-  /* SPLIT PAYMENT WARNING BOX */
-  .split-warning {
-    display: none;
-    background: rgba(255,107,53,0.08);
-    border: 1px solid rgba(255,107,53,0.3);
-    border-left: 3px solid var(--orange);
-    padding: 14px 18px;
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.7;
-  }
-
-  .split-warning.show { display: block; }
-  .split-warning strong { color: var(--orange); }
-
-  /* BANK TRANSFER DETAILS BOX */
-  .bank-details {
-    display: none;
-    background: var(--blue-dim);
-    border: 1px solid var(--border-blue);
-    border-left: 3px solid var(--blue);
-    padding: 18px 20px;
-    margin-top: 16px;
-  }
-
-  .bank-details.show { display: block; }
-
-  .bank-details-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--blue);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    font-weight: 700;
-  }
-
-  .bank-detail-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(59,130,246,0.15);
-    font-size: 14px;
-  }
-
-  .bank-detail-row:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .bank-detail-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-  }
-
-  .bank-detail-value {
-    font-weight: 800;
-    color: var(--white);
-    font-size: 15px;
-    text-align: right;
-  }
-
-  .bank-detail-value.accent { color: var(--blue); font-size: 20px; letter-spacing: 2px; font-family: 'DM Mono', monospace; }
-
-  .bank-details-note {
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  .bank-details-note strong { color: var(--text); font-style: normal; }
-
-  .package-option {
-    position: relative;
-  }
+  .package-option { position: relative; }
 
   .package-option input[type="radio"] {
     position: absolute;
@@ -537,29 +307,129 @@ fbq('track', 'PageView');
     background: var(--green-dim);
   }
 
-  /* Bank transfer selected state */
   .package-option.bank-option input:checked + .package-label {
     border-color: var(--blue);
     background: var(--blue-dim);
   }
 
-  .package-label-title {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--white);
+  .package-label-title { font-size: 14px; font-weight: 800; color: var(--white); }
+  .package-label-time { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .package-label-price { font-size: 13px; color: var(--gold); font-weight: 700; margin-top: 4px; }
+
+  .split-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    border-radius: 2px;
   }
 
-  .package-label-time {
+  .bank-badge {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    border-radius: 2px;
+  }
+
+  /* IMPORTANT BOX */
+  .important-box {
+    background: rgba(245,200,66,0.06);
+    border: 1px solid rgba(245,200,66,0.2);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+
+  .important-box-title {
     font-size: 12px;
-    color: var(--muted);
+    font-weight: 900;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
     font-family: 'DM Mono', monospace;
   }
 
-  .package-label-price {
+  .important-box ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+  .important-box ul li {
     font-size: 13px;
-    color: var(--gold);
-    font-weight: 700;
-    margin-top: 4px;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+
+  .important-box ul li::before {
+    content: 'OK';
+    flex-shrink: 0;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 900;
+    color: var(--green);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  /* SUBMIT BUTTON — WhatsApp green */
+  .submit-btn {
+    width: 100%;
+    background: #25D366;
+    color: #0a1a0a;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    padding: 22px 20px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .submit-btn:hover::before { transform: translateX(100%); }
+  .submit-btn:hover { background: #20C05A; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+  .submit-btn:disabled { background: #2a4a2a; color: #4a7a4a; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .submit-btn .wa-icon { font-size: 24px; }
+
+  .submit-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.3px;
+    line-height: 1.8;
   }
 
   /* WHAT HAPPENS NEXT */
@@ -570,11 +440,6 @@ fbq('track', 'PageView');
     padding: 20px 24px;
   }
 
-  .next-steps.bank-next {
-    background: var(--blue-dim);
-    border-color: var(--border-blue);
-  }
-
   .next-steps-title {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -583,8 +448,6 @@ fbq('track', 'PageView');
     text-transform: uppercase;
     margin-bottom: 14px;
   }
-
-  .next-steps.bank-next .next-steps-title { color: var(--blue); }
 
   .next-step-item {
     display: flex;
@@ -612,9 +475,6 @@ fbq('track', 'PageView');
     flex-shrink: 0;
   }
 
-  .step-num.blue { background: var(--blue); }
-
-  /* SECURITY BADGES */
   .security-row {
     display: flex;
     justify-content: center;
@@ -630,12 +490,8 @@ fbq('track', 'PageView');
     color: var(--muted);
     font-family: 'DM Mono', monospace;
     letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
   }
 
-  /* MOBILE FIXES */
   @media(max-width: 480px) {
     .form-card { padding: 24px 20px; }
     .container { padding: 28px 16px 60px; }
@@ -644,17 +500,15 @@ fbq('track', 'PageView');
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
-  🔒 Secure Order Form — GGS Global Professional Setup Service
+  GGS Global — Professional PayPal Setup Service | 500+ Nigerians Served
 </div>
 
-<!-- PROGRESS BAR -->
 <div class="progress-bar">
   <div class="progress-inner">
     <div class="progress-label">
-      <span class="progress-step active">① Fill Your Details</span>
-      <span class="progress-step inactive">② Make Payment</span>
+      <span class="progress-step active">① Your Details</span>
+      <span class="progress-step inactive">② Confirm on WhatsApp</span>
       <span class="progress-step inactive">③ Setup Begins</span>
     </div>
     <div class="progress-track">
@@ -663,43 +517,36 @@ fbq('track', 'PageView');
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="container">
 
-  <!-- HEADER -->
   <div class="page-header">
-    <div class="step-badge">✦ Step 1 of 3 — Your Details</div>
+    <div class="step-badge">Step 1 of 3 — Your Details</div>
     <h1>LET'S GET YOUR<br><span>PAYPAL SORTED</span></h1>
-    <p>Fill in your details below accurately.<br>
-    <strong>This information goes directly into your PayPal account setup — double check everything before submitting.</strong></p>
+    <p>Fill in your details accurately below.<br>
+    <strong>After submitting, WhatsApp opens and you confirm your order directly with Richard.</strong></p>
   </div>
 
-  <!-- TRUST ROW -->
   <div class="trust-row">
-    <div class="trust-item"><span class="icon">🔒</span> Secure & Private</div>
-    <div class="trust-item"><span class="icon">✅</span> 500+ Clients Served</div>
-    <div class="trust-item"><span class="icon">⚡</span> Setup Starts Immediately</div>
+    <div class="trust-item"><span class="icon">✓</span> Secure & Private</div>
+    <div class="trust-item"><span class="icon">✓</span> 500+ Clients Served</div>
+    <div class="trust-item"><span class="icon">✓</span> Real Person, Real Setup</div>
   </div>
 
-  <!-- FORM CARD -->
   <div class="form-card">
 
     <div class="form-section-title">Personal Information</div>
 
-    <!-- FULL NAME -->
     <div class="form-group">
       <label>Full Name <span class="required">*</span> <span class="hint">(exactly as on your Government ID)</span></label>
       <input type="text" id="fullName" class="form-input" placeholder="e.g. Emeka John Okafor" autocomplete="name">
       <div class="error-msg" id="fullName-error">Please enter your full name</div>
     </div>
 
-    <!-- BUSINESS NAME -->
     <div class="form-group">
-      <label>Business Name <span class="hint">(if different from your name — leave blank if none)</span></label>
+      <label>Business Name <span class="hint">(leave blank if none)</span></label>
       <input type="text" id="businessName" class="form-input" placeholder="e.g. Emeka Digital Services">
     </div>
 
-    <!-- PHONE + DOB ROW -->
     <div class="form-row">
       <div class="form-group">
         <label>Phone Number <span class="required">*</span></label>
@@ -713,14 +560,13 @@ fbq('track', 'PageView');
       </div>
     </div>
 
-    <!-- BUSINESS TYPE -->
     <div class="form-group">
       <label>Business Type <span class="required">*</span></label>
       <select id="businessType" class="form-input">
         <option value="" disabled selected>Select your business type</option>
         <option value="Freelancing (Fiverr/Upwork)">Freelancing (Fiverr / Upwork)</option>
         <option value="Dropshipping">Dropshipping</option>
-        <option value="Digital Products & Services">Digital Products & Services</option>
+        <option value="Digital Products &amp; Services">Digital Products &amp; Services</option>
         <option value="Content Creation">Content Creation</option>
         <option value="E-commerce / Online Store">E-commerce / Online Store</option>
         <option value="Remote Work / Employment">Remote Work / Employment</option>
@@ -730,7 +576,6 @@ fbq('track', 'PageView');
       <div class="error-msg" id="businessType-error">Please select your business type</div>
     </div>
 
-    <!-- GOVERNMENT ID TYPE -->
     <div class="form-group">
       <label>Government ID Type <span class="required">*</span></label>
       <select id="idType" class="form-input">
@@ -745,139 +590,103 @@ fbq('track', 'PageView');
 
     <div class="form-section-title" style="margin-top:28px;">Package Selection</div>
 
-    <!-- PACKAGE SELECTOR — 4 options in 2x2 grid -->
     <div class="form-group">
-      <label>Choose Your Delivery Speed & Payment Method <span class="required">*</span></label>
+      <label>Choose Your Package <span class="required">*</span></label>
       <div class="package-selector">
 
-        <!-- STANDARD -->
         <div class="package-option">
-          <input type="radio" name="package" id="standard" value="Standard (72 Hours)" checked>
-          <label class="package-label" for="standard">
-            <span class="package-label-title">⚡ Standard</span>
+          <input type="radio" name="package" id="pkg-standard" value="Standard - 72 Hours (N180,000)" checked>
+          <label class="package-label" for="pkg-standard">
+            <span class="package-label-title">Standard</span>
             <span class="package-label-time">Delivered in 72 Hours</span>
-            <span class="package-label-price">₦180,000</span>
+            <span class="package-label-price">N180,000</span>
           </label>
         </div>
 
-        <!-- EXPRESS -->
         <div class="package-option">
-          <input type="radio" name="package" id="express" value="Express (3-5 Days Priority)">
-          <label class="package-label" for="express">
-            <span class="package-label-title">🚀 Express</span>
-            <span class="package-label-time">3–5 Days Priority</span>
-            <span class="package-label-price">₦180,000</span>
+          <input type="radio" name="package" id="pkg-express" value="Express - 3 to 5 Days Priority (N180,000)">
+          <label class="package-label" for="pkg-express">
+            <span class="package-label-title">Express</span>
+            <span class="package-label-time">3-5 Days Priority</span>
+            <span class="package-label-price">N180,000</span>
           </label>
         </div>
 
-        <!-- SPLIT PAYMENT -->
         <div class="package-option">
-          <input type="radio" name="package" id="split" value="Split Payment Plan (₦100k now + ₦80k balance)">
-          <label class="package-label" for="split">
+          <input type="radio" name="package" id="pkg-split" value="Split Payment - N100k now then N80k balance">
+          <label class="package-label" for="pkg-split">
             <span class="split-badge">Flexible</span>
-            <span class="package-label-title">💳 Split Pay</span>
+            <span class="package-label-title">Split Pay</span>
             <span class="package-label-time">Pay in 2 Parts</span>
-            <span class="package-label-price">₦100k + ₦80k</span>
+            <span class="package-label-price">N100k + N80k</span>
           </label>
         </div>
 
-        <!-- BANK TRANSFER -->
         <div class="package-option bank-option">
-          <input type="radio" name="package" id="bank" value="Bank Transfer (Direct — PalmPay)">
-          <label class="package-label" for="bank">
+          <input type="radio" name="package" id="pkg-bank" value="Bank Transfer Direct - PalmPay (N180,000)">
+          <label class="package-label" for="pkg-bank">
             <span class="bank-badge">Direct</span>
-            <span class="package-label-title">🏦 Bank Transfer</span>
-            <span class="package-label-time">Pay Directly to PalmPay</span>
-            <span class="package-label-price">₦180,000</span>
+            <span class="package-label-title">Bank Transfer</span>
+            <span class="package-label-time">Pay via PalmPay</span>
+            <span class="package-label-price">N180,000</span>
           </label>
         </div>
 
       </div>
+    </div>
 
-      <!-- SPLIT PAYMENT WARNING — shows only when Split Pay selected -->
-      <div class="split-warning" id="splitWarning">
-        ⚠️ <strong>Split Payment Terms — Please Read:</strong><br>
-        You will pay <strong>₦100,000 now</strong> to begin your setup.<br>
-        The remaining <strong>₦80,000 balance must be paid in full</strong> before your account login details are released to you.<br>
-        <strong>Account details will NOT be shared until full payment is confirmed.</strong>
-      </div>
-
-      <!-- BANK TRANSFER DETAILS — shows only when Bank Transfer selected -->
-      <div class="bank-details" id="bankDetails">
-        <div class="bank-details-title">🏦 PalmPay Account Details</div>
-        <div class="bank-detail-row">
-          <span class="bank-detail-label">Bank</span>
-          <span class="bank-detail-value">PalmPay</span>
-        </div>
-        <div class="bank-detail-row">
-          <span class="bank-detail-label">Account Number</span>
-          <span class="bank-detail-value accent">8142717585</span>
-        </div>
-        <div class="bank-detail-row">
-          <span class="bank-detail-label">Account Name</span>
-          <span class="bank-detail-value">Richard Ojukwu</span>
-        </div>
-        <div class="bank-detail-row">
-          <span class="bank-detail-label">Amount</span>
-          <span class="bank-detail-value" style="color:var(--gold);font-size:18px;">₦180,000</span>
-        </div>
-        <p class="bank-details-note">⚠️ <strong>Important:</strong> After submitting this form, transfer <strong>₦180,000</strong> to the account above, then send your payment receipt + ID to Richard on WhatsApp to confirm your order and start your setup.</p>
-      </div>
-
-    <!-- IMPORTANT NOTE -->
     <div class="important-box">
-      <div class="important-box-title">📌 Important — Read Before Submitting</div>
+      <div class="important-box-title">Read Before Submitting</div>
       <ul>
         <li>Double-check all spelling — this info goes directly into your PayPal account</li>
-        <li>Use real details — this ensures your account stays stable long-term</li>
-        <li>All information must match exactly with your Government ID</li>
-        <li>After submitting you will proceed to complete your payment</li>
+        <li>Use real details — this keeps your account stable long-term</li>
+        <li>All information must match your Government ID exactly</li>
+        <li>After submitting, WhatsApp opens with your full order ready to send to Richard</li>
       </ul>
     </div>
 
-    <!-- SUBMIT BUTTON — text changes dynamically via JS -->
+    <!-- THE MAIN BUTTON — WhatsApp green, prominent -->
     <button class="submit-btn" onclick="submitForm()" id="submitBtn">
-      Proceed to Secure Payment
-      <span class="arrow">→</span>
+      <span class="wa-icon">💬</span>
+      Submit &amp; Confirm on WhatsApp
     </button>
 
-    <p class="submit-note" id="submitNote">🔒 Your details are private and secure — used only for your PayPal setup</p>
+    <p class="submit-note">
+      Your details go to Richard on WhatsApp.<br>
+      He replies with payment instructions — no cold payment page, no guessing.
+    </p>
 
-    <!-- WHAT HAPPENS NEXT — swaps content based on selection -->
-    <div class="next-steps" id="nextStepsBox">
-      <div class="next-steps-title" id="nextStepsTitle">What Happens After You Submit</div>
-      <div id="nextStepsContent">
-        <div class="next-step-item">
-          <div class="step-num">1</div>
-          <span>You'll be taken to our secure Flutterwave payment page to pay ₦180,000</span>
-        </div>
-        <div class="next-step-item">
-          <div class="step-num">2</div>
-          <span>After payment you'll be redirected to confirm your order on WhatsApp</span>
-        </div>
-        <div class="next-step-item">
-          <div class="step-num">3</div>
-          <span>Richard receives your details + payment confirmation and begins your setup immediately</span>
-        </div>
-        <div class="next-step-item">
-          <div class="step-num">4</div>
-          <span>Your fully configured PayPal account is delivered within your chosen timeframe</span>
-        </div>
+    <div class="next-steps">
+      <div class="next-steps-title">What Happens After You Submit</div>
+      <div class="next-step-item">
+        <div class="step-num">1</div>
+        <span>WhatsApp opens with your complete order details pre-filled — just tap Send</span>
+      </div>
+      <div class="next-step-item">
+        <div class="step-num">2</div>
+        <span>Richard receives your order, confirms your slot, and replies with payment details within minutes</span>
+      </div>
+      <div class="next-step-item">
+        <div class="step-num">3</div>
+        <span>You pay via your preferred method — Flutterwave, bank transfer, or split payment</span>
+      </div>
+      <div class="next-step-item">
+        <div class="step-num">4</div>
+        <span>Payment confirmed — your PayPal setup begins immediately and is delivered within your timeframe</span>
       </div>
     </div>
 
-    <!-- SECURITY BADGES -->
     <div class="security-row">
-      <div class="security-badge">🔒 SSL Secured</div>
-      <div class="security-badge" id="paymentBadge">✅ Flutterwave Protected</div>
-      <div class="security-badge">🛡️ Privacy Guaranteed</div>
+      <div class="security-badge">Secure &amp; Private</div>
+      <div class="security-badge">Real Human Support</div>
+      <div class="security-badge">500+ Setups Done</div>
     </div>
 
   </div>
 </div>
 
 <script>
-  // Auto-format DOB as they type
+  // Auto-format DOB
   document.getElementById('dob').addEventListener('input', function(e) {
     let v = e.target.value.replace(/\D/g, '');
     if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2);
@@ -885,90 +694,7 @@ fbq('track', 'PageView');
     e.target.value = v;
   });
 
-  // Handle package selection changes
-  document.querySelectorAll('input[name="package"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-      const splitWarning = document.getElementById('splitWarning');
-      const bankDetails  = document.getElementById('bankDetails');
-      const submitBtn    = document.getElementById('submitBtn');
-      const submitNote   = document.getElementById('submitNote');
-      const nextStepsBox = document.getElementById('nextStepsBox');
-      const nextStepsTitle = document.getElementById('nextStepsTitle');
-      const nextStepsContent = document.getElementById('nextStepsContent');
-      const paymentBadge = document.getElementById('paymentBadge');
-
-      const isSplit = this.value.includes('Split');
-      const isBank  = this.value.includes('Bank Transfer');
-
-      // Show/hide split warning
-      splitWarning.classList.toggle('show', isSplit);
-
-      // Show/hide bank details
-      bankDetails.classList.toggle('show', isBank);
-
-      if (isBank) {
-        // Bank transfer UI state
-        submitBtn.className = 'submit-btn bank-btn';
-        submitBtn.innerHTML = "I'll Complete Payment via Bank Transfer <span class='arrow'>→</span>";
-        submitNote.textContent = '🏦 You will be directed to WhatsApp to send your receipt after submitting';
-        nextStepsBox.className = 'next-steps bank-next';
-        nextStepsTitle.textContent = 'What Happens After You Submit';
-        paymentBadge.textContent = '🏦 PalmPay Direct Transfer';
-        nextStepsContent.innerHTML = `
-          <div class="next-step-item">
-            <div class="step-num blue">1</div>
-            <span>Your order details are saved and sent to our system immediately</span>
-          </div>
-          <div class="next-step-item">
-            <div class="step-num blue">2</div>
-            <span>Transfer <strong>₦180,000</strong> to PalmPay — Account: <strong>8142717585</strong> (Richard Ojukwu)</span>
-          </div>
-          <div class="next-step-item">
-            <div class="step-num blue">3</div>
-            <span>You'll be taken to a confirmation page with a WhatsApp button — send Richard your payment receipt to confirm</span>
-          </div>
-          <div class="next-step-item">
-            <div class="step-num blue">4</div>
-            <span>Richard confirms payment and begins your PayPal setup immediately</span>
-          </div>
-        `;
-      } else {
-        // Flutterwave UI state
-        submitBtn.className = 'submit-btn';
-        submitBtn.innerHTML = "Proceed to Secure Payment <span class='arrow'>→</span>";
-        submitNote.textContent = '🔒 Your details are private and secure — used only for your PayPal setup';
-        nextStepsBox.className = 'next-steps';
-        nextStepsTitle.textContent = 'What Happens After You Submit';
-        paymentBadge.textContent = '✅ Flutterwave Protected';
-
-        const step1Text = isSplit
-          ? "You'll be taken to our secure Flutterwave payment page to pay ₦100,000 (deposit)"
-          : "You'll be taken to our secure Flutterwave payment page to pay ₦180,000";
-
-        nextStepsContent.innerHTML = `
-          <div class="next-step-item">
-            <div class="step-num">1</div>
-            <span>${step1Text}</span>
-          </div>
-          <div class="next-step-item">
-            <div class="step-num">2</div>
-            <span>After payment you'll be redirected to confirm your order on WhatsApp</span>
-          </div>
-          <div class="next-step-item">
-            <div class="step-num">3</div>
-            <span>Richard receives your details + payment confirmation and begins your setup immediately</span>
-          </div>
-          <div class="next-step-item">
-            <div class="step-num">4</div>
-            <span>Your fully configured PayPal account is delivered within your chosen timeframe</span>
-          </div>
-        `;
-      }
-    });
-  });
-
   async function submitForm() {
-    // Get values
     const fullName     = document.getElementById('fullName').value.trim();
     const businessName = document.getElementById('businessName').value.trim();
     const phone        = document.getElementById('phone').value.trim();
@@ -977,136 +703,92 @@ fbq('track', 'PageView');
     const idType       = document.getElementById('idType').value;
     const packageType  = document.querySelector('input[name="package"]:checked').value;
 
-    // ── Validate ──────────────────────────────────────────────
+    // Validate
     let valid = true;
 
-    if (!fullName) {
-      document.getElementById('fullName').classList.add('error');
-      document.getElementById('fullName-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('fullName').classList.remove('error');
-      document.getElementById('fullName-error').classList.remove('show');
+    function validate(fieldId, errorId, condition) {
+      if (!condition) {
+        document.getElementById(fieldId).classList.add('error');
+        document.getElementById(errorId).classList.add('show');
+        valid = false;
+      } else {
+        document.getElementById(fieldId).classList.remove('error');
+        document.getElementById(errorId).classList.remove('show');
+      }
     }
 
-    if (!phone) {
-      document.getElementById('phone').classList.add('error');
-      document.getElementById('phone-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('phone').classList.remove('error');
-      document.getElementById('phone-error').classList.remove('show');
-    }
-
-    if (!dob || dob.length < 10) {
-      document.getElementById('dob').classList.add('error');
-      document.getElementById('dob-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('dob').classList.remove('error');
-      document.getElementById('dob-error').classList.remove('show');
-    }
-
-    if (!businessType) {
-      document.getElementById('businessType').classList.add('error');
-      document.getElementById('businessType-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('businessType').classList.remove('error');
-      document.getElementById('businessType-error').classList.remove('show');
-    }
-
-    if (!idType) {
-      document.getElementById('idType').classList.add('error');
-      document.getElementById('idType-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('idType').classList.remove('error');
-      document.getElementById('idType-error').classList.remove('show');
-    }
+    validate('fullName',     'fullName-error',     fullName !== '');
+    validate('phone',        'phone-error',        phone !== '');
+    validate('dob',          'dob-error',          dob.length >= 10);
+    validate('businessType', 'businessType-error', businessType !== '');
+    validate('idType',       'idType-error',       idType !== '');
 
     if (!valid) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    // ── Disable button immediately ────────────────────────────
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.innerHTML = '⏳ Saving your details...';
+    btn.innerHTML = 'Saving your details...';
 
-    // ── Track InitiateCheckout with Facebook Pixel ────────────
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'InitiateCheckout');
-    }
+    // Facebook Pixel — InitiateCheckout
+    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
 
-    // ── Build order data object ───────────────────────────────
     const timestamp = new Date().toLocaleString('en-NG', { timeZone: 'Africa/Lagos' });
-    const isBank  = packageType.includes('Bank Transfer');
-    const isSplit = packageType.includes('Split');
 
-    const orderData = {
-      fullName,
-      businessName: businessName || 'N/A',
-      phone,
-      dob,
-      businessType,
-      idType,
-      packageType,
-      paymentMethod: isBank ? 'Bank Transfer' : 'Flutterwave',
-      timestamp
-    };
-
-    // ── Save to sessionStorage for Thank You page ─────────────
-    sessionStorage.setItem('ggsOrder', JSON.stringify(orderData));
-
-    // ── Send to Formspree (captures lead even if payment abandoned) ──
+    // Send to Formspree — captures lead to Richard's email immediately
+    // This fires BEFORE WhatsApp redirect so the lead is always recorded
     try {
       await fetch('https://formspree.io/f/xzdayezv', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          '📛 Full Name':        fullName,
-          '🏢 Business Name':    businessName || 'N/A',
-          '📞 Phone Number':     phone,
-          '🎂 Date of Birth':    dob,
-          '💼 Business Type':    businessType,
-          '🪪 ID Type':          idType,
-          '📦 Package Selected': packageType,
-          '💳 Payment Method':   isBank ? '🏦 Bank Transfer (PalmPay)' : '💳 Flutterwave',
-          '🕐 Submitted At':     timestamp,
-          '_subject': `🔔 New GGS Order — ${fullName} (${phone}) — ${isBank ? 'Bank Transfer' : 'Flutterwave'}`
+          'Full Name':        fullName,
+          'Business Name':    businessName || 'N/A',
+          'Phone Number':     phone,
+          'Date of Birth':    dob,
+          'Business Type':    businessType,
+          'ID Type':          idType,
+          'Package Selected': packageType,
+          'Submitted At':     timestamp,
+          '_subject': `New GGS Lead - ${fullName} - ${packageType}`
         })
       });
-    } catch (err) {
-      console.warn('Formspree submission failed:', err);
+    } catch(err) {
+      console.warn('Formspree failed:', err);
     }
 
-    // ── Track Lead with Facebook Pixel ───────────────────────
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'Lead');
-    }
+    // Facebook Pixel — Lead
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
 
-    if (isBank) {
-      // ── Bank Transfer: redirect directly to Thank You page ──
-      btn.innerHTML = '✅ Details saved! Redirecting...';
-      setTimeout(() => {
-        window.location.href = 'https://digitatecsolution.github.io/ggs-global/thankyou.html';
-      }, 1200);
-    } else {
-      // ── Flutterwave redirect (existing logic unchanged) ──────
-      const paymentUrl = isSplit
-        ? 'https://flutterwave.com/pay/halfpay'
-        : 'https://flutterwave.com/pay/paypalbusiness';
+    btn.innerHTML = 'Opening WhatsApp...';
 
-      btn.innerHTML = '✅ Details saved! Redirecting to payment...';
-      setTimeout(() => {
-        window.location.href = paymentUrl;
-      }, 1200);
-    }
+    // Build WhatsApp message — plain text only, no special characters
+    // that can break URL encoding on Android/iOS
+    const msg = [
+      'NEW ORDER - GGS Global PayPal Setup',
+      '',
+      'Hi Richard, I just filled the order form. Here are my full details:',
+      '',
+      'Full Name: ' + fullName,
+      'Business Name: ' + (businessName || 'N/A'),
+      'Phone Number: ' + phone,
+      'Date of Birth: ' + dob,
+      'Business Type: ' + businessType,
+      'Government ID Type: ' + idType,
+      'Package Selected: ' + packageType,
+      '',
+      'Submitted at: ' + timestamp,
+      '',
+      'I am ready to proceed. Please confirm my slot and send me the payment details. Thank you.'
+    ].join('\n');
+
+    const waUrl = 'https://wa.me/2348106334849?text=' + encodeURIComponent(msg);
+
+    setTimeout(() => {
+      window.location.href = waUrl;
+    }, 600);
   }
 </script>
 
