@@ -15,27 +15,32 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '631335109208440');
+fbq('init', '924866965267790');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=631335109208440&ev=PageView&noscript=1"/></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=924866965267790&ev=PageView&noscript=1"/></noscript>
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #070E1C;
     --navy2: #0B1628;
+    --navy3: #0F1E35;
     --gold: #F5C842;
+    --gold-dim: rgba(245,200,66,0.08);
+    --gold-border: rgba(245,200,66,0.2);
     --green: #00C853;
-    --green-dim: rgba(0,200,83,0.1);
+    --green-dim: rgba(0,200,83,0.08);
+    --green-border: rgba(0,200,83,0.25);
     --orange: #FF6B35;
+    --orange-dim: rgba(255,107,53,0.08);
+    --orange-border: rgba(255,107,53,0.25);
     --blue: #3B82F6;
     --blue-dim: rgba(59,130,246,0.1);
     --white: #FFFFFF;
     --text: #E2E8F0;
     --muted: #94A3B8;
     --border: rgba(255,255,255,0.08);
-    --border-gold: rgba(245,200,66,0.2);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,349 +54,214 @@ fbq('track', 'PageView');
     min-height: 100vh;
   }
 
+  /* TOPBAR */
   .topbar {
-    background: var(--green);
     padding: 10px 20px;
     text-align: center;
     font-size: 13px;
     font-weight: 800;
     color: var(--navy);
   }
+  .topbar.green { background: var(--green); }
+  .topbar.orange { background: var(--orange); }
 
+  /* PROGRESS */
   .progress-bar {
     background: var(--navy2);
     padding: 16px 24px;
     border-bottom: 1px solid var(--border);
   }
-
   .progress-inner { max-width: 600px; margin: 0 auto; }
-
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-
+  .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; }
   .progress-step {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    color: var(--muted);
   }
-
   .progress-step.done { color: var(--green); }
   .progress-step.active { color: var(--gold); }
+  .progress-track { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 2px; transition: width 1s ease; }
 
-  .progress-track {
-    height: 3px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px;
-    overflow: hidden;
-  }
+  /* CONTAINER */
+  .container { max-width: 600px; margin: 0 auto; padding: 40px 24px 80px; }
 
-  .progress-fill {
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(90deg, var(--green), var(--gold));
-    border-radius: 2px;
-  }
-
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
-
-  /* SUCCESS CIRCLE */
-  .success-circle {
-    width: 100px;
-    height: 100px;
-    background: var(--green-dim);
-    border: 3px solid var(--green);
+  /* ICON CIRCLE */
+  .icon-circle {
+    width: 100px; height: 100px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 46px;
     margin: 0 auto 28px;
     animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
   }
+  .icon-circle.green { background: var(--green-dim); border: 3px solid var(--green); }
+  .icon-circle.orange { background: var(--orange-dim); border: 3px solid var(--orange); }
 
   @keyframes popIn {
     from { transform: scale(0); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
 
+  /* PAGE HEADER */
   .page-header {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     animation: fadeUp 0.6s 0.2s ease both;
   }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .success-tag {
+  .status-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--green-dim);
-    border: 1px solid rgba(0,200,83,0.3);
     padding: 6px 16px;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    color: var(--green);
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+    border-radius: 2px;
   }
+  .status-tag.green { background: var(--green-dim); border: 1px solid var(--green-border); color: var(--green); }
+  .status-tag.orange { background: var(--orange-dim); border: 1px solid var(--orange-border); color: var(--orange); }
 
   .page-header h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 8vw, 54px);
+    font-size: clamp(30px, 7vw, 48px);
     color: var(--white);
-    line-height: 1;
+    line-height: 1.05;
     letter-spacing: 1px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
+  .page-header h1 .accent-green { color: var(--green); }
+  .page-header h1 .accent-orange { color: var(--orange); }
 
-  .page-header h1 span { color: var(--green); }
-  .page-header p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-  .page-header p strong { color: var(--white); }
-
-  /* PAYMENT OPTIONS CARD */
-  .payment-card {
+  .page-header .body-msg {
     background: var(--navy2);
-    border: 1px solid var(--border-gold);
-    padding: 28px 28px;
-    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    text-align: left;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+  .page-header .body-msg strong { color: var(--white); }
+
+  /* CARDS */
+  .card {
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 4px;
     position: relative;
     overflow: hidden;
-    animation: fadeUp 0.6s 0.3s ease both;
+    animation: fadeUp 0.6s 0.35s ease both;
   }
-
-  .payment-card::before {
+  .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--green));
   }
+  .card.green { background: var(--green-dim); border: 1px solid var(--green-border); }
+  .card.green::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
+  .card.gold { background: var(--gold-dim); border: 1px solid var(--gold-border); }
+  .card.gold::before { background: linear-gradient(90deg, var(--gold), #F0A020); }
+  .card.orange { background: var(--orange-dim); border: 1px solid var(--orange-border); }
+  .card.orange::before { background: linear-gradient(90deg, var(--orange), var(--gold)); }
 
-  .card-title {
+  .card-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
-    color: var(--gold);
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
+  .card-label.green { color: var(--green); }
+  .card-label.gold { color: var(--gold); }
+  .card-label.orange { color: var(--orange); }
+  .card-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  .card-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border-gold);
-  }
-
-  /* PAYMENT OPTION ROWS */
-  .payment-option {
-    border: 1px solid var(--border);
-    padding: 20px;
-    margin-bottom: 12px;
-    border-radius: 4px;
-    transition: border-color 0.2s;
-  }
-
-  .payment-option:last-child { margin-bottom: 0; }
-
-  .payment-option:hover { border-color: rgba(245,200,66,0.3); }
-
-  .payment-option-header {
+  /* STEPS LIST */
+  .steps-list { list-style: none; }
+  .steps-list li {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .payment-option-name {
-    font-weight: 800;
-    font-size: 15px;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .payment-option-amount {
-    font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    color: var(--gold);
-    font-weight: 700;
-  }
-
-  .payment-option-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 14px;
-  }
-
-  /* PAYMENT BUTTONS */
-  .pay-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 13px 24px;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    width: 100%;
-  }
-
-  .pay-btn.green {
-    background: var(--green);
-    color: var(--navy);
-    box-shadow: 0 4px 16px rgba(0,200,83,0.3);
-  }
-
-  .pay-btn.green:hover { background: #00E060; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,200,83,0.4); }
-
-  .pay-btn.blue {
-    background: var(--blue);
-    color: var(--white);
-    box-shadow: 0 4px 16px rgba(59,130,246,0.3);
-  }
-
-  .pay-btn.blue:hover { background: #60A5FA; transform: translateY(-1px); }
-
-  /* BANK DETAILS BLOCK */
-  .bank-block {
-    background: rgba(0,0,0,0.25);
-    border: 1px solid rgba(255,255,255,0.06);
-    padding: 14px 16px;
-    margin-bottom: 12px;
-    border-radius: 4px;
-  }
-
-  .bank-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
+    gap: 14px;
+    padding: 10px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .bank-row:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .bank-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-  }
-
-  .bank-value {
-    font-weight: 800;
-    color: var(--white);
-    font-size: 14px;
-  }
-
-  .bank-value.acct {
-    font-family: 'DM Mono', monospace;
-    font-size: 20px;
-    color: var(--blue);
-    letter-spacing: 3px;
-  }
-
-  .copy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(59,130,246,0.15);
-    border: 1px solid rgba(59,130,246,0.3);
-    color: var(--blue);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: all 0.2s;
-    margin-top: 10px;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .copy-btn:hover { background: rgba(59,130,246,0.25); }
-  .copy-btn.copied { background: var(--green-dim); border-color: var(--green); color: var(--green); }
-
-  /* DIVIDER */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 8px 0 12px;
-  }
-
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .divider span {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
-
-  /* WHAT TO SEND */
-  .send-box {
-    background: rgba(245,200,66,0.06);
-    border: 1px solid rgba(245,200,66,0.2);
-    border-left: 3px solid var(--gold);
-    padding: 20px 24px;
-    margin-bottom: 24px;
-    animation: fadeUp 0.6s 0.5s ease both;
-  }
-
-  .send-box-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .send-box p {
     font-size: 14px;
     color: var(--text);
-    line-height: 1.7;
-    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .steps-list li:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .step-num.green { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+  .step-num.orange { background: var(--orange-dim); color: var(--orange); border: 1px solid var(--orange-border); }
+  .steps-list li strong { color: var(--white); }
+
+  /* BALANCE BOX */
+  .balance-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .balance-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .balance-label { font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .balance-value { font-size: 15px; font-weight: 800; }
+  .balance-value.gold { color: var(--gold); }
+  .balance-value.white { color: var(--white); }
+
+  /* COUNTDOWN */
+  .countdown-wrap {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+  .countdown-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--navy2);
+    border: 1px solid var(--border);
+    padding: 14px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .countdown-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 32px;
+    text-align: center;
   }
 
-  .send-box p:last-child { margin-bottom: 0; }
-  .send-box strong { color: var(--white); }
-
-  /* WHATSAPP BUTTON — back to WA */
+  /* WHATSAPP BUTTON */
   .wa-btn {
     display: flex;
     align-items: center;
@@ -401,28 +271,25 @@ fbq('track', 'PageView');
     color: var(--navy);
     font-family: 'Manrope', sans-serif;
     font-weight: 900;
-    font-size: 17px;
-    padding: 20px 32px;
+    font-size: 16px;
+    padding: 20px 28px;
     border-radius: 4px;
-    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    box-shadow: 0 8px 32px rgba(37,211,102,0.35);
     transition: all 0.2s;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     text-decoration: none;
-    animation: fadeUp 0.6s 0.6s ease both;
+    animation: fadeUp 0.6s 0.55s ease both;
     position: relative;
     overflow: hidden;
   }
-
   .wa-btn::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.5s;
   }
-
   .wa-btn:hover::before { transform: translateX(100%); }
   .wa-btn:hover { background: #20C05A; transform: translateY(-2px); }
 
@@ -432,37 +299,36 @@ fbq('track', 'PageView');
     color: var(--muted);
     font-family: 'DM Mono', monospace;
     letter-spacing: 0.3px;
-    animation: fadeUp 0.6s 0.7s ease both;
     line-height: 1.7;
+    animation: fadeUp 0.6s 0.65s ease both;
   }
 
-  /* SPLIT PAYMENT SECTION */
-  .split-note {
-    background: rgba(255,107,53,0.08);
-    border: 1px solid rgba(255,107,53,0.25);
-    border-left: 3px solid var(--orange);
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.7;
-    margin-bottom: 12px;
-    border-radius: 2px;
+  /* PENDING PULSE */
+  .pulse-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: inline-block;
+    animation: pulse 1.5s ease-in-out infinite;
+    margin-right: 6px;
   }
-
-  .split-note strong { color: var(--orange); }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
 
   @media(max-width: 480px) {
-    .payment-card, .send-box { padding: 20px 16px; }
-    .container { padding: 28px 16px 60px; }
+    .card, .container { padding-left: 16px; padding-right: 16px; }
+    .container { padding-top: 28px; padding-bottom: 60px; }
   }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  Payment Confirmed — GGS Global | Your Setup Starts Now
-</div>
+<!-- Topbar — injected by JS -->
+<div id="topbar" class="topbar"></div>
 
+<!-- Progress bar -->
 <div class="progress-bar">
   <div class="progress-inner">
     <div class="progress-label">
@@ -471,144 +337,219 @@ fbq('track', 'PageView');
       <span class="progress-step active">③ Payment</span>
     </div>
     <div class="progress-track">
-      <div class="progress-fill"></div>
+      <div class="progress-fill" id="progressFill" style="width:100%"></div>
     </div>
   </div>
 </div>
 
-<div class="container">
-
-  <div class="success-circle">🎉</div>
-
-  <div class="page-header">
-    <div class="success-tag">Order Confirmed</div>
-    <h1>ALMOST DONE!<br><span>MAKE YOUR PAYMENT</span></h1>
-    <p>Richard has confirmed your slot.<br>
-    <strong>Complete your payment below and send Richard your receipt on WhatsApp to start your setup immediately.</strong></p>
-  </div>
-
-  <!-- PAYMENT OPTIONS -->
-  <div class="payment-card">
-    <div class="card-title">Choose How to Pay</div>
-
-    <!-- OPTION 1: FLUTTERWAVE FULL -->
-    <div class="payment-option">
-      <div class="payment-option-header">
-        <span class="payment-option-name">Card / Transfer via Flutterwave</span>
-        <span class="payment-option-amount">N180,000</span>
-      </div>
-      <p class="payment-option-desc">Pay securely online with your debit card or bank transfer. Instant confirmation. Recommended for Standard and Express packages.</p>
-      <a href="https://flutterwave.com/pay/paypalbusiness" class="pay-btn green" target="_blank">
-        Pay N180,000 via Flutterwave
-      </a>
-    </div>
-
-    <!-- OPTION 2: SPLIT PAYMENT -->
-    <div class="payment-option">
-      <div class="payment-option-header">
-        <span class="payment-option-name">Split Payment — Flutterwave</span>
-        <span class="payment-option-amount">N100,000 now</span>
-      </div>
-      <p class="payment-option-desc">Pay N100,000 now to begin. The remaining N80,000 balance is paid before your account login details are released.</p>
-      <div class="split-note">
-        <strong>Split Payment Terms:</strong> Your setup begins after the N100,000 deposit. Login details are only released after the full N80,000 balance is paid.
-      </div>
-      <a href="https://flutterwave.com/pay/halfpay" class="pay-btn blue" target="_blank">
-        Pay N100,000 Deposit via Flutterwave
-      </a>
-    </div>
-
-    <!-- OPTION 3: BANK TRANSFER -->
-    <div class="payment-option">
-      <div class="payment-option-header">
-        <span class="payment-option-name">Direct Bank Transfer — PalmPay</span>
-        <span class="payment-option-amount">N180,000</span>
-      </div>
-      <p class="payment-option-desc">Transfer directly to Richard's PalmPay account. After transferring, send your receipt screenshot to Richard on WhatsApp to confirm.</p>
-
-      <div class="bank-block">
-        <div class="bank-row">
-          <span class="bank-label">Bank</span>
-          <span class="bank-value">PalmPay</span>
-        </div>
-        <div class="bank-row">
-          <span class="bank-label">Account Number</span>
-          <span class="bank-value acct">8142717585</span>
-        </div>
-        <div class="bank-row">
-          <span class="bank-label">Account Name</span>
-          <span class="bank-value">Richard Ojukwu</span>
-        </div>
-        <div class="bank-row">
-          <span class="bank-label">Amount</span>
-          <span class="bank-value" style="color:var(--gold);font-size:18px;">N180,000</span>
-        </div>
-        <button class="copy-btn" onclick="copyAccount(this)">
-          Copy Account Number — 8142717585
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- WHAT TO SEND AFTER PAYING -->
-  <div class="send-box">
-    <div class="send-box-title">After Paying — Send These to Richard on WhatsApp</div>
-    <p>Tap the button below to open WhatsApp and send Richard your payment confirmation:</p>
-    <p>OK &nbsp;<strong>Screenshot of your payment receipt</strong> (Flutterwave confirmation or bank transfer)</p>
-    <p>OK &nbsp;<strong>Clear photo or scan of your Government ID</strong> (Passport / NIN / Driver's License)</p>
-    <p>OK &nbsp;<strong>A clear passport photograph</strong> of your face</p>
-    <p style="color:var(--muted);font-size:13px;margin-top:10px;">Setup begins as soon as Richard confirms your receipt. These documents are required and handled with complete confidentiality.</p>
-  </div>
-
-  <!-- BACK TO WHATSAPP -->
-  <a href="https://wa.me/2348106334849" class="wa-btn">
-    <span style="font-size:22px;">💬</span>
-    Send Payment Receipt to Richard on WhatsApp
-  </a>
-
-  <p class="wa-note">
-    Opens WhatsApp — send your receipt + ID + passport photo<br>
-    Richard confirms and starts your setup immediately
-  </p>
-
+<div class="container" id="mainContainer">
+  <!-- Content injected by JS -->
 </div>
 
 <script>
-  // Fire Purchase pixel when this page loads
-  // This page is only shared by Richard after payment is confirmed on WhatsApp
+(function () {
+  /* ─── 1. READ URL PARAMS ─────────────────────────────────────── */
+  const params   = new URLSearchParams(window.location.search);
+  const payment  = params.get('payment') || 'full';   // full | split | bank
+  const name     = params.get('name')    || 'Client';
+  const pkg      = params.get('package') || 'Standard Package';
+  const amount   = params.get('amount')  || '180000'; // for bank transfer
+
+  const WA_NUM   = '2348106334849';
+
+  /* ─── 2. JOURNEY CONFIG ──────────────────────────────────────── */
+  const journeys = {
+    full: {
+      topbarClass : 'green',
+      topbarText  : '🎉 Full Payment Confirmed — GGS Global | Setup Begins Now',
+      iconClass   : 'green',
+      icon        : '✅',
+      tagClass    : 'green',
+      tagText     : 'Payment Confirmed',
+      h1          : 'PAYMENT CONFIRMED\n<span class="accent-green">WELCOME TO GGS GLOBAL</span>',
+      bodyMsg     : `Thank you <strong>${esc(name)}</strong> — your full payment of <strong>₦180,000</strong> has been received.<br>
+                    Your PayPal setup slot is now <strong>officially confirmed and locked</strong>.<br>
+                    Richard will begin your setup immediately.<br>
+                    <strong>Expected delivery: within 72 hours from now.</strong>`,
+      nextStepsClass: 'green',
+      nextStepsLabel: '📋 What Happens Next',
+      steps: [
+        'Richard receives your payment confirmation <strong>automatically</strong>',
+        'Your setup begins within the <strong>next few hours</strong>',
+        'You receive your completed account details via <strong>WhatsApp within 72 hours</strong>',
+        'Richard remains available on WhatsApp for <strong>30 days after delivery</strong>'
+      ],
+      extraCard: null,
+      waMsg: `Hi Richard ✅ I just completed full payment of ₦180,000 for my PayPal setup. Here are my details: ${esc(name)} — ${esc(pkg)}`,
+      pixelValue: 180000
+    },
+    split: {
+      topbarClass : 'green',
+      topbarText  : '✅ Split Payment Confirmed — GGS Global | Setup Begins Now',
+      iconClass   : 'green',
+      icon        : '✅',
+      tagClass    : 'green',
+      tagText     : 'Split Payment Confirmed',
+      h1          : 'SPLIT PAYMENT CONFIRMED\n<span class="accent-green">SETUP BEGINS NOW</span>',
+      bodyMsg     : `Thank you <strong>${esc(name)}</strong> — your first payment of <strong>₦100,000</strong> has been received.<br>
+                    Your setup slot is <strong>confirmed and locked</strong>. Richard begins your setup immediately.<br>
+                    <strong>Your remaining balance of ₦80,000 is due before final delivery.</strong>`,
+      nextStepsClass: 'green',
+      nextStepsLabel: '📋 What Happens Next',
+      steps: [
+        'Setup begins <strong>immediately</strong> on receipt of first payment',
+        'Richard contacts you via WhatsApp to <strong>keep you updated</strong>',
+        'Remaining <strong>₦80,000</strong> is collected before your account is handed over',
+        'Full delivery within <strong>72 hours of first payment</strong>'
+      ],
+      extraCard: {
+        cardClass : 'gold',
+        labelClass: 'gold',
+        labelText : '💰 Remaining Balance Due',
+        html: `
+          <div class="balance-row">
+            <span class="balance-label">Balance Due</span>
+            <span class="balance-value gold">₦80,000</span>
+          </div>
+          <div class="balance-row">
+            <span class="balance-label">Due</span>
+            <span class="balance-value white">Before final delivery</span>
+          </div>
+          <div class="balance-row">
+            <span class="balance-label">Pay via PalmPay</span>
+            <span class="balance-value white">8142717585 — Richard Ojukwu</span>
+          </div>
+          <div class="balance-row">
+            <span class="balance-label">Or Flutterwave</span>
+            <span class="balance-value white">flutterwave.com/pay/halfpay</span>
+          </div>
+        `
+      },
+      waMsg: `Hi Richard ✅ I just completed split payment of ₦100,000 for my PayPal setup. Here are my details: ${esc(name)} — ${esc(pkg)}`,
+      pixelValue: 100000
+    },
+    bank: {
+      topbarClass : 'orange',
+      topbarText  : '⏳ Receipt Received — GGS Global | Verifying Your Payment',
+      iconClass   : 'orange',
+      icon        : '📩',
+      tagClass    : 'orange',
+      tagText     : 'Receipt Received',
+      h1          : 'RECEIPT RECEIVED\n<span class="accent-orange">CONFIRMING YOUR PAYMENT</span>',
+      bodyMsg     : `Thank you <strong>${esc(name)}</strong> — your receipt has been received and is being verified.<br>
+                    Once your transfer is confirmed — which typically takes <strong>under 30 minutes</strong> — your setup begins immediately.<br>
+                    <strong>Richard will send you a WhatsApp confirmation the moment payment is verified.</strong>`,
+      nextStepsClass: 'orange',
+      nextStepsLabel: '⏳ Payment Verification In Progress',
+      steps: [
+        '<strong>Richard is confirming your bank transfer now</strong> — this usually takes under 30 minutes',
+        'You will receive a <strong>WhatsApp message confirming your slot</strong> is locked',
+        'Setup begins <strong>immediately after verification</strong>',
+        'Full delivery within <strong>72 hours of payment confirmation</strong>'
+      ],
+      extraCard: null,
+      waMsg: `Hi Richard ✅ I just uploaded my bank transfer receipt for my PayPal setup. Here are my details: ${esc(name)} — ${esc(pkg)} — Amount transferred: ₦${esc(amount)}`,
+      pixelValue: 180000
+    }
+  };
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  const j = journeys[payment] || journeys.full;
+
+  /* ─── 3. FIRE FACEBOOK PIXEL PURCHASE ───────────────────────── */
   if (typeof fbq !== 'undefined') {
     fbq('track', 'Purchase', {
       currency: 'NGN',
-      value: 180000
+      value: j.pixelValue
     });
   }
 
-  // Copy account number
-  function copyAccount(btn) {
-    navigator.clipboard.writeText('8142717585').then(() => {
-      btn.textContent = 'Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = 'Copy Account Number — 8142717585';
-        btn.classList.remove('copied');
-      }, 2500);
-    }).catch(() => {
-      // Fallback for older browsers
-      const el = document.createElement('textarea');
-      el.value = '8142717585';
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-      btn.textContent = 'Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = 'Copy Account Number — 8142717585';
-        btn.classList.remove('copied');
-      }, 2500);
-    });
-  }
+  /* ─── 4. RENDER TOPBAR ───────────────────────────────────────── */
+  const topbar = document.getElementById('topbar');
+  topbar.className = `topbar ${j.topbarClass}`;
+  topbar.textContent = j.topbarText;
+
+  /* ─── 5. BUILD WHATSAPP URL ──────────────────────────────────── */
+  const waUrl = `https://wa.me/${WA_NUM}?text=${encodeURIComponent(j.waMsg)}`;
+
+  /* ─── 6. BUILD NEXT STEPS HTML ───────────────────────────────── */
+  const stepsHtml = j.steps.map((s, i) => `
+    <li>
+      <span class="step-num ${j.nextStepsClass}">${i+1}</span>
+      <span>${s}</span>
+    </li>`).join('');
+
+  /* ─── 7. BUILD EXTRA CARD HTML ───────────────────────────────── */
+  const extraCardHtml = j.extraCard ? `
+    <div class="card ${j.extraCard.cardClass}">
+      <div class="card-label ${j.extraCard.labelClass}">${j.extraCard.labelText}</div>
+      ${j.extraCard.html}
+    </div>` : '';
+
+  /* ─── 8. BUILD PENDING PULSE FOR BANK ───────────────────────── */
+  const pendingBadge = payment === 'bank' ? `<span class="pulse-dot"></span>` : '';
+
+  /* ─── 9. INJECT FULL HTML ────────────────────────────────────── */
+  document.getElementById('mainContainer').innerHTML = `
+
+    <div class="icon-circle ${j.iconClass}">${j.icon}</div>
+
+    <div class="page-header">
+      <div class="status-tag ${j.tagClass}">${pendingBadge}${j.tagText}</div>
+      <h1>${j.h1.replace('\n', '<br>')}</h1>
+      <div class="body-msg">${j.bodyMsg}</div>
+    </div>
+
+    <div class="card ${j.nextStepsClass === 'green' ? 'green' : 'orange'}">
+      <div class="card-label ${j.nextStepsClass}">${j.nextStepsLabel}</div>
+      <ul class="steps-list">${stepsHtml}</ul>
+    </div>
+
+    ${extraCardHtml}
+
+    <div class="countdown-wrap">
+      <div class="countdown-box">
+        <span>Opening WhatsApp in</span>
+        <span class="countdown-num" id="cdNum">5</span>
+        <span>seconds…</span>
+      </div>
+    </div>
+
+    <a href="${waUrl}" class="wa-btn" id="waBtn">
+      <span style="font-size:22px;">💬</span>
+      ${payment === 'bank' ? 'Message Richard to Confirm Your Receipt' : 'Send Payment Confirmation to Richard'}
+    </a>
+
+    <p class="wa-note">
+      Opens WhatsApp — ${payment === 'bank' ? 'message Richard so he can verify and lock your slot' : 'send your confirmation so Richard can start your setup immediately'}<br>
+      WhatsApp: +234 810 633 4849
+    </p>
+  `;
+
+  /* ─── 10. COUNTDOWN & REDIRECT ───────────────────────────────── */
+  let secs = 5;
+  const cdEl = document.getElementById('cdNum');
+
+  const timer = setInterval(() => {
+    secs--;
+    if (cdEl) cdEl.textContent = secs;
+    if (secs <= 0) {
+      clearInterval(timer);
+      window.location.href = waUrl;
+    }
+  }, 1000);
+
+  // If user taps WA button manually — clear timer
+  document.getElementById('waBtn').addEventListener('click', () => clearInterval(timer));
+
+})();
 </script>
 
 </body>
