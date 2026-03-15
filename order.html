@@ -217,7 +217,7 @@ fbq('track', 'PageView');
   .error-msg.show { display:block; }
 
   /* ══════════════════════════════════════════
-     PAYMENT OPTION CARDS — THE NEW ENGINE
+     PAYMENT OPTION CARDS
   ══════════════════════════════════════════ */
   .payment-section-title {
     font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);
@@ -759,7 +759,7 @@ fbq('track', 'PageView');
 
             <!-- Receipt upload -->
             <div class="receipt-upload-area" id="uploadArea">
-              <input type="file" id="receiptFile" accept="image/jpeg,image/png,application/pdf" onchange="onReceiptUpload(this)">
+              <input type="file" id="receiptFile" name="receipt" accept="image/*,.pdf" onchange="onReceiptUpload(this)">
               <div class="upload-icon">📎</div>
               <div class="upload-title">Upload Your Transfer Receipt</div>
               <div class="upload-sub">JPG · PNG · PDF accepted</div>
@@ -962,26 +962,46 @@ fbq('track', 'PageView');
     return valid;
   }
 
-  // ── SEND TO FORMSPREE ────────────────────────────────────────
-  async function sendToFormspree(data, extraFields) {
+  // ── SEND TO WEB3FORMS (with optional file upload) ──────────────
+  async function sendToWeb3Forms(data, extraFields, receiptFileInput) {
     try {
-      await fetch('https://formspree.io/f/xzdayezv', {
+      const formData = new FormData();
+
+      // Web3Forms required fields
+      formData.append('access_key', '47cd5294-193b-4311-8e13-6bfa2e5b0660');
+      formData.append('subject', 'NEW ORDER — GGS Global PayPal Setup');
+      formData.append('redirect', 'https://digitatecsolution.github.io/ggs-global/thankyou.html');
+
+      // Order data
+      formData.append('Full Name',       data.fullName);
+      formData.append('Business Name',   data.businessName || 'N/A');
+      formData.append('Phone Number',    data.phone);
+      formData.append('Date of Birth',   data.dob);
+      formData.append('Business Type',   data.businessType);
+      formData.append('ID Type',         data.idType);
+      formData.append('Payment Method',  data.paymentMethod);
+      formData.append('Submitted At',    data.timestamp);
+
+      // Extra fields (bank amount, receipt filename, etc.)
+      if (extraFields) {
+        Object.keys(extraFields).forEach(key => {
+          formData.append(key, extraFields[key]);
+        });
+      }
+
+      // Attach receipt file if provided
+      if (receiptFileInput && receiptFileInput.files && receiptFileInput.files[0]) {
+        formData.append('receipt', receiptFileInput.files[0], receiptFileInput.files[0].name);
+      }
+
+      await fetch('https://api.web3forms.com/submit', {
         method : 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body   : JSON.stringify(Object.assign({
-          'Full Name'       : data.fullName,
-          'Business Name'   : data.businessName || 'N/A',
-          'Phone Number'    : data.phone,
-          'Date of Birth'   : data.dob,
-          'Business Type'   : data.businessType,
-          'ID Type'         : data.idType,
-          'Payment Method'  : data.paymentMethod,
-          'Submitted At'    : data.timestamp,
-          '_subject'        : `New GGS Lead — ${data.fullName} — ${data.paymentMethod}`
-        }, extraFields || {}))
+        body   : formData
+        // NOTE: Do NOT set Content-Type header — browser sets it automatically
+        //       with the correct multipart/form-data boundary when using FormData
       });
     } catch(err) {
-      console.warn('Formspree error:', err);
+      console.warn('Web3Forms error:', err);
     }
   }
 
@@ -1034,7 +1054,7 @@ fbq('track', 'PageView');
 
     firePixelInitiate();
 
-    await sendToFormspree(d);
+    await sendToWeb3Forms(d);
 
     firePixelLead();
 
@@ -1096,10 +1116,12 @@ fbq('track', 'PageView');
 
     firePixelInitiate();
 
-    await sendToFormspree(d, {
-      'Bank Amount'      : bankAmountLabel,
-      'Receipt Filename' : receiptFilename
-    });
+    // Send to Web3Forms with receipt file attached
+    await sendToWeb3Forms(
+      d,
+      { 'Bank Amount': bankAmountLabel, 'Receipt Filename': receiptFilename },
+      receiptFile
+    );
 
     firePixelLead();
 
@@ -1110,7 +1132,7 @@ fbq('track', 'PageView');
     confirmBtn.innerHTML = '✅ Opening WhatsApp...';
 
     setTimeout(() => {
-      // Open WhatsApp in same tab, then redirect to thank you
+      // Open WhatsApp in new tab, then redirect to thank you
       window.open(waUrl, '_blank');
       setTimeout(() => {
         window.location.href = 'thankyou.html';
