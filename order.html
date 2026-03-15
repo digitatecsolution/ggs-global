@@ -1191,9 +1191,6 @@ Submitted At: ${d.timestamp}`;
     // Submit to Web3Forms (don't block on failure)
     sendToWeb3Forms(subject, bodyText).catch(e => console.warn(e));
 
-    // Fire Purchase pixel
-    firePixelPurchase(pixelValue);
-
     // Store in sessionStorage for thank you page
     try {
       sessionStorage.setItem('ggs_payment', paymentKey);
@@ -1290,7 +1287,6 @@ Submitted At: ${d.timestamp}`;
 
     // Fire Pixel events
     firePixelLead();
-    firePixelPurchase(pixelValue);
 
     // Build thank you URL
     const thankyouUrl = buildThankyouUrl({
