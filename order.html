@@ -260,7 +260,6 @@ fbq('track', 'PageView');
     background: rgba(245,200,66,0.03);
   }
 
-  /* Selected states per option */
   .payment-option.opt-full input:checked + .payment-card {
     border-color: var(--gold);
     background: rgba(245,200,66,0.07);
@@ -277,7 +276,6 @@ fbq('track', 'PageView');
     box-shadow: 0 0 0 1px rgba(0,200,83,0.3), 0 8px 32px rgba(0,200,83,0.15);
   }
 
-  /* Dimmed when a sibling is selected */
   .payment-cards:has(.payment-option input:checked) .payment-card {
     opacity: 0.5;
     transform: scale(0.98);
@@ -287,7 +285,6 @@ fbq('track', 'PageView');
     transform: scale(1);
   }
 
-  /* Badge */
   .pc-badge {
     display: inline-block;
     font-size: 9px;
@@ -309,7 +306,6 @@ fbq('track', 'PageView');
   .pc-sub   { font-size:12px; color:var(--muted); line-height:1.5; }
   .pc-method{ font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); margin-top:6px; }
 
-  /* Checkmark overlay */
   .pc-check {
     position: absolute;
     top: 10px; right: 12px;
@@ -375,11 +371,8 @@ fbq('track', 'PageView');
   /* ── SUBMIT NOTE ── */
   .submit-note { text-align:center; font-size:12px; color:var(--muted); margin-top:14px; font-family:'DM Mono',monospace; letter-spacing:0.3px; line-height:1.8; }
 
-  /* ── DYNAMIC BUTTON LABEL (updates based on selection) ── */
-  #btnLabel { pointer-events: none; }
-
   /* ══════════════════════════════════════════
-     BANK TRANSFER PANEL (slides in)
+     BANK TRANSFER PANEL
   ══════════════════════════════════════════ */
   .bank-panel {
     display: none;
@@ -424,6 +417,13 @@ fbq('track', 'PageView');
   }
   .bank-detail-label { font-family:'DM Mono',monospace; font-size:10px; color:var(--green); letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
   .bank-detail-value { font-size:15px; font-weight:800; color:var(--white); }
+  .bank-detail-value.account-num {
+    font-family:'DM Mono',monospace;
+    font-size:22px;
+    letter-spacing:3px;
+    color:var(--gold);
+    font-weight:900;
+  }
 
   .bank-amount-selector { margin-bottom: 20px; }
   .bank-amount-selector label { display:block; font-size:13px; font-weight:700; color:var(--white); margin-bottom:10px; }
@@ -445,7 +445,27 @@ fbq('track', 'PageView');
   .amount-radio-label .ar-amount { font-size:17px; font-weight:900; color:var(--gold); display:block; }
   .amount-radio-label .ar-desc   { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; margin-top:3px; display:block; }
 
+  /* Fraud warning box */
+  .fraud-warning {
+    background: rgba(255,107,53,0.08);
+    border: 1.5px solid var(--orange);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .fraud-warning-text {
+    font-size: 13px;
+    color: var(--orange);
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
   /* Receipt upload */
+  .receipt-upload-label {
+    display:block; font-size:13px; font-weight:700; color:var(--white); margin-bottom:8px;
+  }
+  .receipt-upload-label .required { color:var(--red); margin-left:3px; }
+
   .receipt-upload-area {
     border: 2px dashed rgba(0,200,83,0.35);
     border-radius: 8px;
@@ -453,7 +473,7 @@ fbq('track', 'PageView');
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
     position: relative;
   }
   .receipt-upload-area:hover { border-color: var(--green); background: rgba(0,200,83,0.04); }
@@ -463,6 +483,23 @@ fbq('track', 'PageView');
   .upload-title { font-size:15px; font-weight:800; color:var(--white); margin-bottom:4px; }
   .upload-sub   { font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; }
   .upload-filename { font-size:13px; color:var(--green); font-weight:700; margin-top:8px; display:none; }
+  .upload-formats { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; margin-bottom:16px; letter-spacing:0.3px; }
+
+  /* Processing overlay */
+  .processing-msg {
+    display:none;
+    text-align:center;
+    padding:16px;
+    font-family:'DM Mono',monospace;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:0.5px;
+    background:rgba(245,200,66,0.06);
+    border:1px solid var(--gold-border);
+    border-radius:6px;
+    margin-top:12px;
+  }
+  .processing-msg.show { display:block; }
 
   /* Confirm payment button */
   .confirm-payment-btn {
@@ -499,7 +536,18 @@ fbq('track', 'PageView');
   }
   .bank-panel-note strong { color:var(--gold); }
 
-  .bank-error-msg { font-size:12px; color:var(--red); margin-top:10px; display:none; font-family:'DM Mono',monospace; }
+  /* Reassurance note */
+  .bank-reassurance {
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+    text-align: center;
+  }
+
+  .bank-error-msg { font-size:12px; color:var(--red); margin-top:8px; display:none; font-family:'DM Mono',monospace; }
   .bank-error-msg.show { display:block; }
 
   /* ── NEXT STEPS ── */
@@ -619,12 +667,12 @@ fbq('track', 'PageView');
         <div class="form-group">
           <label>Phone Number <span class="required">*</span></label>
           <input type="tel" id="phone" class="form-input" placeholder="e.g. 08012345678" autocomplete="tel">
-          <div class="error-msg" id="phone-error">Please enter your phone number</div>
+          <div class="error-msg" id="phone-error">Please enter a valid 11-digit phone number</div>
         </div>
         <div class="form-group">
           <label>Date of Birth <span class="required">*</span> <span class="hint">(DD/MM/YYYY)</span></label>
           <input type="text" id="dob" class="form-input" placeholder="e.g. 15/06/1995" maxlength="10">
-          <div class="error-msg" id="dob-error">Please enter your date of birth</div>
+          <div class="error-msg" id="dob-error">Please enter a valid date of birth</div>
         </div>
       </div>
 
@@ -715,7 +763,7 @@ fbq('track', 'PageView');
         <div class="bank-panel" id="bankPanel">
           <div class="bank-panel-inner">
             <div class="bank-panel-title">✅ Complete Your Bank Transfer</div>
-            <div class="bank-panel-sub">Your order details are saved. Transfer the amount below to confirm your slot immediately.</div>
+            <div class="bank-panel-sub">Transfer the exact amount below then upload your receipt to confirm your slot immediately.</div>
 
             <div class="bank-details-grid">
               <div class="bank-detail-item">
@@ -726,13 +774,13 @@ fbq('track', 'PageView');
                 <div class="bank-detail-label">👤 Account Name</div>
                 <div class="bank-detail-value">Richard Ojukwu</div>
               </div>
-              <div class="bank-detail-item">
+              <div class="bank-detail-item" style="grid-column: 1 / -1;">
                 <div class="bank-detail-label">🔢 Account Number</div>
-                <div class="bank-detail-value" style="font-family:'DM Mono',monospace;font-size:20px;letter-spacing:2px;">8142717585</div>
+                <div class="bank-detail-value account-num">8142717585</div>
               </div>
-              <div class="bank-detail-item">
-                <div class="bank-detail-label">💰 Amount</div>
-                <div class="bank-detail-value" id="bankAmountDisplay">Select below ↓</div>
+              <div class="bank-detail-item" style="grid-column: 1 / -1;">
+                <div class="bank-detail-label">💰 Amount to Transfer</div>
+                <div class="bank-detail-value" id="bankAmountDisplay" style="font-size:20px;color:var(--gold);font-weight:900;">Select amount below ↓</div>
               </div>
             </div>
 
@@ -741,14 +789,14 @@ fbq('track', 'PageView');
               <label>How much are you transferring? <span class="required">*</span></label>
               <div class="amount-radios">
                 <div class="amount-radio-opt">
-                  <input type="radio" name="bankAmount" id="ba-full" value="₦180,000 (Full Payment)" onchange="updateBankAmount(this)">
+                  <input type="radio" name="bankAmount" id="ba-full" value="₦180,000" onchange="updateBankAmount(this)">
                   <label class="amount-radio-label" for="ba-full">
                     <span class="ar-amount">₦180,000</span>
                     <span class="ar-desc">Full Payment</span>
                   </label>
                 </div>
                 <div class="amount-radio-opt">
-                  <input type="radio" name="bankAmount" id="ba-split" value="₦100,000 (Split — 1st Payment)" onchange="updateBankAmount(this)">
+                  <input type="radio" name="bankAmount" id="ba-split" value="₦100,000" onchange="updateBankAmount(this)">
                   <label class="amount-radio-label" for="ba-split">
                     <span class="ar-amount">₦100,000</span>
                     <span class="ar-desc">Split — Pay Now</span>
@@ -756,26 +804,41 @@ fbq('track', 'PageView');
                 </div>
               </div>
             </div>
+            <div class="bank-error-msg" id="bankAmountError">Please select the amount you transferred</div>
+
+            <!-- Fraud warning -->
+            <div class="fraud-warning">
+              <div class="fraud-warning-text">
+                ⚠️ Important: Upload your actual PalmPay or bank transfer receipt only. All payments are manually verified in our account before setup begins. Uploading a false or random image will result in immediate order cancellation and your number being blocked permanently.
+              </div>
+            </div>
 
             <!-- Receipt upload -->
+            <label class="receipt-upload-label">Upload Payment Receipt <span class="required">*</span></label>
             <div class="receipt-upload-area" id="uploadArea">
               <input type="file" id="receiptFile" name="receipt" accept="image/*,.pdf" onchange="onReceiptUpload(this)">
               <div class="upload-icon">📎</div>
-              <div class="upload-title">Upload Your Transfer Receipt</div>
-              <div class="upload-sub">JPG · PNG · PDF accepted</div>
+              <div class="upload-title">Tap to Upload Your Receipt</div>
+              <div class="upload-sub">Tap here or drag your file</div>
               <div class="upload-filename" id="uploadFilename"></div>
             </div>
-
-            <div class="bank-error-msg" id="bankAmountError">Please select the amount you transferred</div>
+            <div class="upload-formats">Accepted formats: JPG &nbsp;·&nbsp; PNG &nbsp;·&nbsp; PDF &nbsp;·&nbsp; Maximum size 5MB</div>
             <div class="bank-error-msg" id="bankReceiptError">Please upload your transfer receipt</div>
+            <div class="bank-error-msg" id="bankFileTypeError">Please upload an image or PDF of your receipt only</div>
+            <div class="bank-error-msg" id="bankFileSizeError">File too large — please upload a file under 5MB</div>
+
+            <!-- Processing message -->
+            <div class="processing-msg" id="processingMsg">⏳ Submitting your order — please wait...</div>
 
             <button class="confirm-payment-btn" onclick="confirmBankPayment()" id="confirmPaymentBtn" disabled>
               <span>✅</span> Confirm Payment &amp; Continue
             </button>
 
-            <div class="bank-panel-note">
-              <strong>After clicking Confirm Payment:</strong> WhatsApp will open automatically with your full order details and confirmation instructions pre-filled. Richard will verify your transfer and begin your setup immediately.
+            <!-- Reassurance note -->
+            <div class="bank-reassurance">
+              🔒 Your order is safe. Richard manually verifies every bank transfer in our PalmPay account before setup begins. You will receive a WhatsApp confirmation within 30 minutes of payment verification.
             </div>
+
           </div>
         </div>
         <!-- ── END BANK PANEL ── -->
@@ -835,9 +898,9 @@ fbq('track', 'PageView');
 <script>
   // ── GATE TOGGLE ──────────────────────────────────────────────
   function toggleGate(checkbox) {
-    const formBody   = document.getElementById('formBody');
-    const submitBtn  = document.getElementById('submitBtn');
-    const notReadyMsg= document.getElementById('gateNotReadyMsg');
+    const formBody    = document.getElementById('formBody');
+    const submitBtn   = document.getElementById('submitBtn');
+    const notReadyMsg = document.getElementById('gateNotReadyMsg');
 
     if (checkbox.checked) {
       formBody.classList.remove('locked');
@@ -869,7 +932,7 @@ fbq('track', 'PageView');
 
   // ── PAYMENT CARD LOGIC ───────────────────────────────────────
   function onPaymentSelect() {
-    const selected = document.querySelector('input[name="paymentMethod"]:checked');
+    const selected  = document.querySelector('input[name="paymentMethod"]:checked');
     if (!selected) return;
 
     const val       = selected.value;
@@ -882,7 +945,7 @@ fbq('track', 'PageView');
     if (val.includes('Bank Transfer')) {
       bankPanel.classList.add('show');
       submitBtn.style.display = 'none';
-      document.getElementById('submitNote').style.display = 'none';
+      submitNote.style.display = 'none';
     } else {
       bankPanel.classList.remove('show');
       submitBtn.style.display = '';
@@ -902,21 +965,40 @@ fbq('track', 'PageView');
   // ── BANK AMOUNT UPDATE ───────────────────────────────────────
   function updateBankAmount(radio) {
     const display = document.getElementById('bankAmountDisplay');
-    if (radio.value.includes('180')) {
-      display.textContent = '₦180,000 (Full)';
-    } else {
-      display.textContent = '₦100,000 (Split)';
-    }
+    display.textContent = radio.value;
     checkConfirmBtn();
+    document.getElementById('bankAmountError').classList.remove('show');
   }
 
   function onReceiptUpload(input) {
-    const area     = document.getElementById('uploadArea');
-    const filename = document.getElementById('uploadFilename');
+    // Clear previous file errors
+    document.getElementById('bankFileTypeError').classList.remove('show');
+    document.getElementById('bankFileSizeError').classList.remove('show');
+    document.getElementById('bankReceiptError').classList.remove('show');
+
     if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      // Validate file type
+      const allowed = ['image/jpeg','image/jpg','image/png','image/gif','image/webp','application/pdf'];
+      if (!allowed.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png|gif|webp|pdf)$/i)) {
+        document.getElementById('bankFileTypeError').classList.add('show');
+        input.value = '';
+        return;
+      }
+
+      // Validate file size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        document.getElementById('bankFileSizeError').classList.add('show');
+        input.value = '';
+        return;
+      }
+
+      const area     = document.getElementById('uploadArea');
+      const filename = document.getElementById('uploadFilename');
       area.classList.add('has-file');
       filename.style.display = 'block';
-      filename.textContent   = '✅ ' + input.files[0].name;
+      filename.textContent   = '✅ ' + file.name;
     }
     checkConfirmBtn();
   }
@@ -944,6 +1026,7 @@ fbq('track', 'PageView');
   // ── VALIDATE FORM ────────────────────────────────────────────
   function validateForm(d) {
     let valid = true;
+
     function check(fieldId, errorId, cond) {
       if (!cond) {
         document.getElementById(fieldId).classList.add('error');
@@ -954,87 +1037,110 @@ fbq('track', 'PageView');
         document.getElementById(errorId).classList.remove('show');
       }
     }
-    check('fullName',    'fullName-error',    d.fullName !== '');
-    check('phone',       'phone-error',       d.phone !== '');
-    check('dob',         'dob-error',         d.dob.length >= 10);
-    check('businessType','businessType-error', d.businessType !== '');
-    check('idType',      'idType-error',       d.idType !== '');
+
+    check('fullName',     'fullName-error',     d.fullName !== '');
+    // Phone must be exactly 11 digits
+    const phoneDigits = d.phone.replace(/\D/g, '');
+    check('phone',        'phone-error',        phoneDigits.length === 11);
+    // DOB must be valid DD/MM/YYYY
+    const dobValid = /^\d{2}\/\d{2}\/\d{4}$/.test(d.dob);
+    check('dob',          'dob-error',          dobValid);
+    check('businessType', 'businessType-error', d.businessType !== '');
+    check('idType',       'idType-error',       d.idType !== '');
+
     return valid;
   }
 
-  // ── SEND TO WEB3FORMS (with optional file upload) ──────────────
-  async function sendToWeb3Forms(data, extraFields, receiptFileInput) {
+  // ── PIXEL HELPERS ────────────────────────────────────────────
+  function firePixelLead() {
+    try { if (typeof fbq !== 'undefined') fbq('track', 'Lead'); } catch(e) {}
+  }
+  function firePixelPurchase(value) {
     try {
-      const formData = new FormData();
-
-      // Web3Forms required fields
-      formData.append('access_key', '47cd5294-193b-4311-8e13-6bfa2e5b0660');
-      formData.append('subject', 'NEW ORDER — GGS Global PayPal Setup');
-      formData.append('redirect', 'https://digitatecsolution.github.io/ggs-global/thankyou.html');
-
-      // Order data
-      formData.append('Full Name',       data.fullName);
-      formData.append('Business Name',   data.businessName || 'N/A');
-      formData.append('Phone Number',    data.phone);
-      formData.append('Date of Birth',   data.dob);
-      formData.append('Business Type',   data.businessType);
-      formData.append('ID Type',         data.idType);
-      formData.append('Payment Method',  data.paymentMethod);
-      formData.append('Submitted At',    data.timestamp);
-
-      // Extra fields (bank amount, receipt filename, etc.)
-      if (extraFields) {
-        Object.keys(extraFields).forEach(key => {
-          formData.append(key, extraFields[key]);
-        });
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Purchase', { value: value, currency: 'NGN' });
       }
+    } catch(e) {}
+  }
 
-      // Attach receipt file if provided
-      if (receiptFileInput && receiptFileInput.files && receiptFileInput.files[0]) {
-        formData.append('receipt', receiptFileInput.files[0], receiptFileInput.files[0].name);
-      }
-
-      await fetch('https://api.web3forms.com/submit', {
-        method : 'POST',
-        body   : formData
-        // NOTE: Do NOT set Content-Type header — browser sets it automatically
-        //       with the correct multipart/form-data boundary when using FormData
+  // ── SEND TO WEB3FORMS (JSON) ─────────────────────────────────
+  async function sendToWeb3Forms(subject, bodyText) {
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '47cd5294-193b-4311-8e13-6bfa2e5b0660',
+          subject   : subject,
+          message   : bodyText
+        })
       });
+      return res.ok;
     } catch(err) {
       console.warn('Web3Forms error:', err);
+      return false;
     }
   }
 
-  // ── FIRE PIXEL EVENTS ────────────────────────────────────────
-  function firePixelInitiate() { if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout'); }
-  function firePixelLead()     { if (typeof fbq !== 'undefined') fbq('track', 'Lead'); }
+  // ── SEND BANK TRANSFER ORDER (with Base64 receipt) ──────────
+  async function sendBankOrderToWeb3Forms(d, bankAmount, receiptBase64, receiptName) {
+    const body =
+`NEW ORDER RECEIVED — BANK TRANSFER
 
-  // ── BUILD WHATSAPP MESSAGE ───────────────────────────────────
-  function buildWAMessage(data, bankAmountLabel) {
-    const lines = [
-      'NEW ORDER — GGS Global PayPal Setup',
-      '',
-      'Hi Richard, I just completed my order. Here are my details:',
-      '',
-      'Full Name: '        + data.fullName,
-      'Business Name: '    + (data.businessName || 'N/A'),
-      'Phone Number: '     + data.phone,
-      'Date of Birth: '    + data.dob,
-      'Business Type: '    + data.businessType,
-      'Government ID: '    + data.idType,
-      'Payment Method: '   + data.paymentMethod,
-    ];
-    if (bankAmountLabel) {
-      lines.push('Amount Transferred: ' + bankAmountLabel);
+Full Name: ${d.fullName}
+Business Name: ${d.businessName || 'N/A'}
+Phone: ${d.phone}
+Date of Birth: ${d.dob}
+Business Type: ${d.businessType}
+Government ID Type: ${d.idType}
+Payment Method: Direct Bank Transfer — PalmPay
+Amount Transferred: ${bankAmount}
+Submitted At: ${d.timestamp}
+
+Receipt File: ${receiptName}
+Receipt (Base64): ${receiptBase64}
+
+ACTION REQUIRED: Verify payment in PalmPay before beginning setup.`;
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '47cd5294-193b-4311-8e13-6bfa2e5b0660',
+          subject   : 'NEW ORDER — GGS Global PayPal Setup — Bank Transfer',
+          message   : body
+        })
+      });
+      return res.ok;
+    } catch(err) {
+      console.warn('Web3Forms error:', err);
+      return false;
     }
-    lines.push('');
-    lines.push('Submitted at: ' + data.timestamp);
-    lines.push('');
-    lines.push('Payment is confirmed. Please begin my setup. Thank you.');
-    return lines.join('\n');
   }
 
-  // ── MAIN SUBMIT (Flutterwave paths) ──────────────────────────
+  // ── FILE TO BASE64 ───────────────────────────────────────────
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload  = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('File read failed'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ── BUILD THANK YOU PAGE URL ─────────────────────────────────
+  function buildThankyouUrl(params) {
+    const base   = 'thankyou.html';
+    const query  = Object.entries(params)
+      .map(([k,v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+      .join('&');
+    return `${base}?${query}`;
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  //  MAIN SUBMIT — FLUTTERWAVE PATHS
+  // ══════════════════════════════════════════════════════════════
   async function submitForm() {
     if (!document.getElementById('gateConfirm').checked) {
       document.getElementById('gateNotReadyMsg').classList.add('show');
@@ -1044,34 +1150,70 @@ fbq('track', 'PageView');
 
     const d = collectData();
     if (!validateForm(d)) {
-      window.scrollTo({ top:0, behavior:'smooth' });
+      document.querySelector('.form-input.error')?.scrollIntoView({ behavior:'smooth', block:'center' });
       return;
     }
 
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.querySelector('#btnLabel').textContent = 'Processing...';
+    document.getElementById('btnLabel').textContent = 'Processing...';
 
-    firePixelInitiate();
-
-    await sendToWeb3Forms(d);
-
-    firePixelLead();
-
-    // Redirect based on selection
     const isSplit = d.paymentMethod.includes('Split');
-    const redirectUrl = isSplit
+
+    // Determine values
+    const pixelValue  = isSplit ? 100000 : 180000;
+    const amountLabel = isSplit ? '₦100,000' : '₦180,000';
+    const packageLabel= isSplit ? 'Split Payment — 1st Payment ₦100,000' : 'Standard — Full Payment ₦180,000';
+    const subject     = isSplit
+      ? 'NEW ORDER — GGS Global PayPal Setup — Split Payment'
+      : 'NEW ORDER — GGS Global PayPal Setup — Full Payment';
+    const flutterwaveUrl = isSplit
       ? 'https://flutterwave.com/pay/halfpay'
       : 'https://flutterwave.com/pay/paypalbusiness';
+    const paymentKey  = isSplit ? 'split' : 'full';
 
-    btn.querySelector('#btnLabel').textContent = 'Redirecting to payment...';
+    const bodyText =
+`NEW ORDER RECEIVED${isSplit ? ' — SPLIT PAYMENT' : ' — FULL PAYMENT'}
+
+Full Name: ${d.fullName}
+Business Name: ${d.businessName || 'N/A'}
+Phone: ${d.phone}
+Date of Birth: ${d.dob}
+Business Type: ${d.businessType}
+Government ID Type: ${d.idType}
+Payment Method: ${d.paymentMethod}
+Amount: ${amountLabel}
+Submitted At: ${d.timestamp}`;
+
+    // Fire Lead pixel
+    firePixelLead();
+
+    // Submit to Web3Forms (don't block on failure)
+    sendToWeb3Forms(subject, bodyText).catch(e => console.warn(e));
+
+    // Fire Purchase pixel
+    firePixelPurchase(pixelValue);
+
+    // Store in sessionStorage for thank you page
+    try {
+      sessionStorage.setItem('ggs_payment', paymentKey);
+      sessionStorage.setItem('ggs_name',    d.fullName);
+      sessionStorage.setItem('ggs_phone',   d.phone);
+      sessionStorage.setItem('ggs_package', packageLabel);
+      sessionStorage.setItem('ggs_amount',  amountLabel);
+      sessionStorage.setItem('ggs_id',      d.idType);
+    } catch(e) { console.warn('sessionStorage error:', e); }
+
+    document.getElementById('btnLabel').textContent = 'Redirecting to payment...';
 
     setTimeout(() => {
-      window.location.href = redirectUrl;
+      window.location.href = flutterwaveUrl;
     }, 600);
   }
 
-  // ── BANK TRANSFER CONFIRM ────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════
+  //  BANK TRANSFER CONFIRM
+  // ══════════════════════════════════════════════════════════════
   async function confirmBankPayment() {
     if (!document.getElementById('gateConfirm').checked) {
       document.getElementById('gateNotReadyMsg').classList.add('show');
@@ -1079,10 +1221,10 @@ fbq('track', 'PageView');
       return;
     }
 
-    // Validate main form first
+    // Validate main form
     const d = collectData();
     if (!validateForm(d)) {
-      window.scrollTo({ top:0, behavior:'smooth' });
+      document.querySelector('.form-input.error')?.scrollIntoView({ behavior:'smooth', block:'center' });
       return;
     }
 
@@ -1103,41 +1245,69 @@ fbq('track', 'PageView');
       bankValid = false;
     } else {
       document.getElementById('bankReceiptError').classList.remove('show');
+      // Re-check file type and size
+      const file = receiptFile.files[0];
+      const allowed = ['image/jpeg','image/jpg','image/png','image/gif','image/webp','application/pdf'];
+      if (!allowed.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png|gif|webp|pdf)$/i)) {
+        document.getElementById('bankFileTypeError').classList.add('show');
+        bankValid = false;
+      } else if (file.size > 5 * 1024 * 1024) {
+        document.getElementById('bankFileSizeError').classList.add('show');
+        bankValid = false;
+      }
     }
 
     if (!bankValid) return;
 
+    // Prevent double submission
     const confirmBtn = document.getElementById('confirmPaymentBtn');
     confirmBtn.disabled = true;
     confirmBtn.innerHTML = '⏳ Processing...';
 
-    const bankAmountLabel = bankAmountEl.value;
+    const processingMsg = document.getElementById('processingMsg');
+    processingMsg.classList.add('show');
+
+    const bankAmount      = bankAmountEl.value;  // "₦180,000" or "₦100,000"
+    const pixelValue      = bankAmount.includes('180') ? 180000 : 100000;
     const receiptFilename = receiptFile.files[0].name;
 
-    firePixelInitiate();
+    // Convert receipt to Base64
+    let receiptBase64 = '';
+    try {
+      receiptBase64 = await fileToBase64(receiptFile.files[0]);
+    } catch(e) {
+      console.warn('File read error:', e);
+      receiptBase64 = '[File read failed — receipt: ' + receiptFilename + ']';
+    }
 
-    // Send to Web3Forms with receipt file attached
-    await sendToWeb3Forms(
-      d,
-      { 'Bank Amount': bankAmountLabel, 'Receipt Filename': receiptFilename },
-      receiptFile
-    );
+    // Submit to Web3Forms
+    try {
+      await sendBankOrderToWeb3Forms(d, bankAmount, receiptBase64, receiptFilename);
+    } catch(e) {
+      console.warn('Submission error:', e);
+      // Continue regardless
+    }
 
+    // Fire Pixel events
     firePixelLead();
+    firePixelPurchase(pixelValue);
 
-    // Build WhatsApp message and redirect
-    const msg    = buildWAMessage(d, bankAmountLabel);
-    const waUrl  = 'https://wa.me/2348106334849?text=' + encodeURIComponent(msg);
+    // Build thank you URL
+    const thankyouUrl = buildThankyouUrl({
+      payment: 'bank',
+      name   : d.fullName,
+      phone  : d.phone,
+      package: 'Standard — Bank Transfer',
+      amount : bankAmount,
+      id     : d.idType
+    });
 
-    confirmBtn.innerHTML = '✅ Opening WhatsApp...';
+    confirmBtn.innerHTML = '✅ Order Confirmed — Redirecting...';
+    processingMsg.textContent = '✅ Order submitted successfully! Redirecting...';
 
     setTimeout(() => {
-      // Open WhatsApp in new tab, then redirect to thank you
-      window.open(waUrl, '_blank');
-      setTimeout(() => {
-        window.location.href = 'thankyou.html';
-      }, 800);
-    }, 500);
+      window.location.href = thankyouUrl;
+    }, 800);
   }
 </script>
 

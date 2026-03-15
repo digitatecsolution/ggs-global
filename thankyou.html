@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payment Confirmed — GGS Global</title>
 
-<!-- Facebook Pixel -->
+<!-- Facebook Pixel Base Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,30 +21,32 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=924866965267790&ev=PageView&noscript=1"/></noscript>
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --navy: #070E1C;
-    --navy2: #0B1628;
-    --navy3: #0F1E35;
-    --gold: #F5C842;
-    --gold-dim: rgba(245,200,66,0.08);
-    --gold-border: rgba(245,200,66,0.2);
-    --green: #00C853;
-    --green-dim: rgba(0,200,83,0.08);
-    --green-border: rgba(0,200,83,0.25);
-    --orange: #FF6B35;
-    --orange-dim: rgba(255,107,53,0.08);
-    --orange-border: rgba(255,107,53,0.25);
-    --blue: #3B82F6;
-    --blue-dim: rgba(59,130,246,0.1);
-    --white: #FFFFFF;
-    --text: #E2E8F0;
-    --muted: #94A3B8;
-    --border: rgba(255,255,255,0.08);
+    --navy:          #070E1C;
+    --navy2:         #0B1628;
+    --navy3:         #0F1E35;
+    --gold:          #F5C842;
+    --gold-dim:      rgba(245,200,66,0.08);
+    --gold-border:   rgba(245,200,66,0.22);
+    --green:         #00C853;
+    --green-dim:     rgba(0,200,83,0.08);
+    --green-border:  rgba(0,200,83,0.28);
+    --orange:        #FF6B35;
+    --orange-dim:    rgba(255,107,53,0.08);
+    --orange-border: rgba(255,107,53,0.30);
+    --red:           #EF4444;
+    --red-dim:       rgba(239,68,68,0.08);
+    --red-border:    rgba(239,68,68,0.30);
+    --white:         #FFFFFF;
+    --text:          #E2E8F0;
+    --muted:         #94A3B8;
+    --border:        rgba(255,255,255,0.08);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
 
   body {
     background: var(--navy);
@@ -54,25 +56,33 @@ fbq('track', 'PageView');
     min-height: 100vh;
   }
 
-  /* TOPBAR */
+  /* ── TOPBAR ─────────────────────────────── */
   .topbar {
-    padding: 10px 20px;
+    padding: 11px 20px;
     text-align: center;
     font-size: 13px;
     font-weight: 800;
     color: var(--navy);
+    letter-spacing: 0.2px;
   }
-  .topbar.green { background: var(--green); }
+  .topbar.green  { background: var(--green); }
   .topbar.orange { background: var(--orange); }
+  .topbar.neutral{ background: var(--gold); }
 
-  /* PROGRESS */
+  /* ── PROGRESS ────────────────────────────── */
   .progress-bar {
     background: var(--navy2);
     padding: 16px 24px;
     border-bottom: 1px solid var(--border);
   }
   .progress-inner { max-width: 600px; margin: 0 auto; }
-  .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
   .progress-step {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -80,32 +90,47 @@ fbq('track', 'PageView');
     text-transform: uppercase;
     color: var(--muted);
   }
-  .progress-step.done { color: var(--green); }
+  .progress-step.done   { color: var(--green); }
   .progress-step.active { color: var(--gold); }
-  .progress-track { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 2px; transition: width 1s ease; }
+  .progress-track {
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    border-radius: 2px;
+    transition: width 1.2s ease;
+  }
 
-  /* CONTAINER */
-  .container { max-width: 600px; margin: 0 auto; padding: 40px 24px 80px; }
+  /* ── CONTAINER ───────────────────────────── */
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 44px 24px 88px;
+  }
 
-  /* ICON CIRCLE */
+  /* ── ICON CIRCLE ─────────────────────────── */
   .icon-circle {
     width: 100px; height: 100px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 46px;
+    font-size: 48px;
     margin: 0 auto 28px;
-    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    animation: popIn 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
   }
-  .icon-circle.green { background: var(--green-dim); border: 3px solid var(--green); }
+  .icon-circle.green  { background: var(--green-dim);  border: 3px solid var(--green);  }
   .icon-circle.orange { background: var(--orange-dim); border: 3px solid var(--orange); }
+  .icon-circle.neutral{ background: var(--gold-dim);   border: 3px solid var(--gold);   }
 
   @keyframes popIn {
     from { transform: scale(0); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    to   { transform: scale(1); opacity: 1; }
   }
 
-  /* PAGE HEADER */
+  /* ── PAGE HEADER ─────────────────────────── */
   .page-header {
     text-align: center;
     margin-bottom: 32px;
@@ -113,7 +138,7 @@ fbq('track', 'PageView');
   }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .status-tag {
@@ -128,37 +153,54 @@ fbq('track', 'PageView');
     margin-bottom: 18px;
     border-radius: 2px;
   }
-  .status-tag.green { background: var(--green-dim); border: 1px solid var(--green-border); color: var(--green); }
-  .status-tag.orange { background: var(--orange-dim); border: 1px solid var(--orange-border); color: var(--orange); }
+  .status-tag.green   { background: var(--green-dim);   border: 1px solid var(--green-border);   color: var(--green); }
+  .status-tag.orange  { background: var(--orange-dim);  border: 1px solid var(--orange-border);  color: var(--orange); }
+  .status-tag.neutral { background: var(--gold-dim);    border: 1px solid var(--gold-border);    color: var(--gold); }
 
   .page-header h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(30px, 7vw, 48px);
+    font-size: clamp(28px, 7vw, 46px);
     color: var(--white);
     line-height: 1.05;
     letter-spacing: 1px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
-  .page-header h1 .accent-green { color: var(--green); }
+  .page-header h1 .accent-green  { color: var(--green); }
   .page-header h1 .accent-orange { color: var(--orange); }
+  .page-header h1 .accent-gold   { color: var(--gold); }
 
-  .page-header .body-msg {
+  .body-msg {
     background: var(--navy2);
     border: 1px solid var(--border);
     padding: 18px 20px;
     font-size: 14px;
     color: var(--text);
-    line-height: 1.8;
+    line-height: 1.85;
     text-align: left;
     border-radius: 4px;
     margin-top: 8px;
   }
-  .page-header .body-msg strong { color: var(--white); }
+  .body-msg strong { color: var(--white); }
 
-  /* CARDS */
+  /* ── CLIENT NAME HIGHLIGHT ───────────────── */
+  .client-name-badge {
+    display: inline-block;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  /* ── CARDS ───────────────────────────────── */
   .card {
-    padding: 24px;
-    margin-bottom: 20px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
     border-radius: 4px;
     position: relative;
     overflow: hidden;
@@ -170,12 +212,14 @@ fbq('track', 'PageView');
     top: 0; left: 0; right: 0;
     height: 3px;
   }
-  .card.green { background: var(--green-dim); border: 1px solid var(--green-border); }
-  .card.green::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
-  .card.gold { background: var(--gold-dim); border: 1px solid var(--gold-border); }
-  .card.gold::before { background: linear-gradient(90deg, var(--gold), #F0A020); }
-  .card.orange { background: var(--orange-dim); border: 1px solid var(--orange-border); }
-  .card.orange::before { background: linear-gradient(90deg, var(--orange), var(--gold)); }
+  .card.green   { background: var(--green-dim);   border: 1px solid var(--green-border); }
+  .card.green::before   { background: linear-gradient(90deg, var(--green), var(--gold)); }
+  .card.gold    { background: var(--gold-dim);    border: 1px solid var(--gold-border); }
+  .card.gold::before    { background: linear-gradient(90deg, var(--gold), #F0A020); }
+  .card.orange  { background: var(--orange-dim);  border: 1px solid var(--orange-border); }
+  .card.orange::before  { background: linear-gradient(90deg, var(--orange), var(--gold)); }
+  .card.red     { background: var(--red-dim);     border: 1px solid var(--red-border); }
+  .card.red::before     { background: linear-gradient(90deg, var(--red), var(--orange)); }
 
   .card-label {
     font-family: 'DM Mono', monospace;
@@ -187,12 +231,30 @@ fbq('track', 'PageView');
     align-items: center;
     gap: 10px;
   }
-  .card-label.green { color: var(--green); }
-  .card-label.gold { color: var(--gold); }
-  .card-label.orange { color: var(--orange); }
+  .card-label.green   { color: var(--green); }
+  .card-label.gold    { color: var(--gold); }
+  .card-label.orange  { color: var(--orange); }
+  .card-label.red     { color: var(--red); }
   .card-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* STEPS LIST */
+  /* ── SUMMARY ROW ─────────────────────────── */
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .summary-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .summary-key   { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+  .summary-val   { font-size: 13px; font-weight: 700; color: var(--white); text-align: right; word-break: break-word; }
+  .summary-val.green  { color: var(--green); }
+  .summary-val.gold   { color: var(--gold); }
+  .summary-val.orange { color: var(--orange); }
+
+  /* ── STEPS LIST ──────────────────────────── */
   .steps-list { list-style: none; }
   .steps-list li {
     display: flex;
@@ -208,23 +270,23 @@ fbq('track', 'PageView');
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     font-weight: 700;
-    min-width: 24px;
-    height: 24px;
+    min-width: 24px; height: 24px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     margin-top: 1px;
     flex-shrink: 0;
   }
-  .step-num.green { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
-  .step-num.orange { background: var(--orange-dim); color: var(--orange); border: 1px solid var(--orange-border); }
+  .step-num.green   { background: var(--green-dim);   color: var(--green);   border: 1px solid var(--green-border); }
+  .step-num.orange  { background: var(--orange-dim);  color: var(--orange);  border: 1px solid var(--orange-border); }
+  .step-num.neutral { background: var(--gold-dim);    color: var(--gold);    border: 1px solid var(--gold-border); }
   .steps-list li strong { color: var(--white); }
 
-  /* BALANCE BOX */
+  /* ── BALANCE ROW ─────────────────────────── */
   .balance-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 11px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     flex-wrap: wrap;
     gap: 6px;
@@ -232,10 +294,28 @@ fbq('track', 'PageView');
   .balance-row:last-child { border-bottom: none; padding-bottom: 0; }
   .balance-label { font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace; }
   .balance-value { font-size: 15px; font-weight: 800; }
-  .balance-value.gold { color: var(--gold); }
-  .balance-value.white { color: var(--white); }
+  .balance-value.gold   { color: var(--gold); }
+  .balance-value.white  { color: var(--white); }
+  .balance-value.orange { color: var(--orange); }
 
-  /* COUNTDOWN */
+  /* ── SLOT RESERVE ────────────────────────── */
+  .slot-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green);
+    animation: fadeUp 0.6s 0.45s ease both;
+  }
+  .slot-box .lock-icon { font-size: 22px; flex-shrink: 0; }
+
+  /* ── COUNTDOWN ───────────────────────────── */
   .countdown-wrap {
     text-align: center;
     margin-bottom: 20px;
@@ -244,24 +324,24 @@ fbq('track', 'PageView');
   .countdown-box {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: var(--navy2);
     border: 1px solid var(--border);
     padding: 14px 24px;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--muted);
   }
   .countdown-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
+    font-size: 38px;
     color: var(--gold);
     line-height: 1;
-    min-width: 32px;
+    min-width: 36px;
     text-align: center;
   }
 
-  /* WHATSAPP BUTTON */
+  /* ── WHATSAPP BUTTON ─────────────────────── */
   .wa-btn {
     display: flex;
     align-items: center;
@@ -282,6 +362,7 @@ fbq('track', 'PageView');
     animation: fadeUp 0.6s 0.55s ease both;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
   }
   .wa-btn::before {
     content: '';
@@ -291,7 +372,7 @@ fbq('track', 'PageView');
     transition: transform 0.5s;
   }
   .wa-btn:hover::before { transform: translateX(100%); }
-  .wa-btn:hover { background: #20C05A; transform: translateY(-2px); }
+  .wa-btn:hover { background: #1eba5a; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,0.45); }
 
   .wa-note {
     text-align: center;
@@ -303,29 +384,38 @@ fbq('track', 'PageView');
     animation: fadeUp 0.6s 0.65s ease both;
   }
 
-  /* PENDING PULSE */
+  /* ── PULSE DOT ───────────────────────────── */
   .pulse-dot {
     width: 10px; height: 10px;
     border-radius: 50%;
     background: var(--orange);
     display: inline-block;
     animation: pulse 1.5s ease-in-out infinite;
-    margin-right: 6px;
+    margin-right: 4px;
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
   }
 
+  /* ── DIVIDER ─────────────────────────────── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────── */
   @media(max-width: 480px) {
-    .card, .container { padding-left: 16px; padding-right: 16px; }
-    .container { padding-top: 28px; padding-bottom: 60px; }
+    .container { padding: 28px 16px 64px; }
+    .card { padding: 18px 16px; }
+    .countdown-box { padding: 12px 16px; font-size: 12px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Topbar — injected by JS -->
+<!-- Topbar -->
 <div id="topbar" class="topbar"></div>
 
 <!-- Progress bar -->
@@ -333,190 +423,389 @@ fbq('track', 'PageView');
   <div class="progress-inner">
     <div class="progress-label">
       <span class="progress-step done">① Details Done</span>
-      <span class="progress-step done">② WhatsApp Confirmed</span>
-      <span class="progress-step active">③ Payment</span>
+      <span class="progress-step done">② Payment Sent</span>
+      <span class="progress-step active">③ Confirmation</span>
     </div>
     <div class="progress-track">
-      <div class="progress-fill" id="progressFill" style="width:100%"></div>
+      <div class="progress-fill" style="width:100%"></div>
     </div>
   </div>
 </div>
 
-<div class="container" id="mainContainer">
-  <!-- Content injected by JS -->
-</div>
+<!-- Main content injected by JS -->
+<div class="container" id="mainContainer"></div>
 
 <script>
 (function () {
-  /* ─── 1. READ URL PARAMS ─────────────────────────────────────── */
-  const params   = new URLSearchParams(window.location.search);
-  const payment  = params.get('payment') || 'full';   // full | split | bank
-  const name     = params.get('name')    || 'Client';
-  const pkg      = params.get('package') || 'Standard Package';
-  const amount   = params.get('amount')  || '180000'; // for bank transfer
 
-  const WA_NUM   = '2348106334849';
+  /* ══════════════════════════════════════════════════════
+     PART 1 — READ CLIENT DETAILS
+  ══════════════════════════════════════════════════════ */
 
-  /* ─── 2. JOURNEY CONFIG ──────────────────────────────────────── */
-  const journeys = {
-    full: {
-      topbarClass : 'green',
-      topbarText  : '🎉 Full Payment Confirmed — GGS Global | Setup Begins Now',
-      iconClass   : 'green',
-      icon        : '✅',
-      tagClass    : 'green',
-      tagText     : 'Payment Confirmed',
-      h1          : 'PAYMENT CONFIRMED\n<span class="accent-green">WELCOME TO GGS GLOBAL</span>',
-      bodyMsg     : `Thank you <strong>${esc(name)}</strong> — your full payment of <strong>₦180,000</strong> has been received.<br>
-                    Your PayPal setup slot is now <strong>officially confirmed and locked</strong>.<br>
-                    Richard will begin your setup immediately.<br>
-                    <strong>Expected delivery: within 72 hours from now.</strong>`,
-      nextStepsClass: 'green',
-      nextStepsLabel: '📋 What Happens Next',
-      steps: [
-        'Richard receives your payment confirmation <strong>automatically</strong>',
-        'Your setup begins within the <strong>next few hours</strong>',
-        'You receive your completed account details via <strong>WhatsApp within 72 hours</strong>',
-        'Richard remains available on WhatsApp for <strong>30 days after delivery</strong>'
-      ],
-      extraCard: null,
-      waMsg: `Hi Richard ✅ I just completed full payment of ₦180,000 for my PayPal setup. Here are my details: ${esc(name)} — ${esc(pkg)}`,
-      pixelValue: 180000
-    },
-    split: {
-      topbarClass : 'green',
-      topbarText  : '✅ Split Payment Confirmed — GGS Global | Setup Begins Now',
-      iconClass   : 'green',
-      icon        : '✅',
-      tagClass    : 'green',
-      tagText     : 'Split Payment Confirmed',
-      h1          : 'SPLIT PAYMENT CONFIRMED\n<span class="accent-green">SETUP BEGINS NOW</span>',
-      bodyMsg     : `Thank you <strong>${esc(name)}</strong> — your first payment of <strong>₦100,000</strong> has been received.<br>
-                    Your setup slot is <strong>confirmed and locked</strong>. Richard begins your setup immediately.<br>
-                    <strong>Your remaining balance of ₦80,000 is due before final delivery.</strong>`,
-      nextStepsClass: 'green',
-      nextStepsLabel: '📋 What Happens Next',
-      steps: [
-        'Setup begins <strong>immediately</strong> on receipt of first payment',
-        'Richard contacts you via WhatsApp to <strong>keep you updated</strong>',
-        'Remaining <strong>₦80,000</strong> is collected before your account is handed over',
-        'Full delivery within <strong>72 hours of first payment</strong>'
-      ],
-      extraCard: {
-        cardClass : 'gold',
-        labelClass: 'gold',
-        labelText : '💰 Remaining Balance Due',
-        html: `
-          <div class="balance-row">
-            <span class="balance-label">Balance Due</span>
-            <span class="balance-value gold">₦80,000</span>
-          </div>
-          <div class="balance-row">
-            <span class="balance-label">Due</span>
-            <span class="balance-value white">Before final delivery</span>
-          </div>
-          <div class="balance-row">
-            <span class="balance-label">Pay via PalmPay</span>
-            <span class="balance-value white">8142717585 — Richard Ojukwu</span>
-          </div>
-          <div class="balance-row">
-            <span class="balance-label">Or Flutterwave</span>
-            <span class="balance-value white">flutterwave.com/pay/halfpay</span>
-          </div>
-        `
-      },
-      waMsg: `Hi Richard ✅ I just completed split payment of ₦100,000 for my PayPal setup. Here are my details: ${esc(name)} — ${esc(pkg)}`,
-      pixelValue: 100000
-    },
-    bank: {
-      topbarClass : 'orange',
-      topbarText  : '⏳ Receipt Received — GGS Global | Verifying Your Payment',
-      iconClass   : 'orange',
-      icon        : '📩',
-      tagClass    : 'orange',
-      tagText     : 'Receipt Received',
-      h1          : 'RECEIPT RECEIVED\n<span class="accent-orange">CONFIRMING YOUR PAYMENT</span>',
-      bodyMsg     : `Thank you <strong>${esc(name)}</strong> — your receipt has been received and is being verified.<br>
-                    Once your transfer is confirmed — which typically takes <strong>under 30 minutes</strong> — your setup begins immediately.<br>
-                    <strong>Richard will send you a WhatsApp confirmation the moment payment is verified.</strong>`,
-      nextStepsClass: 'orange',
-      nextStepsLabel: '⏳ Payment Verification In Progress',
-      steps: [
-        '<strong>Richard is confirming your bank transfer now</strong> — this usually takes under 30 minutes',
-        'You will receive a <strong>WhatsApp message confirming your slot</strong> is locked',
-        'Setup begins <strong>immediately after verification</strong>',
-        'Full delivery within <strong>72 hours of payment confirmation</strong>'
-      ],
-      extraCard: null,
-      waMsg: `Hi Richard ✅ I just uploaded my bank transfer receipt for my PayPal setup. Here are my details: ${esc(name)} — ${esc(pkg)} — Amount transferred: ₦${esc(amount)}`,
-      pixelValue: 180000
+  const urlParams     = new URLSearchParams(window.location.search);
+  const urlPayment    = urlParams.get('payment');
+  const urlName       = urlParams.get('name');
+  const urlPhone      = urlParams.get('phone');
+  const urlPackage    = urlParams.get('package');
+  const urlAmount     = urlParams.get('amount');
+  const urlID         = urlParams.get('id');
+
+  const ssPayment     = sessionStorage.getItem('ggs_payment');
+  const ssName        = sessionStorage.getItem('ggs_name');
+  const ssPhone       = sessionStorage.getItem('ggs_phone');
+  const ssPackage     = sessionStorage.getItem('ggs_package');
+  const ssAmount      = sessionStorage.getItem('ggs_amount');
+  const ssID          = sessionStorage.getItem('ggs_id');
+
+  // Clear sessionStorage after reading
+  ['ggs_payment','ggs_name','ggs_phone','ggs_package','ggs_amount','ggs_id']
+    .forEach(k => sessionStorage.removeItem(k));
+
+  // Priority: URL params first (bank), then sessionStorage (Flutterwave), then fallback
+  let paymentType, clientName, clientPhone, clientPackage, clientAmount, clientID, dataSource;
+
+  if (urlPayment) {
+    paymentType   = urlPayment;
+    clientName    = urlName    || 'Client';
+    clientPhone   = urlPhone   || '—';
+    clientPackage = urlPackage || 'Standard Package';
+    clientAmount  = urlAmount  || '₦180,000';
+    clientID      = urlID      || '—';
+    dataSource    = 'url';
+  } else if (ssPayment) {
+    paymentType   = ssPayment;
+    clientName    = ssName    || 'Client';
+    clientPhone   = ssPhone   || '—';
+    clientPackage = ssPackage || 'Standard Package';
+    clientAmount  = ssAmount  || '₦180,000';
+    clientID      = ssID      || '—';
+    dataSource    = 'session';
+  } else {
+    paymentType   = 'fallback';
+    clientName    = 'Client';
+    clientPhone   = '—';
+    clientPackage = '—';
+    clientAmount  = '—';
+    clientID      = '—';
+    dataSource    = 'none';
+  }
+
+  // Normalise amount display — ensure ₦ prefix
+  function formatAmount(amt) {
+    if (!amt || amt === '—') return '—';
+    const s = String(amt).trim();
+    return s.startsWith('₦') ? s : '₦' + s;
+  }
+  clientAmount = formatAmount(clientAmount);
+
+  /* ══════════════════════════════════════════════════════
+     PART 2 — FIRE FACEBOOK PIXEL PURCHASE
+  ══════════════════════════════════════════════════════ */
+
+  function getPixelValue() {
+    if (paymentType === 'full')  return 180000;
+    if (paymentType === 'split') return 100000;
+    if (paymentType === 'bank') {
+      const raw = String(clientAmount).replace(/[^\d]/g, '');
+      if (raw.includes('180000') || raw === '180000') return 180000;
+      if (raw.includes('100000') || raw === '100000') return 100000;
+      return 180000;
     }
-  };
+    return 100000; // fallback
+  }
+
+  if (typeof fbq !== 'undefined' && paymentType !== 'fallback') {
+    fbq('track', 'Purchase', {
+      currency: 'NGN',
+      value: getPixelValue()
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════
+     HELPERS
+  ══════════════════════════════════════════════════════ */
+
+  const WA_NUM = '2348106334849';
 
   function esc(s) {
-    return String(s)
+    return String(s || '')
       .replace(/&/g,'&amp;')
       .replace(/</g,'&lt;')
       .replace(/>/g,'&gt;')
       .replace(/"/g,'&quot;');
   }
 
-  const j = journeys[payment] || journeys.full;
-
-  /* ─── 3. FIRE FACEBOOK PIXEL PURCHASE ───────────────────────── */
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Purchase', {
-      currency: 'NGN',
-      value: j.pixelValue
-    });
+  function buildWaUrl(msg) {
+    return `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`;
   }
 
-  /* ─── 4. RENDER TOPBAR ───────────────────────────────────────── */
-  const topbar = document.getElementById('topbar');
-  topbar.className = `topbar ${j.topbarClass}`;
-  topbar.textContent = j.topbarText;
+  function stepsHtml(steps, colorClass) {
+    return steps.map((s, i) => `
+      <li>
+        <span class="step-num ${colorClass}">${i + 1}</span>
+        <span>${s}</span>
+      </li>`).join('');
+  }
 
-  /* ─── 5. BUILD WHATSAPP URL ──────────────────────────────────── */
-  const waUrl = `https://wa.me/${WA_NUM}?text=${encodeURIComponent(j.waMsg)}`;
+  function summaryCard(colorClass, labelText, rows) {
+    const rowsHtml = rows.map(([key, val, valClass]) => `
+      <div class="summary-row">
+        <span class="summary-key">${esc(key)}</span>
+        <span class="summary-val ${valClass || ''}">${val}</span>
+      </div>`).join('');
+    return `
+      <div class="card ${colorClass}">
+        <div class="card-label ${colorClass}">${labelText}</div>
+        ${rowsHtml}
+      </div>`;
+  }
 
-  /* ─── 6. BUILD NEXT STEPS HTML ───────────────────────────────── */
-  const stepsHtml = j.steps.map((s, i) => `
-    <li>
-      <span class="step-num ${j.nextStepsClass}">${i+1}</span>
-      <span>${s}</span>
-    </li>`).join('');
+  /* ══════════════════════════════════════════════════════
+     PART 3 — BUILD JOURNEYS
+  ══════════════════════════════════════════════════════ */
 
-  /* ─── 7. BUILD EXTRA CARD HTML ───────────────────────────────── */
-  const extraCardHtml = j.extraCard ? `
-    <div class="card ${j.extraCard.cardClass}">
-      <div class="card-label ${j.extraCard.labelClass}">${j.extraCard.labelText}</div>
-      ${j.extraCard.html}
-    </div>` : '';
+  let html        = '';
+  let topbarClass = 'green';
+  let topbarText  = '';
+  let waUrl       = '';
+  let waLabel     = 'Send Payment Confirmation to Richard';
+  let waNoteText  = 'send your confirmation so Richard can start your setup immediately';
 
-  /* ─── 8. BUILD PENDING PULSE FOR BANK ───────────────────────── */
-  const pendingBadge = payment === 'bank' ? `<span class="pulse-dot"></span>` : '';
+  /* ────────────────────────────────────────────────────
+     JOURNEY 1 — Full Payment ₦180,000 Flutterwave
+  ──────────────────────────────────────────────────── */
+  if (paymentType === 'full') {
+    topbarClass = 'green';
+    topbarText  = '🎉 Full Payment Confirmed — GGS Global | Setup Begins Now';
 
-  /* ─── 9. INJECT FULL HTML ────────────────────────────────────── */
-  document.getElementById('mainContainer').innerHTML = `
+    const waMsg = `Hi Richard ✅ I just completed full payment for my PayPal setup.\n\nHere are my details:\nFull Name: ${clientName}\nPhone: ${clientPhone}\nPackage: ${clientPackage}\nPayment Method: Flutterwave\nAmount Paid: ${clientAmount}\n\nPlease confirm my slot and begin my setup immediately. Thank you 🙏`;
+    waUrl = buildWaUrl(waMsg);
+    waLabel = 'Send Payment Confirmation to Richard';
+    waNoteText = 'send your confirmation so Richard can start your setup immediately';
 
-    <div class="icon-circle ${j.iconClass}">${j.icon}</div>
+    html = `
+      <div class="icon-circle green">✅</div>
 
-    <div class="page-header">
-      <div class="status-tag ${j.tagClass}">${pendingBadge}${j.tagText}</div>
-      <h1>${j.h1.replace('\n', '<br>')}</h1>
-      <div class="body-msg">${j.bodyMsg}</div>
-    </div>
+      <div class="page-header">
+        <div class="client-name-badge">👤 ${esc(clientName)}</div>
+        <div class="status-tag green">✅ Payment Confirmed</div>
+        <h1>PAYMENT CONFIRMED<br><span class="accent-green">WELCOME TO GGS GLOBAL</span></h1>
+        <div class="body-msg">
+          Thank you <strong>${esc(clientName)}</strong> — your full payment of <strong>${esc(clientAmount)}</strong> has been received and confirmed automatically.<br>
+          Your PayPal setup slot is <strong>officially locked.</strong> Richard begins your setup immediately.<br>
+          <strong>Expected delivery: within 72 hours from now.</strong>
+        </div>
+      </div>
 
-    <div class="card ${j.nextStepsClass === 'green' ? 'green' : 'orange'}">
-      <div class="card-label ${j.nextStepsClass}">${j.nextStepsLabel}</div>
-      <ul class="steps-list">${stepsHtml}</ul>
-    </div>
+      ${summaryCard('green', '📋 Order Summary', [
+        ['Name',           `<strong>${esc(clientName)}</strong>`,    'white'],
+        ['Phone',          esc(clientPhone),                         ''],
+        ['Package',        esc(clientPackage),                       ''],
+        ['Amount Paid',    `<strong>${esc(clientAmount)}</strong>`,   'gold'],
+        ['Payment Method', 'Flutterwave',                            ''],
+        ['Status',         '✅ Payment Confirmed',                   'green'],
+      ])}
 
-    ${extraCardHtml}
+      <div class="card green">
+        <div class="card-label green">📋 What Happens Next</div>
+        <ul class="steps-list">
+          ${stepsHtml([
+            'Richard receives your payment confirmation <strong>automatically</strong>',
+            'Your setup begins within the <strong>next few hours</strong>',
+            'You receive your completed account details via <strong>WhatsApp within 72 hours</strong>',
+            'Richard remains personally available on WhatsApp for <strong>30 days after delivery</strong>'
+          ], 'green')}
+        </ul>
+      </div>`;
+  }
+
+  /* ────────────────────────────────────────────────────
+     JOURNEY 2 — Split Payment ₦100,000 Flutterwave
+  ──────────────────────────────────────────────────── */
+  else if (paymentType === 'split') {
+    topbarClass = 'green';
+    topbarText  = '✅ Split Payment Confirmed — GGS Global | Setup Begins Now';
+
+    const waMsg = `Hi Richard ✅ I just completed split payment for my PayPal setup.\n\nHere are my details:\nFull Name: ${clientName}\nPhone: ${clientPhone}\nPackage: ${clientPackage}\nPayment Method: Flutterwave\nAmount Paid: ${clientAmount}\nRemaining Balance: ₦80,000 — to be paid before delivery\n\nPlease confirm my slot and begin my setup immediately. Thank you 🙏`;
+    waUrl = buildWaUrl(waMsg);
+    waLabel = 'Send Payment Confirmation to Richard';
+    waNoteText = 'send your confirmation so Richard can start your setup immediately';
+
+    html = `
+      <div class="icon-circle green">✅</div>
+
+      <div class="page-header">
+        <div class="client-name-badge">👤 ${esc(clientName)}</div>
+        <div class="status-tag green">✅ Split Payment Confirmed</div>
+        <h1>SPLIT PAYMENT CONFIRMED<br><span class="accent-green">SETUP BEGINS NOW</span></h1>
+        <div class="body-msg">
+          Thank you <strong>${esc(clientName)}</strong> — your first payment of <strong>${esc(clientAmount)}</strong> has been received and confirmed.<br>
+          Your setup slot is <strong>locked</strong> and Richard begins immediately.<br>
+          <strong>Your remaining balance of ₦80,000 is due before final account delivery.</strong>
+        </div>
+      </div>
+
+      ${summaryCard('green', '📋 Order Summary', [
+        ['Name',           `<strong>${esc(clientName)}</strong>`,    'white'],
+        ['Phone',          esc(clientPhone),                         ''],
+        ['Package',        esc(clientPackage),                       ''],
+        ['Amount Paid',    `<strong>${esc(clientAmount)}</strong>`,   'gold'],
+        ['Payment Method', 'Flutterwave',                            ''],
+        ['Status',         '✅ First Payment Confirmed',             'green'],
+      ])}
+
+      <div class="card gold">
+        <div class="card-label gold">💰 Remaining Balance Due</div>
+        <div class="balance-row">
+          <span class="balance-label">Balance Due</span>
+          <span class="balance-value gold">₦80,000</span>
+        </div>
+        <div class="balance-row">
+          <span class="balance-label">Due</span>
+          <span class="balance-value white">Before final delivery</span>
+        </div>
+        <div class="balance-row">
+          <span class="balance-label">Pay via PalmPay</span>
+          <span class="balance-value white">8142717585 — Richard Ojukwu</span>
+        </div>
+        <div class="balance-row">
+          <span class="balance-label">Or Flutterwave</span>
+          <span class="balance-value white">flutterwave.com/pay/halfpay</span>
+        </div>
+      </div>
+
+      <div class="card green">
+        <div class="card-label green">📋 What Happens Next</div>
+        <ul class="steps-list">
+          ${stepsHtml([
+            'Setup begins <strong>immediately</strong> on receipt of first payment',
+            'Richard contacts you via WhatsApp <strong>throughout the process</strong>',
+            'Remaining <strong>₦80,000</strong> is collected before your account is handed over',
+            'Full delivery within <strong>72 hours of first payment</strong>'
+          ], 'green')}
+        </ul>
+      </div>`;
+  }
+
+  /* ────────────────────────────────────────────────────
+     JOURNEY 3 — Direct Bank Transfer
+  ──────────────────────────────────────────────────── */
+  else if (paymentType === 'bank') {
+    topbarClass = 'orange';
+    topbarText  = '⏳ Order Received — GGS Global | Verifying Your Payment Now';
+
+    const waMsg = `Hi Richard ✅ I just submitted my PayPal setup order and uploaded my bank transfer receipt.\n\nHere are my details:\nFull Name: ${clientName}\nPhone: ${clientPhone}\nPackage: ${clientPackage}\nPayment Method: Direct Bank Transfer — PalmPay\nAmount Transferred: ${clientAmount}\nReceipt: Uploaded on order form ✅\n\nPlease verify my payment and confirm my setup slot. Thank you 🙏`;
+    waUrl = buildWaUrl(waMsg);
+    waLabel = 'Message Richard to Confirm Your Receipt';
+    waNoteText = 'message Richard so he can verify your transfer and lock your slot immediately';
+
+    html = `
+      <div class="icon-circle orange">📩</div>
+
+      <div class="page-header">
+        <div class="client-name-badge">👤 ${esc(clientName)}</div>
+        <div class="status-tag orange"><span class="pulse-dot"></span>Receipt Received</div>
+        <h1>ORDER RECEIVED<br><span class="accent-orange">VERIFYING YOUR PAYMENT</span></h1>
+        <div class="body-msg">
+          Thank you <strong>${esc(clientName)}</strong> — your order details and payment receipt have been successfully received.<br>
+          Richard is manually verifying your bank transfer of <strong>${esc(clientAmount)}</strong> in our PalmPay account right now.<br>
+          <strong>This typically takes under 30 minutes.</strong>
+        </div>
+      </div>
+
+      ${summaryCard('orange', '📋 Order Summary', [
+        ['Name',              `<strong>${esc(clientName)}</strong>`,             'white'],
+        ['Phone',             esc(clientPhone),                                  ''],
+        ['Package',           esc(clientPackage),                                ''],
+        ['Amount Transferred',`<strong>${esc(clientAmount)}</strong>`,            'gold'],
+        ['Payment Method',    'Direct Bank Transfer — PalmPay',                  ''],
+        ['Status',            '⏳ Verification In Progress',                     'orange'],
+      ])}
+
+      <div class="card orange">
+        <div class="card-label orange">🔍 What Is Happening Right Now</div>
+        <ul class="steps-list">
+          ${stepsHtml([
+            'Your receipt has been received and logged <strong>✅</strong>',
+            'Richard is verifying your PalmPay transfer <strong>now</strong>',
+            'You will receive <strong>WhatsApp confirmation within 30 minutes</strong>',
+            'Setup begins <strong>immediately after payment is verified</strong>',
+            'Full delivery within <strong>72 hours of verification</strong>'
+          ], 'orange')}
+        </ul>
+      </div>
+
+      <div class="card red">
+        <div class="card-label red">⚠️ Important Notice</div>
+        <p style="font-size:14px; color:var(--text); line-height:1.7;">
+          If you uploaded an <strong style="color:#fff;">incorrect receipt</strong> — send your correct receipt directly to WhatsApp:
+          <strong style="color:#fff;">+2348106334849</strong> immediately to avoid delays.
+        </p>
+      </div>
+
+      <div class="slot-box">
+        <span class="lock-icon">🔒</span>
+        <span>Your slot is reserved for the next <strong>2 hours</strong> while verification is completed.</span>
+      </div>`;
+  }
+
+  /* ────────────────────────────────────────────────────
+     FALLBACK — No parameters detected
+  ──────────────────────────────────────────────────── */
+  else {
+    topbarClass = 'neutral';
+    topbarText  = '✅ Order Received — GGS Global | Thank You';
+
+    const waMsg = `Hi Richard ✅ I just completed my PayPal setup order. Please confirm my slot and next steps. Thank you 🙏`;
+    waUrl = buildWaUrl(waMsg);
+    waLabel = 'Contact Richard on WhatsApp';
+    waNoteText = 'Richard will confirm your slot and send you next steps';
+
+    html = `
+      <div class="icon-circle neutral">✅</div>
+
+      <div class="page-header">
+        <div class="status-tag neutral">✅ Order Received</div>
+        <h1>ORDER RECEIVED<br><span class="accent-gold">THANK YOU</span></h1>
+        <div class="body-msg">
+          Your order has been received.<br>
+          Richard will contact you on WhatsApp shortly to confirm your setup slot and payment details.
+        </div>
+      </div>
+
+      <div class="card gold">
+        <div class="card-label gold">📋 What Happens Next</div>
+        <ul class="steps-list">
+          ${stepsHtml([
+            'Richard reviews your order and <strong>contacts you on WhatsApp</strong>',
+            'Your setup slot is confirmed once payment is <strong>verified</strong>',
+            'Full delivery within <strong>72 hours of confirmation</strong>',
+            'Richard remains available on WhatsApp for <strong>30 days after delivery</strong>'
+          ], 'neutral')}
+        </ul>
+      </div>`;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     PART 4 — INJECT TOPBAR
+  ══════════════════════════════════════════════════════ */
+  const topbarEl = document.getElementById('topbar');
+  topbarEl.className = `topbar ${topbarClass}`;
+  topbarEl.textContent = topbarText;
+
+  /* ══════════════════════════════════════════════════════
+     PART 4 — INJECT COUNTDOWN + WA BUTTON + FULL HTML
+  ══════════════════════════════════════════════════════ */
+  const countdownLabel = paymentType === 'bank'
+    ? 'Redirecting you to WhatsApp to complete verification in'
+    : 'Redirecting you to WhatsApp to complete your confirmation in';
+
+  html += `
+    <hr class="section-divider">
 
     <div class="countdown-wrap">
       <div class="countdown-box">
-        <span>Opening WhatsApp in</span>
+        <span>${countdownLabel}</span>
         <span class="countdown-num" id="cdNum">5</span>
         <span>seconds…</span>
       </div>
@@ -524,17 +813,20 @@ fbq('track', 'PageView');
 
     <a href="${waUrl}" class="wa-btn" id="waBtn">
       <span style="font-size:22px;">💬</span>
-      ${payment === 'bank' ? 'Message Richard to Confirm Your Receipt' : 'Send Payment Confirmation to Richard'}
+      ${waLabel}
     </a>
 
     <p class="wa-note">
-      Opens WhatsApp — ${payment === 'bank' ? 'message Richard so he can verify and lock your slot' : 'send your confirmation so Richard can start your setup immediately'}<br>
+      Opens WhatsApp — ${waNoteText}<br>
       WhatsApp: +234 810 633 4849
-    </p>
-  `;
+    </p>`;
 
-  /* ─── 10. COUNTDOWN & REDIRECT ───────────────────────────────── */
-  let secs = 5;
+  document.getElementById('mainContainer').innerHTML = html;
+
+  /* ══════════════════════════════════════════════════════
+     COUNTDOWN & AUTO-REDIRECT
+  ══════════════════════════════════════════════════════ */
+  let secs  = 5;
   const cdEl = document.getElementById('cdNum');
 
   const timer = setInterval(() => {
@@ -546,8 +838,11 @@ fbq('track', 'PageView');
     }
   }, 1000);
 
-  // If user taps WA button manually — clear timer
-  document.getElementById('waBtn').addEventListener('click', () => clearInterval(timer));
+  // Clear timer if user taps WA button manually
+  const waBtnEl = document.getElementById('waBtn');
+  if (waBtnEl) {
+    waBtnEl.addEventListener('click', () => clearInterval(timer));
+  }
 
 })();
 </script>
