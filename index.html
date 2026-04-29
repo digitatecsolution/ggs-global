@@ -867,12 +867,16 @@ footer{background:var(--black);border-top:1px solid var(--b1);padding:26px 0;}
       <!-- CORRECTION 2: Proof image — portrait, object-fit: contain, aspect-ratio: auto -->
       <div class="h-proof reveal">
         <div class="h-proof-badge">✅ VERIFIED PAYMENT PROOF</div>
-        <img
-          src="withdrawal-proof.jpg"
-          alt="$2,000 received by Nigerian PayPal account configured by GGS Global"
+        <video
           class="h-proof-img"
+          autoplay
+          loop
+          muted
+          playsinline
           width="320"
         >
+          <source src="withdrawal-proof.mp4" type="video/mp4">
+        </video>
         <div class="h-proof-cap">$2,000 received in one day — Nigerian freelancer — GGS Global configured account 🇳🇬</div>
       </div>
 
