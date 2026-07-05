@@ -473,6 +473,20 @@ body{background:var(--navy);color:var(--text);font-family:'Manrope',sans-serif;l
 
         <div class="payment-grid">
 
+          <!-- Bank Transfer — DEFAULT FIRST -->
+          <div class="pay-option opt-bank">
+            <input type="radio" name="payOpt" id="pay-bank" value="bank" onchange="onSelect('bank')">
+            <label class="pay-card" for="pay-bank">
+              <span class="pc-badge badge-popular">Most Popular</span>
+              <div class="pc-icon">🏦</div>
+              <div class="pc-title">Bank Transfer</div>
+              <div class="pc-amount">No Card Needed</div>
+              <div class="pc-sub">Transfer to our verified corporate PalmPay Business account.</div>
+              <div class="pc-method">PalmPay direct transfer</div>
+            </label>
+            <div class="pc-check">✓</div>
+          </div>
+
           <!-- Full Payment -->
           <div class="pay-option opt-full">
             <input type="radio" name="payOpt" id="pay-full" value="full" onchange="onSelect('full')">
@@ -497,20 +511,6 @@ body{background:var(--navy);color:var(--text);font-family:'Manrope',sans-serif;l
               <div class="pc-amount">₦100,000 Now</div>
               <div class="pc-sub">₦80,000 balance due only after delivery.</div>
               <div class="pc-method">Flutterwave — card, bank or USSD</div>
-            </label>
-            <div class="pc-check">✓</div>
-          </div>
-
-          <!-- Bank Transfer -->
-          <div class="pay-option opt-bank">
-            <input type="radio" name="payOpt" id="pay-bank" value="bank" onchange="onSelect('bank')">
-            <label class="pay-card" for="pay-bank">
-              <span class="pc-badge badge-popular">Most Popular</span>
-              <div class="pc-icon">🏦</div>
-              <div class="pc-title">Bank Transfer</div>
-              <div class="pc-amount">No Card Needed</div>
-              <div class="pc-sub">Transfer to Richard's verified PalmPay account.</div>
-              <div class="pc-method">PalmPay direct transfer</div>
             </label>
             <div class="pc-check">✓</div>
           </div>
@@ -569,26 +569,28 @@ body{background:var(--navy);color:var(--text);font-family:'Manrope',sans-serif;l
       <div class="selection-panel" id="panel-bank">
         <div class="bank-panel-inner">
           <div class="bank-panel-title">🏦 Bank Transfer — No Card Required</div>
-          <div class="bank-panel-sub">Transfer to Richard's verified PalmPay account. Upload your receipt to confirm your slot immediately.</div>
+          <div class="bank-panel-sub">Transfer to our verified corporate PalmPay Business account below. Upload your receipt to confirm your slot immediately.</div>
 
-          <div class="bank-details-grid">
-            <div class="bank-detail-item">
-              <div class="bank-detail-label">🏦 Bank</div>
-              <div class="bank-detail-value">PalmPay</div>
+          <!-- START OF GGS GLOBAL PREMIUM CORPORATE BANK DETAILS -->
+          <div style="background-color:#161b22;border-radius:8px;padding:16px;border:1px solid #30363d;margin-bottom:20px;font-family:sans-serif;text-align:left;">
+            <div style="margin-bottom:12px;">
+              <span style="color:#8b949e;font-size:12px;display:block;text-transform:uppercase;font-weight:600;">Bank Name</span>
+              <strong style="color:#f0f6fc;font-size:16px;">PalmPay Business</strong>
             </div>
-            <div class="bank-detail-item">
-              <div class="bank-detail-label">👤 Account Name</div>
-              <div class="bank-detail-value">Richard Ojukwu</div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#8b949e;font-size:12px;display:block;text-transform:uppercase;font-weight:600;">Account Number</span>
+              <strong style="color:#38bdf8;font-size:22px;letter-spacing:1px;">8935536876</strong>
             </div>
-            <div class="bank-detail-item" style="grid-column:1/-1">
-              <div class="bank-detail-label">🔢 Account Number</div>
-              <div class="bank-detail-value account-num">8142717585</div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#8b949e;font-size:12px;display:block;text-transform:uppercase;font-weight:600;">Account Name</span>
+              <strong style="color:#f0f6fc;font-size:16px;">GGS Global Consult</strong>
             </div>
-            <div class="bank-detail-item" style="grid-column:1/-1">
-              <div class="bank-detail-label">💰 Amount</div>
-              <div class="bank-detail-value" id="bankAmountDisplay" style="font-size:18px;color:var(--gold);font-weight:900">Select amount below ↓</div>
+            <div>
+              <span style="color:#8b949e;font-size:12px;display:block;text-transform:uppercase;font-weight:600;">💰 Amount</span>
+              <div class="bank-detail-value" id="bankAmountDisplay" style="font-size:18px;color:var(--gold);font-weight:900;margin-top:4px;">Select amount below ↓</div>
             </div>
           </div>
+          <!-- END OF GGS GLOBAL PREMIUM CORPORATE BANK DETAILS -->
 
           <div class="bank-amount-selector">
             <label>How much are you transferring? <span style="color:var(--red)">*</span></label>
@@ -632,7 +634,7 @@ body{background:var(--navy);color:var(--text);font-family:'Manrope',sans-serif;l
           <button class="btn-confirm-bank" onclick="confirmBankPayment()" id="confirmBankBtn" disabled>
             ✅ Confirm Payment &amp; Complete Order
           </button>
-          <div class="bank-reassurance">🔒 Richard manually verifies every transfer in PalmPay before setup begins. WhatsApp confirmation within 30 minutes of verification.</div>
+          <div class="bank-reassurance">🔒 All transfers are verified against our corporate PalmPay Business account — GGS Global Consult. WhatsApp confirmation within 30 minutes of verification.</div>
         </div>
       </div>
 
